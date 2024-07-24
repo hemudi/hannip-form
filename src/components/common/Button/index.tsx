@@ -1,19 +1,11 @@
-import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
-const Button = ({
-  variant = 'colored',
-  color = 'black',
-  size = 'full',
-  children,
-  ...props
-}: ButtonProps) => {
+const Button = ({ variant = 'colored', color = 'black', size = 'full', ...props }: ButtonProps) => {
   return (
     <button
       className={`h-12 rounded-lg disabled:bg-gray-100 disabled:text-gray-500 ${sizeStyles[size]} ${colorStyles[color][variant]}`}
       {...props}
-    >
-      {children}
-    </button>
+    />
   );
 };
 
@@ -44,7 +36,6 @@ interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   color?: ButtonColor;
   variant?: ButtonVariant;
   size?: ButtonSize;
-  children: ReactNode;
 }
 
 export default Button;
