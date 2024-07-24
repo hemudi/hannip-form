@@ -52,6 +52,9 @@ const config: Config = {
         43: '10.938rem',
         89: '22.375rem',
       },
+      height: {
+        47: '11.875rem',
+      },
     },
   },
   plugins: [],
