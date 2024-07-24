@@ -8,6 +8,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        pretendard: ['Pretendard'],
+      },
+      fontSize: {
+        h1: '2.375rem',
+        h2: '1.875rem',
+        h3: '1.5rem',
+        h4: '1.25rem',
+        body1: '1rem',
+        body2: '0.875rem',
+        footnote: '0.75rem',
+      },
       colors: {
         white: '#FFFFFF',
         black: '#121212',
@@ -31,10 +43,14 @@ const config: Config = {
           400: '#B7B7B9',
           500: '#A5A5A7',
           600: '#888889',
-          700: '#888889',
-          800: '#888889',
-          900: '#888889',
+          700: '#6A6A6B',
+          800: '#4D4D4E',
+          900: '#2F2F30',
         },
+      },
+      width: {
+        43: '10.938rem',
+        89: '22.375rem',
       },
     },
   },
