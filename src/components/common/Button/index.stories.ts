@@ -9,6 +9,12 @@ const meta = {
       options: ['colored', 'line'],
       control: { type: 'radio' },
     },
+    disabled: {
+      control: { type: 'boolean' },
+    },
+  },
+  args: {
+    disabled: false,
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Button>;
