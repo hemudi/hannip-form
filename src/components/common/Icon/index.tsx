@@ -5,6 +5,8 @@ type IconProps = {
   type: keyof typeof SvgComponents;
   fill?: `#${number}` | 'none';
   color?: `#${string}`;
+  viewBox?: string;
+  className?: 'string';
 };
 
 const iconSize = {
@@ -20,7 +22,7 @@ const iconSize = {
 
 const Icon = ({ type = 'leftArrow', size = 'medium', color = '#121212', ...props }: IconProps) => {
   const Component = SvgComponents[type];
-  return <Component viewBox="0 0 26 26" color={color} {...iconSize[size]} {...props} />;
+  return <Component viewBox="0 0 24 24" color={color} {...iconSize[size]} {...props} />;
 };
 
 export default Icon;

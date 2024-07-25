@@ -51,6 +51,7 @@ const config: Config = {
       width: {
         43: '10.938rem',
         89: '22.375rem',
+        97: '24.375rem',
       },
       height: {
         47: '11.875rem',
@@ -59,4 +60,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;
