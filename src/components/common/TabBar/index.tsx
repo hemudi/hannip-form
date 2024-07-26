@@ -28,7 +28,7 @@ const TabBar = ({ tabs }: TabBarProps) => {
           />
         ))}
       </div>
-      <div className="flex h-full w-full items-center justify-center">
+      <div className="flex h-fit w-full items-center justify-center">
         {tabs[activeTabIndex].content}
       </div>
     </div>
