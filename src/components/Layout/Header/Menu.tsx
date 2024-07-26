@@ -26,11 +26,18 @@ const PrevPage = () => (
   </Link>
 );
 
+const Close = () => (
+  <Link href={'/'}>
+    <Icon type="closeCross" />
+  </Link>
+);
+
 const menus = {
   home: Home,
   myPage: MyPage,
   setting: Setting,
   prevPage: PrevPage,
+  close: Close,
 };
 
 export type HeaderMenu = keyof typeof menus;

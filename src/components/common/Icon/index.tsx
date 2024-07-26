@@ -1,12 +1,14 @@
 import SvgComponents from '@components/common/Icon/SvgComponents';
 
+export type IconType = keyof typeof SvgComponents;
+
 type IconProps = {
   size?: keyof typeof iconSize;
-  type: keyof typeof SvgComponents;
+  type: IconType;
   fill?: `#${number}` | 'none';
   color?: `#${string}`;
   viewBox?: string;
-  className?: 'string';
+  className?: string;
 };
 
 const iconSize = {
@@ -22,7 +24,8 @@ const iconSize = {
 
 const Icon = ({ type = 'leftArrow', size = 'medium', color = '#121212', ...props }: IconProps) => {
   const Component = SvgComponents[type];
-  return <Component viewBox="0 0 24 24" color={color} {...iconSize[size]} {...props} />;
+  const viewBox = type === 'check' ? '0 0 26 26' : '0 0 24 24';
+  return <Component viewBox={viewBox} color={color} {...iconSize[size]} {...props} />;
 };
 
 export default Icon;

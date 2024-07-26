@@ -1,9 +1,15 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-const Button = ({ variant = 'colored', color = 'black', size = 'full', ...props }: ButtonProps) => {
+const Button = ({
+  variant = 'colored',
+  color = 'black',
+  size = 'full',
+  className = '',
+  ...props
+}: ButtonProps) => {
   return (
     <button
-      className={`h-12 rounded-lg disabled:bg-gray-100 disabled:text-gray-500 ${sizeStyles[size]} ${colorStyles[color][variant]}`}
+      className={`peer flex h-12 items-center justify-center gap-2 rounded-lg disabled:bg-gray-100 disabled:text-gray-500 ${sizeStyles[size]} ${colorStyles[color][variant]} ${className}`}
       {...props}
     />
   );
@@ -26,6 +32,10 @@ const colorStyles = {
       'bg-gray-900 text-white enabled:hover:bg-gray-800 enabled:active:bg-gray-900 disabled:border-gray-100',
     line: 'bg-white text-gray-900 border border-gray-100 enabled:hover:text-gray-700 enabled:active:text-gray-900 disabled:border-gray-300',
   },
+  white: {
+    colored: 'bg-white text-black border border-gray-100',
+    line: '',
+  },
 } as const;
 
 type ButtonColor = keyof typeof colorStyles;
@@ -36,6 +46,7 @@ interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   color?: ButtonColor;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  className?: string;
 }
 
 export default Button;
