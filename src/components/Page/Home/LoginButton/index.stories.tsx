@@ -1,5 +1,5 @@
 import Layout from '@components/Layout';
-import LoginButton from '@components/LoginButton';
+import LoginButton from '@components/Page/Home/LoginButton';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

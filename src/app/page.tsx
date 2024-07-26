@@ -18,7 +18,7 @@ export default function Home() {
         <div className="flex h-fit w-full flex-col gap-2">
           <h1 className="whitespace-pre-line text-center text-h3 font-bold">{MAIN_TITLE_TEXT}</h1>
           <Image
-            className="max-w-89 max-h-89 h-full w-auto"
+            className="h-full max-h-89 w-auto max-w-89"
             width="0"
             height="0"
             alt="hannip_main"
