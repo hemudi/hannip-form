@@ -56,6 +56,9 @@ const config: Config = {
       height: {
         47: '11.875rem',
       },
+      spacing: {
+        97: '24.375rem',
+      },
     },
   },
   plugins: [],
