@@ -1,7 +1,7 @@
 'use client';
 
 import Layout from '@components/Layout';
-import LoginButton from '@components/LoginButton';
+import LoginButton from '@components/Page/Home/LoginButton';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -35,7 +35,7 @@ export default function Home() {
           </div>
           <Link
             className="text-700 whitespace-pre-line pt-2 text-center text-footnote text-gray-700 underline"
-            href={ROUTING_PATH.PLANNING}
+            href={ROUTING_PATH.ONBOARDING}
           >
             {NO_LOGIN_TEXT}
           </Link>

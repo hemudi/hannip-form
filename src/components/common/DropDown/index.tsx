@@ -1,7 +1,7 @@
 import Icon from '@components/common/Icon';
 import React, { useEffect, useRef, useState } from 'react';
 
-type Option = {
+export type Option = {
   label: string;
   value: string;
 };
@@ -41,10 +41,10 @@ const Dropdown = ({ options, placeholder, handleOptionChange, ...props }: DropDo
   }, []);
 
   return (
-    <div className="relative h-4 w-80 select-none" ref={dropdownRef} {...props}>
+    <div className="relative h-fit w-full select-none" ref={dropdownRef} {...props}>
       <div
         tabIndex={0}
-        className={`flex cursor-pointer justify-between rounded-lg border border-gray-300 p-2 text-body1 ${isOpen ? 'bg-white text-black' : 'bg-gray-50'} ${selectedOption ? 'text-black' : 'text-gray-500'}`}
+        className={`flex h-12 cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-body1 ${isOpen ? 'bg-white text-black' : 'bg-gray-50'} ${selectedOption ? 'text-black' : 'text-gray-500'}`}
         onClick={toggleDropdown}
       >
         {selectedOption ? selectedOption.label : placeholder}

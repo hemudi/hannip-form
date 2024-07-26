@@ -17,7 +17,7 @@ const TabBar = ({ tabs }: TabBarProps) => {
   };
 
   return (
-    <div className="w-97 h-full">
+    <div className="w-full max-w-97">
       <div className="flex w-full gap-4 border-b border-gray-100 px-4">
         {tabs.map(({ label }, index) => (
           <Tab
@@ -28,9 +28,7 @@ const TabBar = ({ tabs }: TabBarProps) => {
           />
         ))}
       </div>
-      <div className="flex h-fit w-full items-center justify-center">
-        {tabs[activeTabIndex].content}
-      </div>
+      <div className="flex w-full items-center justify-center">{tabs[activeTabIndex].content}</div>
     </div>
   );
 };

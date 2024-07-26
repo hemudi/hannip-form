@@ -8,7 +8,11 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  return <div className="max-w-97 mx-auto flex h-full w-full flex-col bg-white">{children}</div>;
+  return (
+    <div className="mx-auto flex h-full w-full max-w-97 flex-col bg-white shadow-xl">
+      {children}
+    </div>
+  );
 };
 
 Layout.Header = Header;
