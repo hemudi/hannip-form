@@ -1,9 +1,15 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-const Button = ({ variant = 'colored', color = 'black', size = 'full', ...props }: ButtonProps) => {
+const Button = ({
+  variant = 'colored',
+  color = 'black',
+  size = 'full',
+  className = '',
+  ...props
+}: ButtonProps) => {
   return (
     <button
-      className={`h-12 rounded-lg disabled:bg-gray-100 disabled:text-gray-500 ${sizeStyles[size]} ${colorStyles[color][variant]}`}
+      className={`h-12 rounded-lg disabled:bg-gray-100 disabled:text-gray-500 ${sizeStyles[size]} ${colorStyles[color][variant]} ${className}`}
       {...props}
     />
   );
@@ -36,6 +42,7 @@ interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   color?: ButtonColor;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  className?: string;
 }
 
 export default Button;
