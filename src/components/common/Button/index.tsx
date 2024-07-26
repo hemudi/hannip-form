@@ -19,7 +19,7 @@ const colorStyles = {
   primary: {
     colored:
       'bg-primary-500 text-white enabled:hover:bg-primary-400 enabled:active:bg-primary-500 disabled:border-gray-100',
-    line: 'bg-white text-primary-500 border border-primary-500 enabled:hover:bg-primary-100 enabled:active:bg-primary-500 disabled:border-gray-300',
+    line: 'bg-white text-primary-500 border border-primary-500 enabled:hover:bg-primary-100 enabled:active:bg-primary-500 enabled:active:text-white disabled:border-gray-300',
   },
   black: {
     colored:
