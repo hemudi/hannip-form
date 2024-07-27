@@ -11,7 +11,7 @@ export const AUTH_URL_PATH = {
 
 export const loginKakao = async () => {
   try {
-    const res = await fetch('/api/auth/kakao/login');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/kakao/login`);
     console.log(res);
     if (!res.ok) {
       throw new Error('로그인 실패');
