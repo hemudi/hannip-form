@@ -1,5 +1,5 @@
 import Loading from '@components/Layout/Loading';
-import { SessionChecker } from '@components/Session/SessionChecker';
+// import { SessionChecker } from '@components/Session/SessionChecker';
 
 import { cookies } from 'next/headers';
 import { useEffect } from 'react';
@@ -16,7 +16,7 @@ const AuthCallbackPage = async () => {
   return (
     <>
       <Loading title="로그인 중입니다" />
-      <SessionChecker sessionId={sessionId} />
+      {/* <SessionChecker sessionId={sessionId} /> */}
     </>
   );
 };
