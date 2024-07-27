@@ -54,6 +54,9 @@ const config: Config = {
         89: '22.375rem', // 358px
         97: '24.375rem', // 390px
       },
+      backgroundImage: {
+        script: 'url(/assets/images/background.png)',
+      },
       animation: {
         bounce: 'bounce 2s infinite',
       },

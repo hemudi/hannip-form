@@ -1,6 +1,7 @@
 import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
 import { ROUTING_PATH } from '@constants/routingPath';
+import copyText from '@utils/copyText';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 
@@ -14,9 +15,9 @@ const RETRY_TEXT = '대본이 마음에 안드세요? 다시하기';
 
 const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
   return (
-    <div className="flex h-fit w-full flex-col justify-center gap-4 bg-primary-50 p-4">
-      <h4 className="w-full text-h4 font-bold">{title}</h4>
-      <div className="flex w-full items-center justify-center whitespace-pre-line rounded-lg bg-white p-4">
+    <div className={`bg-script flex h-fit w-full flex-col justify-center gap-4 bg-cover p-4`}>
+      <h4 className="w-full text-h4 font-bold">{`${title}`}</h4>
+      <div className="flex h-fit w-full items-center justify-center whitespace-pre-line rounded-lg bg-white p-4">
         {scriptText}
       </div>
       <Link
@@ -30,11 +31,7 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
           {'북마크'}
           <Icon type="bookmark" />
         </Button>
-        <Button
-          onClick={() => {
-            toast.success('복사에 성공!');
-          }}
-        >
+        <Button onClick={() => copyText(scriptText)}>
           {'스크립트 복사'}
           <Icon type="copy" color="#FFFFFF" />
         </Button>
