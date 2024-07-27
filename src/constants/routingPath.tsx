@@ -4,4 +4,5 @@ export const ROUTING_PATH = {
   PLANNING: '/planning',
   RESULT: '/result',
   MY_PAGE: '/my-page',
+  NOT_FOUND: '/not-found',
 } as const;

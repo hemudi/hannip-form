@@ -1,6 +1,7 @@
 'use client';
 
 import useSession from '@hooks/useSession';
+import { isSessionConnected } from '@utils/getCookie';
 import { useEffect } from 'react';
 
 export const SessionChecker = ({ sessionId }: { sessionId: string | null }) => {
@@ -8,17 +9,13 @@ export const SessionChecker = ({ sessionId }: { sessionId: string | null }) => {
 
   useEffect(() => {
     setSessionId(sessionId);
-    console.log(
-      'session cookie : ' +
-        (sessionId === null || sessionId === '' || sessionId === undefined
-          ? 'no cookie!'
-          : sessionId),
-    );
+    console.log(sessionId);
+    console.log('session cookie : ' + (isSessionConnected(sessionId) ? 'no cookie!' : sessionId));
   }, [sessionId]);
 
-  // useEffect(() => {
-  //   routeSessionPage();
-  // }, [isConnected]);
+  useEffect(() => {
+    routeSessionPage();
+  }, [isConnected]);
 
   return null;
 };

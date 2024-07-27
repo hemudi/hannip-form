@@ -1,5 +1,5 @@
+import { createIdea } from '@api/clova';
 import BookmarkList from '@components/Page/MyPage/BookmarkList';
-import TabBar from '@components/common/TabBar';
 import UserInfo from '@components/common/UserInfo';
 
 const userData = {
@@ -8,7 +8,14 @@ const userData = {
   profileImageUrl: '/assets/images/main.svg',
 };
 
-const MyPage = () => {
+const MyPage = async () => {
+  const ideaList = await createIdea({
+    category: '암거나',
+    content: '파리올림픽',
+    info: '아무거나 올리는 채널',
+  });
+
+  console.log(ideaList);
   return (
     <>
       <UserInfo {...userData} />

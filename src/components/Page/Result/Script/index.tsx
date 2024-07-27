@@ -2,6 +2,7 @@ import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 interface ScriptProps {
   scriptText: string;
@@ -29,7 +30,11 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
           {'북마크'}
           <Icon type="bookmark" />
         </Button>
-        <Button>
+        <Button
+          onClick={() => {
+            toast.success('복사에 성공!');
+          }}
+        >
           {'스크립트 복사'}
           <Icon type="copy" color="#FFFFFF" />
         </Button>

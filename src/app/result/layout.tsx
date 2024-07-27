@@ -5,12 +5,7 @@ const ResultLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  return (
-    <>
-      <Layout.Header leftMenu="home" rightMenu="myPage" />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default ResultLayout;

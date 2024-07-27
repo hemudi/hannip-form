@@ -18,6 +18,24 @@ const checkTextLength = (min: number, max: number, text: string) => {
   return textLength >= min && textLength <= max;
 };
 
+const categoryList = [
+  '게임',
+  '과학기술',
+  '교육',
+  '노하우/스타일',
+  '뉴스/정치',
+  '비영리/사회운동',
+  '스포츠',
+  '애완동물/동물',
+  '엔터테이먼트',
+  '여행/이벤트',
+  '영화/애니메이션',
+  '인물/블로그',
+  '음악',
+  '자동차/교통',
+  '코미디',
+];
+
 export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
   const { setIdeaState } = useIdeaAction();
   const { category, info, content } = useIdeaState();
@@ -49,13 +67,7 @@ export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
       <ItemLayout title="만들고 싶은 영상의 카테고리를 알려주세요">
         <Dropdown
           placeholder="카테고리를 선택해주세요"
-          options={[
-            { value: '게임', label: '게임' },
-            { value: '과학기술', label: '과학기술' },
-            { value: '교육', label: '교육' },
-            { value: '노하우/스타일', label: '노하우/스타일' },
-            { value: '뉴스/정치', label: '뉴스/정치' },
-          ]}
+          options={categoryList.map((category) => ({ value: category, label: category }))}
           handleOptionChange={handleOptionChange}
         />
       </ItemLayout>
@@ -80,12 +92,10 @@ export const QuestionItem2 = ({ setIsDone }: QuestionItemProps) => {
   };
 
   useEffect(() => {
-    if (ideaList === null) {
-      createIdea(ideaParams).then((data) => {
-        setIdeaList(data);
-        setIdeaState({ ideaList: data });
-      });
-    }
+    createIdea(ideaParams).then((data) => {
+      setIdeaList(data);
+      setIdeaState({ ideaList: data });
+    });
   }, []);
 
   useEffect(() => {
@@ -208,9 +218,9 @@ export const QuestionItem5 = ({ setIsDone }: QuestionItemProps) => {
 
 export const QuestionItem6 = ({ setIsDone }: QuestionItemProps) => {
   const { setScriptState } = useScriptAction();
-  const { tone, trend } = useScriptState();
+  const { tone, trend, accent } = useScriptState();
 
-  const handleOptionChange = (type: 'tone' | 'trend') => (option: Option) => {
+  const handleOptionChange = (type: 'tone' | 'trend' | 'accent') => (option: Option) => {
     setScriptState({ [type]: option.value });
   };
 
@@ -241,6 +251,7 @@ export const QuestionItem6 = ({ setIsDone }: QuestionItemProps) => {
             { value: '제주도', label: '제주도 사투리' },
             { value: '사용 안함', label: '사용 안함' },
           ]}
+          handleOptionChange={handleOptionChange('accent')}
         />
       </ItemLayout>
       <ItemLayout title="유행어를 선택해주세요">

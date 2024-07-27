@@ -56,7 +56,7 @@ const Dropdown = ({
         <Icon type={isOpen ? 'upDirection' : 'rightDirection'} color="#888889" />
       </div>
       {isOpen && (
-        <div className="absolute z-10 mt-1 w-full overflow-hidden rounded-lg border border-gray-300 bg-white p-[0.375rem] shadow-lg">
+        <div className="absolute z-10 mt-1 max-h-56 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white p-[0.375rem] shadow-lg">
           {options.map(({ value, label }) => (
             <div
               key={value}

@@ -1,16 +1,17 @@
 import Layout from '@components/Layout';
-import BottomMenu from '@components/Layout/BottomMenu';
 import Button from '@components/common/Button';
 import { ROUTING_PATH } from '@constants/routingPath';
+import { sessionRouter } from '@utils/getCookie';
 import Link from 'next/link';
 
 const BOTTOM_MENU_TEXT = '새로운 스크립트 쓰러가기';
 
-const MyPageLayout = ({
+const MyPageLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  await sessionRouter(false, ROUTING_PATH.MAIN);
   return (
     <>
       <Layout.Header leftMenu="home" rightMenu="myPage" />

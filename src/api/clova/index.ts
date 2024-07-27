@@ -13,6 +13,7 @@ interface IdeaParams {
 
 export const createIdea = async (params: IdeaParams): Promise<string[]> => {
   const res = await fetch(CLOVA_URL_PATH.IDEA, { method: 'POST', body: JSON.stringify(params) });
+
   if (!res.ok) {
     throw new Error(res.statusText);
   }
