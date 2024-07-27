@@ -1,197 +1,259 @@
+import { createIdea } from '@api/clova';
+import Loading from '@components/Layout/Loading';
 import { ItemLayout, QuestionLayout } from '@components/Page/Planning/Question/Layout';
 import Dropdown, { Option } from '@components/common/DropDown';
-import ItemList from '@components/common/ItemList';
-import Item from '@components/common/ItemList/Item';
+import Icon from '@components/common/Icon';
+import TextArea from '@components/common/TextArea';
 import TextField from '@components/common/TextField';
+import { useIdeaAction, useIdeaParams, useIdeaState } from '@store/idea';
+import { useScriptAction, useScriptState } from '@store/script';
+import { FocusEvent, useEffect, useState } from 'react';
 
-export const QuestionItem1 = () => {
-  const handleOptionChange = (option: Option) => {
-    console.log(option);
+interface QuestionItemProps {
+  setIsDone: (isDone: boolean) => void;
+}
+
+const checkTextLength = (min: number, max: number, text: string) => {
+  const textLength = text.length;
+  return textLength >= min && textLength <= max;
+};
+
+export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
+  const { setIdeaState } = useIdeaAction();
+  const { category, info, content } = useIdeaState();
+
+  useEffect(() => {
+    if (category === '' || info === '' || content === '') {
+      return;
+    }
+
+    setIsDone(checkTextLength(1, 30, category) && checkTextLength(1, 30, content));
+  }, [category, info, content]);
+
+  const handleOnBlur = ({ target }: FocusEvent<HTMLInputElement>, type: 'info' | 'content') => {
+    setIdeaState({ [type]: target.value });
   };
+
+  const handleOptionChange = (option: Option) => {
+    setIdeaState({ category: option.value });
+  };
+
   return (
     <QuestionLayout title="스크립트의 시작은 주제부터!">
       <ItemLayout title="내 채널을 한줄로 소개해주세요">
-        <TextField placeholder="최소 1자, 최대 30자 이내 (공백포함)" />
+        <TextField
+          onBlur={(event) => handleOnBlur(event, 'info')}
+          placeholder="최소 1자, 최대 30자 이내 (공백포함)"
+        />
       </ItemLayout>
-      <ItemLayout title="만들고 싶은 영상의 카테고리를 알려주세요" className="relative">
+      <ItemLayout title="만들고 싶은 영상의 카테고리를 알려주세요">
         <Dropdown
           placeholder="카테고리를 선택해주세요"
           options={[
-            { value: '1', label: '게임' },
-            { value: '2', label: '과학기술' },
-            { value: '3', label: '교육' },
-            { value: '4', label: '노하우/스타일' },
-            { value: '5', label: '뉴스/정치' },
+            { value: '게임', label: '게임' },
+            { value: '과학기술', label: '과학기술' },
+            { value: '교육', label: '교육' },
+            { value: '노하우/스타일', label: '노하우/스타일' },
+            { value: '뉴스/정치', label: '뉴스/정치' },
           ]}
           handleOptionChange={handleOptionChange}
         />
       </ItemLayout>
       <ItemLayout title="영상의 간단한 내용을 입력해주세요">
-        <TextField placeholder="최소 1자, 최대 30자 이내 (공백포함)" />
-      </ItemLayout>
-    </QuestionLayout>
-  );
-};
-
-export const QuestionItem2 = () => {
-  return (
-    <QuestionLayout title="아이디어가 완성되었어요!">
-      <ItemLayout title="이중에 하나를 골라주세요">
-        <ItemList
-          itemList={[
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-          ]}
+        <TextField
+          onBlur={(event) => handleOnBlur(event, 'content')}
+          placeholder="최소 1자, 최대 30자 이내 (공백포함)"
         />
       </ItemLayout>
     </QuestionLayout>
   );
 };
 
-export const QuestionItem3 = () => {
-  return (
+export const QuestionItem2 = ({ setIsDone }: QuestionItemProps) => {
+  const [ideaList, setIdeaList] = useState<string[] | null>(null);
+  const ideaParams = useIdeaParams();
+  const { setIdeaState } = useIdeaAction();
+  const { selectedIdea } = useIdeaState();
+
+  const handleClickIdea = (selectedIdea: string) => {
+    setIdeaState({ selectedIdea: selectedIdea });
+  };
+
+  useEffect(() => {
+    if (ideaList === null) {
+      createIdea(ideaParams).then((data) => {
+        setIdeaList(data);
+        setIdeaState({ ideaList: data });
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    setIsDone(selectedIdea !== '');
+  }, [selectedIdea]);
+
+  return ideaList !== null ? (
     <QuestionLayout title="아이디어가 완성되었어요!">
       <ItemLayout title="이중에 하나를 골라주세요">
-        <ItemList
-          itemList={[
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-          ]}
+        <div className="flex w-full cursor-pointer select-none flex-col gap-2.5 overflow-y-auto bg-white scrollbar-hide">
+          {ideaList.map((ideaText, index) => {
+            const isSelected = ideaText === selectedIdea;
+            return (
+              <div
+                key={index}
+                onClick={() => handleClickIdea(ideaText)}
+                className={`flex w-full items-center justify-center gap-2.5 rounded-lg px-5 py-4 text-body1 ${isSelected ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}
+              >
+                <div className="flex w-full items-center justify-between">
+                  <span>{ideaText}</span>
+                  <div>
+                    <Icon type={'check'} color={isSelected ? '#ffffff' : '#121212'} />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </ItemLayout>
+    </QuestionLayout>
+  ) : (
+    <Loading title="아이디어가 구워지고 있어요!" />
+  );
+};
+
+export const QuestionItem3 = ({ setIsDone }: QuestionItemProps) => {
+  const { setScriptState } = useScriptAction();
+  const { essential } = useScriptState();
+  const { selectedIdea } = useIdeaState();
+
+  const handleOnBlur = ({ target }: FocusEvent<HTMLTextAreaElement>) => {
+    setScriptState({ essential: target.value, idea: selectedIdea });
+  };
+
+  useEffect(() => {
+    setIsDone(checkTextLength(1, 500, essential));
+  }, [essential]);
+
+  return (
+    <QuestionLayout title="어떤 내용이 필수인가요?">
+      <ItemLayout title="스크립트에 꼭 들어가야할 내용을 작성해주세요">
+        <TextArea placeholder="최소 1자, 최대 500자 이내 (공백포함)" onBlur={handleOnBlur} />
+      </ItemLayout>
+    </QuestionLayout>
+  );
+};
+
+export const QuestionItem4 = ({ setIsDone }: QuestionItemProps) => {
+  const { setScriptState } = useScriptAction();
+  const { opening, closing } = useScriptState();
+
+  const handleOnBlur = (
+    { target }: FocusEvent<HTMLTextAreaElement>,
+    type: 'opening' | 'closing',
+  ) => {
+    setScriptState({ [type]: target.value });
+  };
+
+  useEffect(() => {
+    setIsDone(checkTextLength(1, 500, opening) && checkTextLength(1, 500, closing));
+  }, [opening, closing]);
+
+  return (
+    <QuestionLayout title="어떤 내용이 필수인가요?">
+      <ItemLayout title="인트로 문구가 있다면 작성해주세요">
+        <TextArea
+          onBlur={(event) => handleOnBlur(event, 'opening')}
+          placeholder="최소 1자, 최대 500자 이내 (공백포함)&#13;&#10;ex) 이거 모르면 큰일납니다!"
+        />
+      </ItemLayout>
+      <ItemLayout title="엔딩 문구가 있다면 작성해주세요">
+        <TextArea
+          onBlur={(event) => handleOnBlur(event, 'closing')}
+          placeholder="최소 1자, 최대 500자 이내 (공백포함)&#13;&#10;ex) 가시기전에 좋댓구알 안잊으셨죠?"
         />
       </ItemLayout>
     </QuestionLayout>
   );
 };
 
-export const QuestionItem4 = () => {
+export const QuestionItem5 = ({ setIsDone }: QuestionItemProps) => {
+  const { setScriptState } = useScriptAction();
+  const { length } = useScriptState();
+
+  const handleOptionChange = (option: Option) => {
+    setScriptState({ length: option.value });
+  };
+
+  useEffect(() => {
+    setIsDone(length !== '');
+  }, [length]);
+
   return (
-    <QuestionLayout title="아이디어가 완성되었어요!">
-      <ItemLayout title="이중에 하나를 골라주세요">
-        <ItemList
-          itemList={[
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
+    <QuestionLayout title="몇초짜리 영상인가요?">
+      <ItemLayout title="영상 길이를 선택해주세요">
+        <Dropdown
+          placeholder="영상 길이를 선택"
+          options={[
+            { value: '15초', label: '15초' },
+            { value: '30초', label: '30초' },
+            { value: '45초', label: '45초' },
+            { value: '1분', label: '1분' },
           ]}
+          handleOptionChange={handleOptionChange}
         />
       </ItemLayout>
     </QuestionLayout>
   );
 };
 
-export const QuestionItem5 = () => {
+export const QuestionItem6 = ({ setIsDone }: QuestionItemProps) => {
+  const { setScriptState } = useScriptAction();
+  const { tone, trend } = useScriptState();
+
+  const handleOptionChange = (type: 'tone' | 'trend') => (option: Option) => {
+    setScriptState({ [type]: option.value });
+  };
+
+  useEffect(() => {
+    setIsDone(tone !== '' && trend !== '');
+  }, [tone, trend]);
+
   return (
-    <QuestionLayout title="아이디어가 완성되었어요!">
-      <ItemLayout title="이중에 하나를 골라주세요">
-        <ItemList
-          itemList={[
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
+    <QuestionLayout title="어떤 말투를 쓰시나요?">
+      <ItemLayout title="존댓말 여부를 선택해주세요">
+        <Dropdown
+          placeholder="카테고리를 선택해주세요"
+          options={[
+            { value: '반말', label: '반말' },
+            { value: '존댓말', label: '존댓말' },
+            { value: '상관 없음', label: '상관 없음' },
+          ]}
+          handleOptionChange={handleOptionChange('tone')}
+        />
+      </ItemLayout>
+      <ItemLayout title="사투리를 선택해주세요">
+        <Dropdown
+          placeholder="카테고리를 선택해주세요"
+          options={[
+            { value: '충청도', label: '충청도 사투리' },
+            { value: '전라도', label: '전라도 사투리' },
+            { value: '경상도', label: '경상도 사투리' },
+            { value: '제주도', label: '제주도 사투리' },
+            { value: '사용 안함', label: '사용 안함' },
           ]}
         />
       </ItemLayout>
-    </QuestionLayout>
-  );
-};
-
-export const QuestionItem6 = () => {
-  return (
-    <QuestionLayout title="아이디어가 완성되었어요!">
-      <ItemLayout title="이중에 하나를 골라주세요">
-        <ItemList
-          itemList={[
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
-            <Item
-              text="파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?"
-              iconType="check"
-            />,
+      <ItemLayout title="유행어를 선택해주세요">
+        <Dropdown
+          placeholder="카테고리를 선택해주세요"
+          options={[
+            { value: '추구미', label: '추구미' },
+            { value: '~그 잡채', label: '~그 잡채' },
+            { value: '~은 이 일을 기억할 것입니다', label: '~은 이 일을 기억할 것입니다' },
+            { value: '완전 럭키비키잖아', label: '완전 럭키비키잖아' },
+            { value: '사용 안함', label: '사용 안함' },
           ]}
+          handleOptionChange={handleOptionChange('trend')}
         />
       </ItemLayout>
     </QuestionLayout>
