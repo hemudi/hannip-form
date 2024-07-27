@@ -7,7 +7,7 @@ interface ItemProps {
 
 const Item = ({ text, iconType }: ItemProps) => {
   return (
-    <div className="flex items-center">
+    <div className="flex w-full items-center justify-between">
       <span>{text}</span>
       <div className="cursor-pointer">
         <Icon type={iconType} />

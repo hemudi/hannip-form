@@ -6,7 +6,7 @@ interface ItemListProps {
 
 const ItemList = ({ itemList }: ItemListProps) => {
   return (
-    <div className="scrollbar-hide flex w-full select-none flex-col gap-2.5 overflow-y-auto bg-white">
+    <div className="flex w-full select-none flex-col gap-2.5 overflow-y-auto bg-white scrollbar-hide">
       {itemList.map((item, index) => (
         <div
           key={index}

@@ -9,10 +9,15 @@ export type Option = {
 interface DropDownProps {
   options: Option[];
   placeholder: string;
-  handleOptionChange: (option: Option) => void;
+  handleOptionChange?: (option: Option) => void;
 }
 
-const Dropdown = ({ options, placeholder, handleOptionChange, ...props }: DropDownProps) => {
+const Dropdown = ({
+  options,
+  placeholder,
+  handleOptionChange = () => {},
+  ...props
+}: DropDownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<Option>();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
