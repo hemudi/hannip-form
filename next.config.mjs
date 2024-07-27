@@ -8,6 +8,14 @@ const nextConfig = {
     });
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: '/auth/kakao/login',
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/auth/kakao/login`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

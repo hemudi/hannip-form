@@ -10,8 +10,8 @@ export const AUTH_URL_PATH = {
 };
 
 export const loginKakao = async () => {
-  console.log('요청');
-  const res = await fetch('http://223.130.161.195:3000/auth/kakao/login');
+  const res = await fetch('auth/kakao/login', { method: 'POST' });
+  console.log(res);
   if (!res.ok) {
     throw new Error('로그인 실패');
   }
