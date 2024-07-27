@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const AUTH_API_URL = `${process.env.NEXT_PUBLIC_API_URL}/auth`;
 
 export const AUTH_URL_PATH = {
@@ -10,16 +12,8 @@ export const AUTH_URL_PATH = {
 };
 
 export const loginKakao = async () => {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/kakao/login`);
-    console.log(res);
-    if (!res.ok) {
-      throw new Error('로그인 실패');
-    }
-    return res;
-  } catch (e) {
-    console.log(e);
-  }
+  const res = (await axios.get(AUTH_URL_PATH.LOG_IN.KAKAO)).data;
+  return res;
 };
 
 export const logout = async () => {

@@ -53,12 +53,6 @@ interface ScriptResponse {
 }
 
 export const createScript = async (params: ScriptParams): Promise<ScriptResponse> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clova/script`, {
-    method: 'POST',
-    body: JSON.stringify(params),
-  });
-  if (!res.ok) {
-    throw new Error(res.statusText);
-  }
-  return res.json();
+  const res = (await axios.post(CLOVA_URL_PATH.SCRIPT, params)).data;
+  return res;
 };
