@@ -20,13 +20,11 @@ type Story = StoryObj<typeof meta>;
 export const Kakao: Story = {
   args: {
     type: 'kakao',
-    onClick: () => {},
   },
 };
 
 export const Naver: Story = {
   args: {
     type: 'naver',
-    onClick: () => {},
   },
 };
