@@ -20,7 +20,7 @@ export const createIdea = async (params: IdeaParams) => {
   //   body: JSON.stringify(params),
   // });
 
-  const res = await axios.post(CLOVA_URL_PATH.IDEA, params);
+  const res = (await axios.post(CLOVA_URL_PATH.IDEA, params)).data;
   return res;
 };
 

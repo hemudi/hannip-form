@@ -101,6 +101,7 @@ export const QuestionItem2 = ({ setIsDone }: QuestionItemProps) => {
 
   useEffect(() => {
     createIdea(ideaParams).then((data) => {
+      console.log(data);
       setIdeaList(data);
       setIdeaState({ ideaList: data });
     });
@@ -114,7 +115,7 @@ export const QuestionItem2 = ({ setIsDone }: QuestionItemProps) => {
     <QuestionLayout title="아이디어가 완성되었어요!">
       <ItemLayout title="이중에 하나를 골라주세요">
         <div className="flex w-full cursor-pointer select-none flex-col gap-2.5 overflow-y-auto bg-white scrollbar-hide">
-          {ideaList.map((ideaText, index) => {
+          {ideaList?.map((ideaText, index) => {
             const isSelected = ideaText === selectedIdea;
             return (
               <div
