@@ -13,7 +13,10 @@ interface IdeaParams {
 
 export const createIdea = async (params: IdeaParams): Promise<string[]> => {
   // console.log(params, '-==============');
-  const res = await fetch('/api/clova/idea', { method: 'POST', body: JSON.stringify(params) });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clova/idea`, {
+    method: 'POST',
+    body: JSON.stringify(params),
+  });
 
   if (!res.ok) {
     throw new Error(res.statusText);
@@ -50,7 +53,10 @@ interface ScriptResponse {
 }
 
 export const createScript = async (params: ScriptParams): Promise<ScriptResponse> => {
-  const res = await fetch('/api/clova/script', { method: 'POST', body: JSON.stringify(params) });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clova/script`, {
+    method: 'POST',
+    body: JSON.stringify(params),
+  });
   if (!res.ok) {
     throw new Error(res.statusText);
   }

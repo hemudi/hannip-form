@@ -60,8 +60,12 @@ export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
     <QuestionLayout title="스크립트의 시작은 주제부터!">
       <ItemLayout title="내 채널을 한줄로 소개해주세요">
         <TextField
+          variant={checkTextLength(0, 30, info) ? 'default' : 'error'}
           onBlur={(event) => handleOnBlur(event, 'info')}
           placeholder="최소 1자, 최대 30자 이내 (공백포함)"
+          helperText={
+            checkTextLength(0, 30, info) ? undefined : '최소 1자, 최대 30자 이내로 입력해주세요'
+          }
         />
       </ItemLayout>
       <ItemLayout title="만들고 싶은 영상의 카테고리를 알려주세요">
@@ -73,8 +77,12 @@ export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
       </ItemLayout>
       <ItemLayout title="영상의 간단한 내용을 입력해주세요">
         <TextField
+          variant={checkTextLength(0, 30, content) ? 'default' : 'error'}
           onBlur={(event) => handleOnBlur(event, 'content')}
           placeholder="최소 1자, 최대 30자 이내 (공백포함)"
+          helperText={
+            checkTextLength(0, 30, content) ? undefined : '최소 1자, 최대 30자 이내로 입력해주세요'
+          }
         />
       </ItemLayout>
     </QuestionLayout>

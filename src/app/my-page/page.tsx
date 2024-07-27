@@ -3,8 +3,8 @@ import BookmarkList from '@components/Page/MyPage/BookmarkList';
 import UserInfo from '@components/common/UserInfo';
 
 const userData = {
-  nickname: 'Hemdi',
-  email: 'suminhesam@gmail.com',
+  nickname: '한입폼',
+  email: 'hannip-form@example.com',
   profileImageUrl: '/assets/images/main.svg',
 };
 
