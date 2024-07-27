@@ -1,8 +1,7 @@
 import Layout from '@components/Layout';
 import LoginButton from '@components/Page/Home/LoginButton';
-import { SessionChecker } from '@components/Session/SessionChecker';
 import { ROUTING_PATH } from '@constants/routingPath';
-import { getSessionCookie } from '@utils/getCookie';
+import { sessionRouter } from '@utils/getCookie';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -12,7 +11,7 @@ const LOGIN_INFO_TEXT = '로그인 시 숏폼 아이디어를 저장하실 수 �
 const NO_LOGIN_TEXT = '로그인없이 바로 시작하기';
 
 const Home = async () => {
-  const sessionId = await getSessionCookie();
+  await sessionRouter(true, ROUTING_PATH.ONBOARDING);
   return (
     <>
       <Layout.Main>
@@ -44,7 +43,6 @@ const Home = async () => {
           </div>
         </div>
       </Layout.Main>
-      <SessionChecker sessionId={sessionId} />
     </>
   );
 };
