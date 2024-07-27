@@ -11,19 +11,30 @@ const EmptyMessage = ({ label }: { label: string }) => (
   </div>
 );
 
-const ideaList = [
-  '10분 안에 끝내는 데일리 메이크업',
-  '파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?',
-  '파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?',
-  '파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?',
-  '파리 올림픽에서 태권도 보러가면 현지인들이 한국 사람인걸 알아볼까?',
+const scriptList = [
+  '제목 : 이것도 1등이니까 럭키비키잖아',
+  '제목 : 할머니는 이 일을 기억할 것입니다',
+  '제목 : 치명적 모델 그 잡채',
+  '제목 : 추구미 뜻을 알라?',
 ];
 
-const BookmarkContents = ({ type }: { type: 'script' | 'idea' }) => {
-  const [contentList, setScriptList] = useState<string[]>([...ideaList, ...ideaList]);
+const ideaList = [
+  '10분 안에 끝내는 데일리 메이크업',
+  '마스크 속에서도 빛나는 피부 메이크업',
+  '가을맞이 분위기 있는 메이크업',
+  '아이돌 메이크업 따라하기',
+  '곰손도 금손되는 메이크업',
+  '파리의 예술과 문화 탐방',
+];
 
-  return contentList?.length > 0 ? (
-    <ContentList contentList={contentList} />
+const contentList = {
+  script: scriptList,
+  idea: ideaList,
+};
+
+const BookmarkContents = ({ type }: { type: 'script' | 'idea' }) => {
+  return contentList[type]?.length > 0 ? (
+    <ContentList contentList={contentList[type]} iconType="closeCircle" />
   ) : (
     <EmptyMessage label={type} />
   );

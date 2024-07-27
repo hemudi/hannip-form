@@ -3,7 +3,6 @@ import Icon from '@components/common/Icon';
 import { ROUTING_PATH } from '@constants/routingPath';
 import copyText from '@utils/copyText';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
 
 interface ScriptProps {
   scriptText: string;
