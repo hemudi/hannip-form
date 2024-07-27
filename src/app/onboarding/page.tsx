@@ -12,7 +12,7 @@ const onboardingImages = [
     src: 'assets/images/onboarding/2.svg',
   },
   {
-    title: '당신의 채널도 떡상각!\n이제 스크립트를 만들러 가볼까요?',
+    title: '떡상각 숏폼을 위해\n스크립트를 만들러 가볼까요?',
     alt: 'onboarding_image_3',
     src: 'assets/images/onboarding/3.svg',
   },
@@ -21,7 +21,7 @@ const onboardingImages = [
 const OnboardingPage = () => {
   return (
     <div>
-      <div className="max-w-89 h-fit">
+      <div className="h-fit max-w-89">
         <ImageSlider images={onboardingImages} />
       </div>
     </div>
