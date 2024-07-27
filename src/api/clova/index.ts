@@ -12,7 +12,7 @@ interface IdeaParams {
 }
 
 export const createIdea = async (params: IdeaParams): Promise<string[]> => {
-  const res = await fetch(CLOVA_URL_PATH.IDEA, { method: 'POST', body: JSON.stringify(params) });
+  const res = await fetch('/api/clova/idea', { method: 'POST', body: JSON.stringify(params) });
 
   if (!res.ok) {
     throw new Error(res.statusText);
@@ -48,7 +48,7 @@ interface ScriptResponse {
 }
 
 export const createScript = async (params: ScriptParams): Promise<ScriptResponse> => {
-  const res = await fetch(CLOVA_URL_PATH.SCRIPT, { method: 'POST', body: JSON.stringify(params) });
+  const res = await fetch('/api/clova/script', { method: 'POST', body: JSON.stringify(params) });
   if (!res.ok) {
     throw new Error(res.statusText);
   }

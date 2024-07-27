@@ -10,12 +10,16 @@ export const AUTH_URL_PATH = {
 };
 
 export const loginKakao = async () => {
-  const res = await fetch('auth/kakao/login', { method: 'POST' });
-  console.log(res);
-  if (!res.ok) {
-    throw new Error('로그인 실패');
+  try {
+    const res = await fetch('/api/auth/kakao/login');
+    console.log(res);
+    if (!res.ok) {
+      throw new Error('로그인 실패');
+    }
+    return res;
+  } catch (e) {
+    console.log(e);
   }
-  return res;
 };
 
 export const logout = async () => {
