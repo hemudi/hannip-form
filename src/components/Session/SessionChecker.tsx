@@ -8,7 +8,12 @@ export const SessionChecker = ({ sessionId }: { sessionId: string | null }) => {
 
   useEffect(() => {
     setSessionId(sessionId);
-    console.log(sessionId);
+    console.log(
+      'session cookie : ' +
+        (sessionId === null || sessionId === '' || sessionId === undefined
+          ? 'no cookie!'
+          : sessionId),
+    );
   }, [sessionId]);
 
   // useEffect(() => {
