@@ -15,9 +15,9 @@ const OnboardingLayout = ({
       <Layout.Header leftMenu="prevPage" rightMenu="myPage" />
       <Layout.Main>{children}</Layout.Main>
       <Layout.BottomMenu>
-        <Button>
-          <Link href={ROUTING_PATH.PLANNING}>{BOTTOM_MENU_TEXT}</Link>
-        </Button>
+        <Link href={ROUTING_PATH.PLANNING}>
+          <Button>{BOTTOM_MENU_TEXT}</Button>
+        </Link>
       </Layout.BottomMenu>
     </>
   );
