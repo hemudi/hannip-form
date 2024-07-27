@@ -3,14 +3,14 @@ import { create } from 'zustand';
 interface ScriptStoreState {
   idea: string;
   essential: string;
-  opening: string;
-  closing: string;
+  intro: string;
+  ending: string;
   length: string;
   tone: string;
+  accent: string;
   trend: string;
   script: string;
   seed?: number;
-  accent: string;
 }
 
 interface ScriptAction {
@@ -26,8 +26,8 @@ interface ScriptStore extends ScriptStoreState {
 const SCRIPT_INIT_STATE: ScriptStoreState = {
   idea: '',
   essential: '',
-  opening: '',
-  closing: '',
+  intro: '',
+  ending: '',
   length: '',
   tone: '',
   trend: '',
@@ -41,16 +41,16 @@ const parseScript = (script: string) => {
     .replace(/<\/aside>/g, '')
     .trim();
 
-  // 제목 추출
-  // const titleMatch = script.match(/제목\s*:\s*(.*)/);
-  // const title = titleMatch ? titleMatch[1].trim() : '제목 없음';
+  //제목 추출
+  const titleMatch = script.match(/제목\s*:\s*(.*)/);
+  const title = titleMatch ? titleMatch[1].trim() : '제목 없음';
 
-  // console.log(title);
+  console.log(title);
 
-  // // 장면 1 추출
-  // const scene1Match = script.match(/장면 1\s*\[.*?\]\s*영상에 어울릴 스크립트\s*:\s*(.*)/);
-  // const scene1 = scene1Match ? scene1Match[1].trim() : '장면 1 없음';
-  // console.log(scene1);
+  // 장면 1 추출
+  const scene1Match = script.match(/장면 1\s*\[.*?\]\s*영상에 어울릴 스크립트\s*:\s*(.*)/);
+  const scene1 = scene1Match ? scene1Match[1].trim() : '장면 1 없음';
+  console.log(scene1);
   return removeAside;
 };
 

@@ -12,6 +12,7 @@ interface IdeaParams {
 }
 
 export const createIdea = async (params: IdeaParams): Promise<string[]> => {
+  // console.log(params, '-==============');
   const res = await fetch('/api/clova/idea', { method: 'POST', body: JSON.stringify(params) });
 
   if (!res.ok) {
@@ -23,10 +24,11 @@ export const createIdea = async (params: IdeaParams): Promise<string[]> => {
 interface ScriptParams {
   idea: string;
   essential: string;
-  opening: string;
-  closing: string;
+  intro: string;
+  ending: string;
   length: string;
   tone: string;
+  accent: string;
   trend: string;
 }
 

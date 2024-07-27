@@ -41,11 +41,11 @@ export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
   const { category, info, content } = useIdeaState();
 
   useEffect(() => {
-    if (category === '' || info === '' || content === '') {
-      return;
-    }
-
-    setIsDone(checkTextLength(1, 30, category) && checkTextLength(1, 30, content));
+    setIsDone(
+      checkTextLength(1, 30, category) &&
+        checkTextLength(1, 30, info) &&
+        checkTextLength(1, 30, content),
+    );
   }, [category, info, content]);
 
   const handleOnBlur = ({ target }: FocusEvent<HTMLInputElement>, type: 'info' | 'content') => {
@@ -155,30 +155,27 @@ export const QuestionItem3 = ({ setIsDone }: QuestionItemProps) => {
 
 export const QuestionItem4 = ({ setIsDone }: QuestionItemProps) => {
   const { setScriptState } = useScriptAction();
-  const { opening, closing } = useScriptState();
+  const { intro, ending } = useScriptState();
 
-  const handleOnBlur = (
-    { target }: FocusEvent<HTMLTextAreaElement>,
-    type: 'opening' | 'closing',
-  ) => {
+  const handleOnBlur = ({ target }: FocusEvent<HTMLTextAreaElement>, type: 'intro' | 'ending') => {
     setScriptState({ [type]: target.value });
   };
 
   useEffect(() => {
-    setIsDone(checkTextLength(1, 500, opening) && checkTextLength(1, 500, closing));
-  }, [opening, closing]);
+    setIsDone(checkTextLength(1, 500, intro) && checkTextLength(1, 500, ending));
+  }, [intro, ending]);
 
   return (
     <QuestionLayout title="어떤 내용이 필수인가요?">
       <ItemLayout title="인트로 문구가 있다면 작성해주세요">
         <TextArea
-          onBlur={(event) => handleOnBlur(event, 'opening')}
+          onBlur={(event) => handleOnBlur(event, 'intro')}
           placeholder="최소 1자, 최대 500자 이내 (공백포함)&#13;&#10;ex) 이거 모르면 큰일납니다!"
         />
       </ItemLayout>
       <ItemLayout title="엔딩 문구가 있다면 작성해주세요">
         <TextArea
-          onBlur={(event) => handleOnBlur(event, 'closing')}
+          onBlur={(event) => handleOnBlur(event, 'ending')}
           placeholder="최소 1자, 최대 500자 이내 (공백포함)&#13;&#10;ex) 가시기전에 좋댓구알 안잊으셨죠?"
         />
       </ItemLayout>
