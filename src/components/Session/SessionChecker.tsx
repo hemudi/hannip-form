@@ -8,11 +8,12 @@ export const SessionChecker = ({ sessionId }: { sessionId: string | null }) => {
 
   useEffect(() => {
     setSessionId(sessionId);
+    console.log(sessionId);
   }, [sessionId]);
 
-  useEffect(() => {
-    routeSessionPage();
-  }, [isConnected]);
+  // useEffect(() => {
+  //   routeSessionPage();
+  // }, [isConnected]);
 
   return null;
 };
