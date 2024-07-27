@@ -1,5 +1,4 @@
 import Layout from '@components/Layout';
-import BottomMenu from '@components/Layout/BottomMenu';
 import Button from '@components/common/Button';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Link from 'next/link';
