@@ -18,6 +18,7 @@ const PlanningPage = () => {
   const router = useRouter();
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [isDone, setIsDone] = useState<boolean>(false);
+  const [isVisible, setVisible] = useState<boolean>(true);
 
   const handleOnClickButton = () => {
     if (currentQuestion + 1 !== questionList.length) {
@@ -27,8 +28,15 @@ const PlanningPage = () => {
     router.replace(ROUTING_PATH.RESULT);
   };
 
-  const handleSetIsDone = (isDone: boolean) => {
+  const handleSetIsDone = ({
+    isDone = false,
+    isVisible = true,
+  }: {
+    isDone: boolean;
+    isVisible: boolean;
+  }) => {
     setIsDone(isDone);
+    setVisible(isVisible);
   };
 
   useEffect(() => {
@@ -43,13 +51,15 @@ const PlanningPage = () => {
         </div>
         <Question index={currentQuestion} setIsDone={handleSetIsDone} />
       </Layout.Main>
-      <Layout.BottomMenu>
-        <Button disabled={!isDone} onClick={handleOnClickButton}>
-          {currentQuestion + 1 < questionList.length
-            ? BOTTOM_MENU_TEXT.NEXT
-            : BOTTOM_MENU_TEXT.CREATE}
-        </Button>
-      </Layout.BottomMenu>
+      {isVisible && (
+        <Layout.BottomMenu>
+          <Button disabled={!isDone} onClick={handleOnClickButton}>
+            {currentQuestion + 1 < questionList.length
+              ? BOTTOM_MENU_TEXT.NEXT
+              : BOTTOM_MENU_TEXT.CREATE}
+          </Button>
+        </Layout.BottomMenu>
+      )}
     </>
   );
 };

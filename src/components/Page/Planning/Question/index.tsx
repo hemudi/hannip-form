@@ -2,7 +2,7 @@ import questionList from '@components/Page/Planning/Question/QuestionItem';
 
 interface QuestionProps {
   index: number;
-  setIsDone: (isDone: boolean) => void;
+  setIsDone: (param: { isDone: boolean; isVisible?: boolean }) => void;
 }
 
 const Question = ({ index, setIsDone }: QuestionProps) => {

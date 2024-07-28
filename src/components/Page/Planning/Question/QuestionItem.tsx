@@ -10,7 +10,7 @@ import { useScriptAction, useScriptState } from '@store/script';
 import { ChangeEvent, useEffect, useState } from 'react';
 
 interface QuestionItemProps {
-  setIsDone: (isDone: boolean) => void;
+  setIsDone: (param: { isDone: boolean; isVisible?: boolean }) => void;
 }
 
 const checkTextLength = (min: number, max: number, text: string) => {
@@ -47,11 +47,12 @@ export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
   }, []);
 
   useEffect(() => {
-    setIsDone(
-      checkTextLength(1, 30, category) &&
+    setIsDone({
+      isDone:
+        checkTextLength(1, 30, category) &&
         checkTextLength(1, 30, info) &&
         checkTextLength(1, 30, content),
-    );
+    });
   }, [category, info, content]);
 
   const handleOnChange = ({ target }: ChangeEvent<HTMLInputElement>, type: 'info' | 'content') => {
@@ -97,6 +98,7 @@ export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
 
 export const QuestionItem2 = ({ setIsDone }: QuestionItemProps) => {
   const [ideaList, setIdeaList] = useState<string[] | null>(null);
+
   const ideaParams = useIdeaParams();
   const { setIdeaState } = useIdeaAction();
   const { selectedIdea } = useIdeaState();
@@ -114,8 +116,8 @@ export const QuestionItem2 = ({ setIsDone }: QuestionItemProps) => {
   }, []);
 
   useEffect(() => {
-    setIsDone(selectedIdea !== '');
-  }, [selectedIdea]);
+    setIsDone({ isDone: selectedIdea !== '', isVisible: ideaList !== null });
+  }, [selectedIdea, ideaList]);
 
   return ideaList !== null ? (
     <QuestionLayout title="아이디어가 완성되었어요!">
@@ -156,7 +158,7 @@ export const QuestionItem3 = ({ setIsDone }: QuestionItemProps) => {
   };
 
   useEffect(() => {
-    setIsDone(checkTextLength(1, 500, essential));
+    setIsDone({ isDone: checkTextLength(1, 500, essential) });
   }, [essential]);
 
   return (
@@ -180,7 +182,7 @@ export const QuestionItem4 = ({ setIsDone }: QuestionItemProps) => {
   };
 
   useEffect(() => {
-    setIsDone(checkTextLength(1, 500, intro) && checkTextLength(1, 500, ending));
+    setIsDone({ isDone: checkTextLength(1, 500, intro) && checkTextLength(1, 500, ending) });
   }, [intro, ending]);
 
   return (
@@ -210,7 +212,7 @@ export const QuestionItem5 = ({ setIsDone }: QuestionItemProps) => {
   };
 
   useEffect(() => {
-    setIsDone(length !== '');
+    setIsDone({ isDone: length !== '' });
   }, [length]);
 
   return (
@@ -240,7 +242,7 @@ export const QuestionItem6 = ({ setIsDone }: QuestionItemProps) => {
   };
 
   useEffect(() => {
-    setIsDone(tone !== '' && trend !== '' && accent !== '');
+    setIsDone({ isDone: tone !== '' && trend !== '' && accent !== '' });
   }, [tone, trend, accent]);
 
   return (
