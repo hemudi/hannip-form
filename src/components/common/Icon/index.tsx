@@ -5,7 +5,7 @@ export type IconType = keyof typeof SvgComponents;
 type IconProps = {
   size?: keyof typeof iconSize;
   type: IconType;
-  fill?: `#${number}` | 'none';
+  fill?: `#${string}` | 'none';
   color?: `#${string}`;
   viewBox?: string;
   className?: string;

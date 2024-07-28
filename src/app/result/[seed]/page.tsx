@@ -1,9 +1,10 @@
 'use client';
 
+import { bookmarkIdea } from '@api/idea';
 import Layout from '@components/Layout';
 import Script from '@components/Page/Result/Script';
 import Button from '@components/common/Button';
-import ContentList from '@components/common/ContentList';
+import ContentList from '@components/Page/Result/ContentList';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { useIdeaState } from '@store/idea';
 import { useScriptState } from '@store/script';
@@ -35,10 +36,11 @@ const ResultPage = ({ params }: { params: { seed: string } }) => {
               <ContentList
                 title={`다른 아이디어를 활용해서\n대본을 만들어보세요!`}
                 contentList={ideaList}
-                iconType="bookmark"
-                onClick={() => {
-                  toast.dismiss();
-                  toast.success('업데이트 예정중입니다! 조금만 기다려주세요!');
+                onClick={(idea: string) => {
+                  bookmarkIdea(idea).then(() => {
+                    toast.success('아이디어가 북마크 되었습니다!');
+                  });
+                  return true;
                 }}
               />
             </>

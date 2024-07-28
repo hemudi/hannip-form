@@ -1,9 +1,16 @@
 'use client';
 
-import ContentList from '@components/common/ContentList';
+import { BookmarkContent } from '@api/user';
+import Icon from '@components/common/Icon';
+import ItemList from '@components/common/ItemList';
 import TabBar from '@components/common/TabBar';
-import { useState } from 'react';
+import { ROUTING_PATH } from '@constants/routingPath';
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import { MouseEvent, useState } from 'react';
+import { parseScriptTitle } from '@utils/script';
+import { deleteScript } from '@api/script';
+import { deleteIdea } from '@api/idea';
 
 const EmptyMessage = ({ label }: { label: string }) => (
   <div className="flex h-96 w-full flex-col items-center justify-center text-body1 text-gray-700">
@@ -11,53 +18,104 @@ const EmptyMessage = ({ label }: { label: string }) => (
     <span>{`${label}를 만들고 저장하러 가볼까요?`}</span>
   </div>
 );
+interface BookmarkContentsProps {
+  type: 'script' | 'idea';
+  bookmarkList: BookmarkContent[];
+  deleteContent: (type: 'script' | 'idea', id: string) => void;
+}
 
-const scriptList = [
-  '제목 : 이것도 1등이니까 럭키비키잖아',
-  '제목 : 할머니는 이 일을 기억할 것입니다',
-  '제목 : 치명적 모델 그 잡채',
-  '제목 : 추구미 뜻을 알라?',
-];
+interface ContentListProps {
+  type: 'script' | 'idea';
+  contentList: BookmarkContent[];
+  title?: string;
+  iconColor?: `#${string}`;
+  onClick?: () => void;
+  onIconClick?: () => void;
+}
 
-const ideaList = [
-  '10분 안에 끝내는 데일리 메이크업',
-  '마스크 속에서도 빛나는 피부 메이크업',
-  '가을맞이 분위기 있는 메이크업',
-  '아이돌 메이크업 따라하기',
-  '곰손도 금손되는 메이크업',
-  '파리의 예술과 문화 탐방',
-];
+const BookmarkContents = ({ type, bookmarkList, deleteContent }: BookmarkContentsProps) => {
+  const router = useRouter();
 
-const contentList = {
-  script: scriptList,
-  idea: ideaList,
-};
+  const removeContent = (id: string) => async (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    deleteContent(type, id);
+  };
 
-const BookmarkContents = ({ type }: { type: 'script' | 'idea' }) => {
-  return contentList[type]?.length > 0 ? (
-    <ContentList
-      contentList={contentList[type]}
-      iconType="closeCircle"
-      onClick={() => {
-        toast.dismiss();
-        toast.success('업데이트 예정 중입니다! 조금만 기다려주세요!');
-      }}
-    />
+  const handleOnClick = (id: string) => {
+    type === 'script' && router.push(`${ROUTING_PATH.SCRIPT}/${id}`);
+  };
+
+  return bookmarkList && bookmarkList?.length > 0 ? (
+    <div className="flex h-fit w-full flex-col gap-4 bg-white px-4 py-6">
+      <ItemList
+        itemList={bookmarkList.map(({ content, id }) => (
+          <div
+            className={`flex w-full cursor-pointer items-center justify-between`}
+            onClick={() => handleOnClick(id)}
+          >
+            <span className="truncate-lines whitespace-pre-line">
+              {type === 'idea' ? content : parseScriptTitle(content)}
+            </span>
+            <div className={`cursor-pointer`} onClick={removeContent(id)}>
+              <Icon type={'closeCircle'} />
+            </div>
+          </div>
+        ))}
+      />
+    </div>
   ) : (
-    <EmptyMessage label={type} />
+    <EmptyMessage label={type === 'idea' ? '아이디어' : '스크립트'} />
   );
 };
 
-const tabs = [
-  {
-    label: '스크립트',
-    content: <BookmarkContents type="script" />,
-  },
-  { label: '아이디어', content: <BookmarkContents type="idea" /> },
-];
+interface BookmarkProps {
+  scripts: BookmarkContent[];
+  ideas: BookmarkContent[];
+}
 
-const BookmarkList = () => {
-  return <TabBar tabs={tabs} />;
+const BookmarkList = ({ scripts, ideas }: BookmarkProps) => {
+  const [scriptList, setScriptList] = useState<BookmarkContent[]>(scripts);
+  const [ideaList, setIdeaList] = useState<BookmarkContent[]>(ideas);
+
+  const deleteContent = (type: 'idea' | 'script', id: string) => {
+    type === 'script' ? deleteScript(id) : null;
+
+    if (type === 'script') {
+      deleteScript(id).then(() => {
+        setScriptList((originList) => [
+          ...originList.filter(({ id: originId }) => originId !== id),
+        ]);
+      });
+      return;
+    }
+
+    deleteIdea(id).then(() => {
+      setIdeaList((originList) => [...originList.filter(({ id: originId }) => originId !== id)]);
+    });
+  };
+
+  return (
+    <TabBar
+      tabs={[
+        {
+          label: '스크립트',
+          content: (
+            <BookmarkContents
+              type="script"
+              bookmarkList={scriptList}
+              deleteContent={deleteContent}
+            />
+          ),
+        },
+        {
+          label: '아이디어',
+          content: (
+            <BookmarkContents type="idea" bookmarkList={ideaList} deleteContent={deleteContent} />
+          ),
+        },
+      ]}
+    />
+  );
 };
 
 export default BookmarkList;

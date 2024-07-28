@@ -7,7 +7,7 @@ interface ToastProps {
 }
 
 const options = {
-  autoClose: 2000,
+  autoClose: 500,
   hideProgressBar: true,
   closeOnClick: true,
   closeButton: false,
