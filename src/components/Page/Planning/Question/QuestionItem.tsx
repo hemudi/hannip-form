@@ -7,7 +7,7 @@ import TextArea from '@components/common/TextArea';
 import TextField from '@components/common/TextField';
 import { useIdeaAction, useIdeaParams, useIdeaState } from '@store/idea';
 import { useScriptAction, useScriptState } from '@store/script';
-import { FocusEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 interface QuestionItemProps {
   setIsDone: (isDone: boolean) => void;
@@ -54,7 +54,7 @@ export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
     );
   }, [category, info, content]);
 
-  const handleOnBlur = ({ target }: FocusEvent<HTMLInputElement>, type: 'info' | 'content') => {
+  const handleOnChange = ({ target }: ChangeEvent<HTMLInputElement>, type: 'info' | 'content') => {
     setIdeaState({ [type]: target.value });
   };
 
@@ -67,7 +67,7 @@ export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
       <ItemLayout title="내 채널을 한줄로 소개해주세요">
         <TextField
           variant={checkTextLength(0, 30, info) ? 'default' : 'error'}
-          onBlur={(event) => handleOnBlur(event, 'info')}
+          onChange={(event) => handleOnChange(event, 'info')}
           placeholder="최소 1자, 최대 30자 이내 (공백포함)"
           helperText={
             checkTextLength(0, 30, info) ? undefined : '최소 1자, 최대 30자 이내로 입력해주세요'
@@ -84,7 +84,7 @@ export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
       <ItemLayout title="영상의 간단한 내용을 입력해주세요">
         <TextField
           variant={checkTextLength(0, 30, content) ? 'default' : 'error'}
-          onBlur={(event) => handleOnBlur(event, 'content')}
+          onChange={(event) => handleOnChange(event, 'content')}
           placeholder="최소 1자, 최대 30자 이내 (공백포함)"
           helperText={
             checkTextLength(0, 30, content) ? undefined : '최소 1자, 최대 30자 이내로 입력해주세요'
@@ -151,7 +151,7 @@ export const QuestionItem3 = ({ setIsDone }: QuestionItemProps) => {
   const { essential } = useScriptState();
   const { selectedIdea } = useIdeaState();
 
-  const handleOnBlur = ({ target }: FocusEvent<HTMLTextAreaElement>) => {
+  const handleOnChange = ({ target }: ChangeEvent<HTMLTextAreaElement>) => {
     setScriptState({ essential: target.value, idea: selectedIdea });
   };
 
@@ -162,7 +162,7 @@ export const QuestionItem3 = ({ setIsDone }: QuestionItemProps) => {
   return (
     <QuestionLayout title="어떤 내용이 필수인가요?">
       <ItemLayout title="스크립트에 꼭 들어가야할 내용을 작성해주세요">
-        <TextArea placeholder="최소 1자, 최대 500자 이내 (공백포함)" onBlur={handleOnBlur} />
+        <TextArea placeholder="최소 1자, 최대 500자 이내 (공백포함)" onChange={handleOnChange} />
       </ItemLayout>
     </QuestionLayout>
   );
@@ -172,7 +172,10 @@ export const QuestionItem4 = ({ setIsDone }: QuestionItemProps) => {
   const { setScriptState } = useScriptAction();
   const { intro, ending } = useScriptState();
 
-  const handleOnBlur = ({ target }: FocusEvent<HTMLTextAreaElement>, type: 'intro' | 'ending') => {
+  const handleOnChange = (
+    { target }: ChangeEvent<HTMLTextAreaElement>,
+    type: 'intro' | 'ending',
+  ) => {
     setScriptState({ [type]: target.value });
   };
 
@@ -184,13 +187,13 @@ export const QuestionItem4 = ({ setIsDone }: QuestionItemProps) => {
     <QuestionLayout title="어떤 내용이 필수인가요?">
       <ItemLayout title="인트로 문구가 있다면 작성해주세요">
         <TextArea
-          onBlur={(event) => handleOnBlur(event, 'intro')}
+          onChange={(event) => handleOnChange(event, 'intro')}
           placeholder="최소 1자, 최대 500자 이내 (공백포함)&#13;&#10;ex) 이거 모르면 큰일납니다!"
         />
       </ItemLayout>
       <ItemLayout title="엔딩 문구가 있다면 작성해주세요">
         <TextArea
-          onBlur={(event) => handleOnBlur(event, 'ending')}
+          onChange={(event) => handleOnChange(event, 'ending')}
           placeholder="최소 1자, 최대 500자 이내 (공백포함)&#13;&#10;ex) 가시기전에 좋댓구알 안잊으셨죠?"
         />
       </ItemLayout>
