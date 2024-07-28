@@ -44,7 +44,7 @@ const Setting = () => {
         <Icon type="gear" />
       </div>
       {isOpen && (
-        <div className="shadow-around w-42 absolute right-0 z-10 mt-2 flex h-24 flex-col items-center justify-center overflow-hidden rounded-2xl border-gray-300 bg-white text-body1 font-medium text-black">
+        <div className="absolute right-0 z-10 mt-2 flex h-24 w-42 flex-col items-center justify-center overflow-hidden rounded-2xl border-gray-300 bg-white text-body1 font-medium text-black shadow-around">
           <button
             onClick={handleLogout}
             className="block h-full w-full px-4 py-2 text-center text-gray-700 hover:bg-gray-100"
@@ -92,7 +92,8 @@ interface MenuProps {
 
 const Menu = ({ type, component }: MenuProps) => {
   const MenuComponent = type ? menus[type] : null;
-  return component ? { component } : MenuComponent && <MenuComponent />;
+  if (component) return component;
+  return MenuComponent && <MenuComponent />;
 };
 
 export default Menu;

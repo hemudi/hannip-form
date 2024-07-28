@@ -14,8 +14,8 @@ const ContentList = ({ contentList, title, onClick = () => false }: IdeaListProp
     <div className="flex h-fit w-full flex-col gap-4 bg-white px-4 py-6">
       {title && <h4 className="w-full whitespace-pre-line text-h4 font-bold">{title}</h4>}
       <ItemList
-        itemList={contentList.map((text) => (
-          <Item text={text} onClick={onClick} />
+        itemList={contentList.map((text, index) => (
+          <Item text={text} onClick={onClick} key={text + index} />
         ))}
       />
     </div>

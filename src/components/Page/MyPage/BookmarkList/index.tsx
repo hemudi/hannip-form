@@ -52,6 +52,7 @@ const BookmarkContents = ({ type, bookmarkList, deleteContent }: BookmarkContent
           <div
             className={`flex w-full cursor-pointer items-center justify-between`}
             onClick={() => handleOnClick(id)}
+            key={id}
           >
             <span className="truncate-lines whitespace-pre-line">
               {type === 'idea' ? content : parseScriptTitle(content)}

@@ -33,7 +33,7 @@ const PlanningPage = () => {
     isVisible = true,
   }: {
     isDone: boolean;
-    isVisible: boolean;
+    isVisible?: boolean;
   }) => {
     setIsDone(isDone);
     setVisible(isVisible);

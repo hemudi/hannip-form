@@ -16,7 +16,6 @@ const DEFAULT_TITLE_TEXT = '스크립트가 완성되었어요!';
 const RETRY_TEXT = '대본이 마음에 안드세요? 다시하기';
 
 const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
-  const { token } = useToken();
   return (
     <div className={`flex h-fit w-full flex-col justify-center gap-4 bg-script bg-cover p-4`}>
       <h4 className="w-full text-h4 font-bold">{`${title}`}</h4>
@@ -34,11 +33,8 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
           color="white"
           variant="colored"
           onClick={async () => {
-            if (token) {
-              console.log(token);
-              const res = await bookmarkScript(token, scriptText);
-              console.log(res);
-            }
+            const res = await bookmarkScript(scriptText);
+            console.log(res);
           }}
         >
           {'북마크'}
