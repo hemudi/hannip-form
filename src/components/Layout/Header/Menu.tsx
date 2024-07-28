@@ -47,14 +47,14 @@ const Setting = () => {
   const handleLogout = async () => {
     deleteToken();
     clickModal('로그아웃');
-    toast.success('로그아웃 되었습니다!');
+    toast.success('정상적으로 로그아웃 되었습니다.');
     router.replace(ROUTING_PATH.MAIN);
   };
 
   const handleWithdraw = async () => {
     deleteAccount().then(() => {
       // deleteToken();
-      toast.success('회원탈퇴 되었습니다! 다음에 또 만나요!');
+      toast.success('회원탈퇴가 완료되었습니다! 다음에 또 만나요!');
       router.replace(ROUTING_PATH.MAIN);
     });
   };
