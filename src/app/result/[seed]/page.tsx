@@ -31,7 +31,11 @@ const ResultPage = ({ params }: { params: { seed: string } }) => {
           {
             <>
               <Script scriptText={script} />
-              <ContentList contentList={ideaList} iconType="bookmark" />
+              <ContentList
+                title={`다른 아이디어를 활용해서\n대본을 만들어보세요!`}
+                contentList={ideaList}
+                iconType="bookmark"
+              />
             </>
           }
         </Layout.Main>
