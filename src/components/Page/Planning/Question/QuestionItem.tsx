@@ -27,7 +27,7 @@ const categoryList = [
   '비영리/사회운동',
   '스포츠',
   '애완동물/동물',
-  '엔터테이먼트',
+  '엔터테인먼트',
   '여행/이벤트',
   '영화/애니메이션',
   '인물/블로그',
@@ -237,8 +237,8 @@ export const QuestionItem6 = ({ setIsDone }: QuestionItemProps) => {
   };
 
   useEffect(() => {
-    setIsDone(tone !== '' && trend !== '');
-  }, [tone, trend]);
+    setIsDone(tone !== '' && trend !== '' && accent !== '');
+  }, [tone, trend, accent]);
 
   return (
     <QuestionLayout title="어떤 말투를 쓰시나요?">
