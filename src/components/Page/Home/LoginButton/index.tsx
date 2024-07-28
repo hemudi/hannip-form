@@ -27,20 +27,19 @@ const buttonSettings = {
 const LoginButton = ({ type }: LoginButtonProps) => {
   const { icon, text, styles, href } = buttonSettings[type];
   return (
-    <button
+    <Link
       onClick={() => {
         if (type === 'naver') {
           toast.success('네이버 로그인은 업데이트 예정 중입니다!');
           return;
         }
-
-        loginKakao().then((res) => console.log(res));
       }}
+      href={href}
       className={`flex h-12 w-full items-center justify-center rounded-lg text-body1 text-black disabled:bg-gray-100 disabled:text-gray-500 ${styles}`}
     >
       <div className="flex items-center justify-center">{icon}</div>
       {text}
-    </button>
+    </Link>
   );
 };
 

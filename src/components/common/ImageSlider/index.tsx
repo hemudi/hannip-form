@@ -29,11 +29,11 @@ const ImageSlider = ({ images }: ImageSlider) => {
         {images.map(({ alt, src, title }) => (
           <div
             key={alt}
-            className="max-w-89 flex h-full flex-col items-center justify-center gap-6 break-words"
+            className="flex h-full max-w-89 flex-col items-center justify-center gap-6 break-words"
           >
             <span className="whitespace-pre-line text-center text-h3 font-bold">{title}</span>
             <Image
-              className="max-w-89 max-h-89 h-full w-auto"
+              className="h-full max-h-89 w-auto max-w-89"
               width="0"
               height="0"
               alt="image"

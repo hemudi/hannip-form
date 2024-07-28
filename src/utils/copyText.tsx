@@ -7,15 +7,16 @@ const copyText = async (text: string) => {
     window.navigator.canShare({ text });
 
   if (!canUseShareApi) {
-    await window.navigator.clipboard.writeText(text);
+    await window.navigator.clipboard?.writeText(text);
     toast.success('스크립트가 복사되었습니다!');
     return;
   }
 
-  const data = {
+  window.navigator.share({
     text: text,
-  };
-  void window.navigator.share(data);
+  });
+
+  toast.success('스크립트가 복사되었습니다!');
 };
 
 export default copyText;

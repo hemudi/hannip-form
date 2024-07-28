@@ -31,7 +31,7 @@ const ResultPage = ({ params }: { params: { seed: string } }) => {
           {
             <>
               <Script scriptText={script} />
-              <ContentList contentList={ideaList} />
+              <ContentList contentList={ideaList} iconType="bookmark" />
             </>
           }
         </Layout.Main>
