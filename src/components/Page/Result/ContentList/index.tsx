@@ -1,5 +1,6 @@
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import ItemList from '@components/common/ItemList';
+import LoginModal from '@components/common/Modal/LoginModal';
 import { getCookieToDocument } from '@utils/cookie/client';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -31,10 +32,11 @@ interface ItemProps {
 
 const Item = ({ text, onClick }: ItemProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [isShow, setIsShow] = useState<boolean>(false);
   const handleOncClick = async () => {
     const token = await getCookieToDocument('token');
     if (!token) {
-      toast.success('아이디어를 북마크하려면 로그인이 필요합니다!');
+      setIsShow(true);
       return;
     }
 
@@ -52,6 +54,7 @@ const Item = ({ text, onClick }: ItemProps) => {
       <div className="cursor-pointer" onClick={handleOncClick}>
         <BookmarkIcon isChecked={isChecked} />
       </div>
+      <LoginModal type={'아이디어'} isShow={isShow} clickModal={() => setIsShow((prev) => !prev)} />
     </div>
   );
 };

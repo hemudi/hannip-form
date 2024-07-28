@@ -27,17 +27,17 @@ const buttonSettings = {
 const LoginButton = ({ type }: LoginButtonProps) => {
   const { icon, text, styles, href } = buttonSettings[type];
   return (
-    <Link
+    <button
       onClick={() => {
         toast.dismiss();
         toast.success('로그인 기능은 준비중입니다!');
       }}
-      href={'/'}
+      // href={'*'}
       className={`flex h-12 w-full items-center justify-center rounded-lg text-body1 text-black disabled:bg-gray-100 disabled:text-gray-500 ${styles}`}
     >
       <div className="flex items-center justify-center">{icon}</div>
       {text}
-    </Link>
+    </button>
   );
 };
 

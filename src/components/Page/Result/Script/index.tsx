@@ -2,6 +2,7 @@ import { bookmarkScript } from '@api/script';
 import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
+import LoginModal from '@components/common/Modal/LoginModal';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { useScriptState } from '@store/script';
 import { getCookieToDocument } from '@utils/cookie/client';
@@ -22,11 +23,12 @@ const RETRY_TEXT = '대본이 마음에 안드세요? 다시하기';
 const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
   const { idea } = useScriptState();
   const [isChecked, setIsChecked] = useState(false);
+  const [isShow, setIsShow] = useState<boolean>(false);
 
   const handleOnClick = async () => {
     const token = await getCookieToDocument('token');
     if (!token) {
-      toast.success('스크립트를 북마크하려면 로그인이 필요합니다!');
+      setIsShow(true);
       return;
     }
 
@@ -61,6 +63,7 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
           <Icon type="copy" color="#FFFFFF" />
         </Button>
       </div>
+      <LoginModal type={'스크립트'} isShow={isShow} clickModal={() => setIsShow((prev) => !prev)} />
     </div>
   );
 };
