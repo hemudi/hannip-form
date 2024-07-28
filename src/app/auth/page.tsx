@@ -1,24 +1,25 @@
-import Loading from '@components/Layout/Loading';
-// import { SessionChecker } from '@components/Session/SessionChecker';
+'use client';
 
-import { cookies } from 'next/headers';
+import { loginKakao } from '@api/auth';
+import { ROUTING_PATH } from '@constants/routingPath';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-const SESSION_ID_NAME = 'connect.sid';
+const AuthCallbackPage = () => {
+  const { replace } = useRouter();
+  const params = useSearchParams();
+  const code = params.get('code');
 
-const getCookie = async (name: string) => {
-  return cookies().get(name)?.value ?? '';
-};
+  useEffect(() => {
+    if (!code || code === '') {
+      replace(ROUTING_PATH.NOT_FOUND);
+      return;
+    }
 
-const AuthCallbackPage = async () => {
-  const sessionId = await getCookie(SESSION_ID_NAME);
-
-  return (
-    <>
-      <Loading title="로그인 중입니다" />
-      {/* <SessionChecker sessionId={sessionId} /> */}
-    </>
-  );
+    loginKakao(code);
+    replace(ROUTING_PATH.ONBOARDING);
+  }, []);
+  return null;
 };
 
 export default AuthCallbackPage;

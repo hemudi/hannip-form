@@ -3,6 +3,7 @@ import '@styles/globals.css';
 import Layout from '@components/Layout';
 import { ToastProvider } from '@components/common/Toast';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { CookiesProvider } from 'next-client-cookies/server';
 
 export const metadata: Metadata = {
   title: '한입폼',
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="ko">
       <body className="mx-auto h-screen w-full bg-primary-50">
         <ToastProvider />
-        <Layout>{children}</Layout>
+        <CookiesProvider>
+          <Layout>{children}</Layout>
+        </CookiesProvider>
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import { createIdea } from '@api/clova';
+import { getUser } from '@api/user';
 import BookmarkList from '@components/Page/MyPage/BookmarkList';
 import UserInfo from '@components/common/UserInfo';
 
@@ -9,10 +9,11 @@ const userData = {
 };
 
 const MyPage = async () => {
+  const { scripts, ideas, ...userData } = await getUser();
   return (
     <>
       <UserInfo {...userData} />
-      <BookmarkList />
+      <BookmarkList scripts={scripts} ideas={ideas} />
     </>
   );
 };

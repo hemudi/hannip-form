@@ -8,18 +8,27 @@ export const AUTH_URL_PATH = {
     NAVER: `${AUTH_API_URL}/naver/login`,
   },
   LOG_OUT: `${AUTH_API_URL}/logout`,
-  DELETE: `${AUTH_API_URL}/kakao/login`,
 };
 
-export const loginKakao = async () => {
-  const res = (await axios.get(AUTH_URL_PATH.LOG_IN.KAKAO)).data;
+export const loginKakao = async (token: string) => {
+  const res = (await axios.get(`${process.env.NEXT_PUBLIC_FE_URL}/auth/${token}`)).data;
   return res;
 };
 
-export const logout = async () => {
-  const res = await fetch(AUTH_URL_PATH.LOG_OUT);
+export const logout = async (token: string) => {
+  const res = await axios.get(AUTH_URL_PATH.LOG_OUT, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
 };
 
-export const deleteAccount = async () => {
-  const res = await fetch(AUTH_URL_PATH.DELETE);
+export const deleteAccount = async (token: string) => {
+  const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
 };

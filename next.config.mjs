@@ -8,14 +8,13 @@ const nextConfig = {
     });
     return config;
   },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: '/api/:path*',
-  //       destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
-  //     },
-  //   ];
-  // },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'k.kakaocdn.net',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

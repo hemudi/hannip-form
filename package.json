@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^1.7.2",
     "next": "14.2.5",
+    "next-client-cookies": "^1.1.1",
     "react": "^18",
     "react-dom": "^18",
     "react-slick": "^0.30.2",

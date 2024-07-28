@@ -49,6 +49,7 @@ const config: Config = {
         },
       },
       spacing: {
+        42: '10.5rem', // 168px
         43: '10.938rem', // 175px
         47: '11.875rem', // 190px
         89: '22.375rem', // 358px
@@ -56,6 +57,9 @@ const config: Config = {
       },
       backgroundImage: {
         script: 'url(/assets/images/background.png)',
+      },
+      boxShadow: {
+        around: '0 0 25px 0 #0000001A',
       },
       animation: {
         bounce: 'bounce 2s infinite',
@@ -84,7 +88,6 @@ const config: Config = {
       },
     },
   },
-
   plugins: [require('tailwind-scrollbar-hide')],
 };
 

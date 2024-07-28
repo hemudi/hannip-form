@@ -109,7 +109,6 @@ export const QuestionItem2 = ({ setIsDone }: QuestionItemProps) => {
 
   useEffect(() => {
     createIdea(ideaParams).then((data) => {
-      console.log(data);
       setIdeaList(data);
       setIdeaState({ ideaList: data });
     });
