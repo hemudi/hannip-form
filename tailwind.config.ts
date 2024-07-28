@@ -59,6 +59,8 @@ const config: Config = {
       },
       animation: {
         bounce: 'bounce 2s infinite',
+        'toast-enter': 'toast-enter 0.3s ease-in-out forwards',
+        'toast-exit': 'toast-exit 0.3s ease-in-out forwards',
       },
       keyframes: {
         bounce: {
@@ -70,6 +72,14 @@ const config: Config = {
             transform: 'translateY(0)',
             'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
           },
+        },
+        'toast-enter': {
+          '0%': { opacity: '0', transform: 'translateY(-20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'toast-exit': {
+          '0%': { opacity: '1', transform: 'translateY(0)' },
+          '100%': { opacity: '0', transform: 'translateY(20px)' },
         },
       },
     },
