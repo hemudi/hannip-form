@@ -7,10 +7,16 @@ interface IdeaListProps {
   title?: string;
   iconType: IconType;
   iconColor?: `#${string}`;
+  onClick: () => void;
 }
 
-const ContentList = ({ contentList, title, iconType, iconColor = '#121212' }: IdeaListProps) => {
-  const handleRemoveBookmark = () => {};
+const ContentList = ({
+  contentList,
+  title,
+  iconType,
+  iconColor = '#121212',
+  onClick = () => {},
+}: IdeaListProps) => {
   return (
     <div className="flex h-fit w-full flex-col gap-4 bg-white px-4 py-6">
       {title && <h4 className="w-full whitespace-pre-line text-h4 font-bold">{title}</h4>}
@@ -18,7 +24,7 @@ const ContentList = ({ contentList, title, iconType, iconColor = '#121212' }: Id
         itemList={contentList.map((text) => (
           <div className="flex w-full items-center justify-between">
             <span>{text}</span>
-            <div className="cursor-pointer">
+            <div className="cursor-pointer" onClick={onClick}>
               <Icon type={iconType} color={iconColor} />
             </div>
           </div>

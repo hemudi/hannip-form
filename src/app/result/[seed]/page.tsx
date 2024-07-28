@@ -10,6 +10,7 @@ import { useScriptState } from '@store/script';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const BOTTOM_MENU_TEXT = '새로운 스크립트 쓰러가기';
 
@@ -35,6 +36,9 @@ const ResultPage = ({ params }: { params: { seed: string } }) => {
                 title={`다른 아이디어를 활용해서\n대본을 만들어보세요!`}
                 contentList={ideaList}
                 iconType="bookmark"
+                onClick={() => {
+                  toast.success('업데이트 예정중입니다! 조금만 기다려주세요!');
+                }}
               />
             </>
           }

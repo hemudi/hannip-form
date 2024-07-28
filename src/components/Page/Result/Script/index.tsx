@@ -3,6 +3,7 @@ import Icon from '@components/common/Icon';
 import { ROUTING_PATH } from '@constants/routingPath';
 import copyText from '@utils/copyText';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 interface ScriptProps {
   scriptText: string;
@@ -14,7 +15,7 @@ const RETRY_TEXT = '대본이 마음에 안드세요? 다시하기';
 
 const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
   return (
-    <div className={`bg-script flex h-fit w-full flex-col justify-center gap-4 bg-cover p-4`}>
+    <div className={`flex h-fit w-full flex-col justify-center gap-4 bg-script bg-cover p-4`}>
       <h4 className="w-full text-h4 font-bold">{`${title}`}</h4>
       <div className="flex h-fit w-full items-center justify-center whitespace-pre-line rounded-lg bg-white p-4">
         {scriptText}
@@ -26,7 +27,13 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
         {RETRY_TEXT}
       </Link>
       <div className="flex gap-2">
-        <Button color="white" variant="colored">
+        <Button
+          color="white"
+          variant="colored"
+          onClick={() => {
+            toast.success('업데이트 예정중입니다! 조금만 기다려주세요!');
+          }}
+        >
           {'북마크'}
           <Icon type="bookmark" />
         </Button>
