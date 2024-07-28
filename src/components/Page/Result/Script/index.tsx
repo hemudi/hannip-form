@@ -1,10 +1,12 @@
 import { bookmarkScript } from '@api/script';
 import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
+import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import { ROUTING_PATH } from '@constants/routingPath';
-import useToken from '@hooks/useToken';
+import { useScriptState } from '@store/script';
 import copyText from '@utils/copyText';
 import Link from 'next/link';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 interface ScriptProps {
@@ -16,6 +18,8 @@ const DEFAULT_TITLE_TEXT = '스크립트가 완성되었어요!';
 const RETRY_TEXT = '대본이 마음에 안드세요? 다시하기';
 
 const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
+  const { idea } = useScriptState();
+  const [isChecked, setIsChecked] = useState(false);
   return (
     <div className={`flex h-fit w-full flex-col justify-center gap-4 bg-script bg-cover p-4`}>
       <h4 className="w-full text-h4 font-bold">{`${title}`}</h4>
@@ -33,12 +37,19 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
           color="white"
           variant="colored"
           onClick={async () => {
-            const res = await bookmarkScript(scriptText);
-            console.log(res);
+            if (isChecked) {
+              toast.success('이미 북마크 된 스크립트입니다');
+              return;
+            }
+            bookmarkScript(`${scriptText}\n아이디어 : ${idea}`).then((data) => {
+              console.log(data);
+              toast.success('스크립트가 북마크 되었습니다!');
+              setIsChecked(true);
+            });
           }}
         >
           {'북마크'}
-          <Icon type="bookmark" />
+          <BookmarkIcon isChecked={isChecked} />
         </Button>
         <Button onClick={() => copyText(scriptText)}>
           {'스크립트 복사'}

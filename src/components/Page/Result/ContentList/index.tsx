@@ -1,6 +1,7 @@
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import ItemList from '@components/common/ItemList';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface IdeaListProps {
   contentList: string[];
@@ -30,7 +31,10 @@ interface ItemProps {
 const Item = ({ text, onClick }: ItemProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const handleOncClick = () => {
-    if (isChecked) return;
+    if (isChecked) {
+      toast.success('이미 북마크 된 아이디어 입니다');
+      return;
+    }
     if (onClick(text)) {
       setIsChecked(true);
     }
