@@ -8,6 +8,12 @@ export const GET = async (_: Request, { params: { token } }: { params: { token: 
       maxAge: 60 * 60 * 24,
       path: '/',
     });
+    res.cookies.set('token-http', token, {
+      secure: false,
+      httpOnly: true,
+      maxAge: 60 * 60 * 24,
+      path: '/',
+    });
     return res;
   } catch (error) {
     return NextResponse.json({ error: '쿠키 생성 실패' }, { status: 500 });
