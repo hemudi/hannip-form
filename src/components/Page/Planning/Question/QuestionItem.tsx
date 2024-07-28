@@ -37,8 +37,14 @@ const categoryList = [
 ];
 
 export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
-  const { setIdeaState } = useIdeaAction();
+  const { setIdeaState, clearIdeaState } = useIdeaAction();
   const { category, info, content } = useIdeaState();
+  const { clearScriptState } = useScriptAction();
+
+  useEffect(() => {
+    clearIdeaState();
+    clearScriptState();
+  }, []);
 
   useEffect(() => {
     setIsDone(
