@@ -1,5 +1,6 @@
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import ItemList from '@components/common/ItemList';
+import { getCookieToDocument } from '@utils/cookie/client';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -30,7 +31,13 @@ interface ItemProps {
 
 const Item = ({ text, onClick }: ItemProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
-  const handleOncClick = () => {
+  const handleOncClick = async () => {
+    const token = await getCookieToDocument('token');
+    if (!token) {
+      toast.success('아이디어를 북마크하려면 로그인이 필요합니다!');
+      return;
+    }
+
     if (isChecked) {
       toast.success('이미 북마크 된 아이디어 입니다');
       return;

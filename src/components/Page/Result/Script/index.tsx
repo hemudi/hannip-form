@@ -4,6 +4,8 @@ import Icon from '@components/common/Icon';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { useScriptState } from '@store/script';
+import { getCookieToDocument } from '@utils/cookie/client';
+import { getCookie } from '@utils/cookie/server';
 import copyText from '@utils/copyText';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -20,6 +22,23 @@ const RETRY_TEXT = '대본이 마음에 안드세요? 다시하기';
 const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
   const { idea } = useScriptState();
   const [isChecked, setIsChecked] = useState(false);
+
+  const handleOnClick = async () => {
+    const token = await getCookieToDocument('token');
+    if (!token) {
+      toast.success('스크립트를 북마크하려면 로그인이 필요합니다!');
+      return;
+    }
+
+    if (isChecked) {
+      toast.success('이미 북마크 된 스크립트입니다');
+      return;
+    }
+    bookmarkScript(`${scriptText}\n아이디어 : ${idea}`).then(() => {
+      toast.success('스크립트가 북마크 되었습니다!');
+      setIsChecked(true);
+    });
+  };
   return (
     <div className={`flex h-fit w-full flex-col justify-center gap-4 bg-script bg-cover p-4`}>
       <h4 className="w-full text-h4 font-bold">{`${title}`}</h4>
@@ -33,20 +52,7 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
         {RETRY_TEXT}
       </Link>
       <div className="flex gap-2">
-        <Button
-          color="white"
-          variant="colored"
-          onClick={async () => {
-            if (isChecked) {
-              toast.success('이미 북마크 된 스크립트입니다');
-              return;
-            }
-            bookmarkScript(`${scriptText}\n아이디어 : ${idea}`).then(() => {
-              toast.success('스크립트가 북마크 되었습니다!');
-              setIsChecked(true);
-            });
-          }}
-        >
+        <Button color="white" variant="colored" onClick={handleOnClick}>
           {'북마크'}
           <BookmarkIcon isChecked={isChecked} />
         </Button>
