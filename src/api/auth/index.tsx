@@ -4,7 +4,7 @@ const AUTH_API_URL = `${process.env.NEXT_PUBLIC_API_URL}/auth`;
 
 export const AUTH_URL_PATH = {
   LOG_IN: {
-    KAKAO: `${AUTH_API_URL}/kakao/login`,
+    KAKAO: `${AUTH_API_URL}/kakao/callback`,
     NAVER: `${AUTH_API_URL}/naver/login`,
   },
   LOG_OUT: `${AUTH_API_URL}/logout`,
