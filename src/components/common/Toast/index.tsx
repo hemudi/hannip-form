@@ -2,12 +2,8 @@
 
 import { ToastContainer } from 'react-toastify';
 
-interface ToastProps {
-  message: string;
-}
-
 const options = {
-  autoClose: 500,
+  autoClose: 800,
   hideProgressBar: true,
   closeOnClick: true,
   closeButton: false,
