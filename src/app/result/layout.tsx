@@ -1,5 +1,3 @@
-import Layout from '@components/Layout';
-
 const ResultLayout = ({
   children,
 }: Readonly<{

@@ -18,7 +18,6 @@ export const loginKakao = async (token: string) => {
 
 export const deleteAccount = async () => {
   const token = await getCookieToDocument('token');
-  console.log(token);
   const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
     headers: {
       Authorization: `Bearer ${token}`,

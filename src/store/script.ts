@@ -23,7 +23,7 @@ interface ScriptStore extends ScriptStoreState {
   actions: ScriptAction;
 }
 
-const SCRIPT_INIT_STATE: ScriptStoreState = {
+export const SCRIPT_INIT_STATE: ScriptStoreState = {
   idea: '',
   essential: '',
   intro: '',

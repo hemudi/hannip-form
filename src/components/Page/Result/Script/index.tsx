@@ -41,8 +41,7 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
               toast.success('이미 북마크 된 스크립트입니다');
               return;
             }
-            bookmarkScript(`${scriptText}\n아이디어 : ${idea}`).then((data) => {
-              console.log(data);
+            bookmarkScript(`${scriptText}\n아이디어 : ${idea}`).then(() => {
               toast.success('스크립트가 북마크 되었습니다!');
               setIsChecked(true);
             });
