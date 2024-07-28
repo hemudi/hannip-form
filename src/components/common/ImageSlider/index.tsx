@@ -20,15 +20,15 @@ const ImageSlider = ({ images }: ImageSlider) => {
 
   const updateWidth = () => {
     if (sliderRef.current) {
-      setSliderWidth(sliderRef.current.clientWidth); // 상위 태그의 너비 설정
+      setSliderWidth(sliderRef.current.clientWidth);
     }
   };
 
   useEffect(() => {
-    updateWidth(); // 컴포넌트가 처음 렌더링될 때 너비 설정
-    window.addEventListener('resize', updateWidth); // 리사이즈 이벤트 리스너 추가
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
     return () => {
-      window.removeEventListener('resize', updateWidth); // 리스너 정리
+      window.removeEventListener('resize', updateWidth);
     };
   }, []);
 
