@@ -3,6 +3,7 @@
 import ContentList from '@components/common/ContentList';
 import TabBar from '@components/common/TabBar';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const EmptyMessage = ({ label }: { label: string }) => (
   <div className="flex h-96 w-full flex-col items-center justify-center text-body1 text-gray-700">
@@ -34,7 +35,14 @@ const contentList = {
 
 const BookmarkContents = ({ type }: { type: 'script' | 'idea' }) => {
   return contentList[type]?.length > 0 ? (
-    <ContentList contentList={contentList[type]} iconType="closeCircle" />
+    <ContentList
+      contentList={contentList[type]}
+      iconType="closeCircle"
+      onClick={() => {
+        toast.dismiss();
+        toast.success('업데이트 예정 중입니다! 조금만 기다려주세요!');
+      }}
+    />
   ) : (
     <EmptyMessage label={type} />
   );

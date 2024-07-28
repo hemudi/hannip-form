@@ -8,6 +8,7 @@ const copyText = async (text: string) => {
 
   if (!canUseShareApi) {
     await window.navigator.clipboard?.writeText(text);
+    toast.dismiss();
     toast.success('스크립트가 복사되었습니다!');
     return;
   }
@@ -15,7 +16,7 @@ const copyText = async (text: string) => {
   window.navigator.share({
     text: text,
   });
-
+  toast.dismiss();
   toast.success('스크립트가 복사되었습니다!');
 };
 

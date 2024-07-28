@@ -31,6 +31,7 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
           color="white"
           variant="colored"
           onClick={() => {
+            toast.dismiss();
             toast.success('업데이트 예정중입니다! 조금만 기다려주세요!');
           }}
         >

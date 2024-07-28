@@ -29,8 +29,8 @@ const LoginButton = ({ type }: LoginButtonProps) => {
   return (
     <Link
       onClick={() => {
-        toast.success('현재 로그인은 업데이트 예정 중입니다!');
-        return;
+        toast.dismiss();
+        toast.success('로그인 기능은 업데이트 예정 중입니다!');
       }}
       href={'/'}
       className={`flex h-12 w-full items-center justify-center rounded-lg text-body1 text-black disabled:bg-gray-100 disabled:text-gray-500 ${styles}`}

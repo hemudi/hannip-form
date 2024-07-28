@@ -37,6 +37,7 @@ const ResultPage = ({ params }: { params: { seed: string } }) => {
                 contentList={ideaList}
                 iconType="bookmark"
                 onClick={() => {
+                  toast.dismiss();
                   toast.success('업데이트 예정중입니다! 조금만 기다려주세요!');
                 }}
               />
