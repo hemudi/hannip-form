@@ -53,7 +53,7 @@ const Setting = () => {
 
   const handleWithdraw = async () => {
     deleteAccount().then(() => {
-      // deleteToken();
+      deleteToken();
       toast.success('회원탈퇴가 완료되었습니다! 다음에 또 만나요!');
       router.replace(ROUTING_PATH.MAIN);
     });
