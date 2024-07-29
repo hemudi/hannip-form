@@ -20,10 +20,8 @@ const onboardingImages = [
 
 const OnboardingPage = () => {
   return (
-    <div>
-      <div className="h-fit max-w-89">
-        <ImageSlider images={onboardingImages} />
-      </div>
+    <div className="h-fit max-w-89">
+      <ImageSlider images={onboardingImages} />
     </div>
   );
 };

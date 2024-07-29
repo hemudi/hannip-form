@@ -10,7 +10,7 @@ const ItemList = ({ itemList }: ItemListProps) => {
       {itemList.map((item, index) => (
         <div
           key={index}
-          className="flex w-full items-center justify-center gap-2.5 rounded-lg bg-gray-50 px-5 py-4 text-body1 text-black"
+          className="flex w-full cursor-default items-center justify-center gap-2.5 rounded-lg bg-gray-50 px-5 py-4 text-body1 text-black"
         >
           {item}
         </div>
