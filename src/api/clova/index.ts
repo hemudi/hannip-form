@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const CLOVA_API_URL = `${process.env.NEXT_PUBLIC_API_URL}/clova`;
+const CLOVA_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/clova`;
 
 export const CLOVA_URL_PATH = {
   IDEA: `${CLOVA_API_URL}/idea`,
@@ -14,12 +14,6 @@ interface IdeaParams {
 }
 
 export const createIdea = async (params: IdeaParams) => {
-  // console.log(params, '-==============');
-  // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clova/idea`, {
-  //   method: 'POST',
-  //   body: JSON.stringify(params),
-  // });
-
   const res = (await axios.post(CLOVA_URL_PATH.IDEA, params)).data;
   return res;
 };

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { BookmarkContent } from '@api/user';
 import { getCookieToDocument } from '@utils/cookie/client';
 
-const IDEA_API_URL = `${process.env.NEXT_PUBLIC_API_URL}/ideas`;
+const IDEA_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/ideas`;
 
 export const bookmarkIdea = async (idea: string) => {
   const token = await getCookieToDocument('token');

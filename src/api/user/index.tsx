@@ -1,7 +1,7 @@
-const USER_API_URL = `${process.env.NEXT_PUBLIC_API_URL}/users`;
-
 import axios from 'axios';
 import { cookies } from 'next/headers';
+
+const USER_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/users`;
 
 const getCookie = async (name: string) => {
   return cookies().get(name)?.value ?? '';

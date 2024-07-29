@@ -2,7 +2,7 @@ import axios from 'axios';
 import { BookmarkContent } from '@api/user';
 import { getCookieToDocument } from '@utils/cookie/client';
 
-const SCRIPT_API_URL = `${process.env.NEXT_PUBLIC_API_URL}/scripts`;
+const SCRIPT_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/scripts`;
 
 export const bookmarkScript = async (script: string) => {
   const token = await getCookieToDocument('token');
