@@ -24,6 +24,19 @@ const ImageSlider = ({ images }: ImageSlider) => {
     }
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { clientX } = e;
+    const { left, right } = sliderRef.current?.getBoundingClientRect() || { left: 0, right: 0 };
+
+    const center = (left + right) / 2;
+
+    if (clientX < center) {
+      setCurrentIndex(Math.max(currentIndex - 1, 0));
+    } else {
+      setCurrentIndex(Math.min(currentIndex + 1, images.length - 1));
+    }
+  };
+
   useEffect(() => {
     updateWidth();
     window.addEventListener('resize', updateWidth);
@@ -50,6 +63,7 @@ const ImageSlider = ({ images }: ImageSlider) => {
       >
         {images.map(({ alt, src, title }) => (
           <div
+            onClick={handleClick}
             key={alt}
             className="flex h-full max-w-89 flex-col items-center justify-center gap-6 break-words"
             style={{ width: `${sliderWidth}px` }}
@@ -91,7 +105,7 @@ const dotStyles = {
 const SliderIndexDot = ({ isCurrentIndex, onClick }: SliderIndexDotProps) => {
   return (
     <div
-      className={`cursor-pointer ${dotStyles[isCurrentIndex ? 'current' : 'default']}`}
+      className={`cursor-pointer transition-all duration-300 ${dotStyles[isCurrentIndex ? 'current' : 'default']}`}
       onClick={onClick}
     />
   );
