@@ -1,20 +1,22 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 type Image = {
   title: string;
+  description: string;
   alt: string;
   src: string;
 };
 
 interface ImageSlider {
   images: Image[];
+  index: number;
+  setIndex: Dispatch<SetStateAction<number>>;
 }
 
-const ImageSlider = ({ images }: ImageSlider) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+const ImageSlider = ({ images, index, setIndex }: ImageSlider) => {
   const [sliderWidth, setSliderWidth] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -31,9 +33,9 @@ const ImageSlider = ({ images }: ImageSlider) => {
     const center = (left + right) / 2;
 
     if (clientX < center) {
-      setCurrentIndex(Math.max(currentIndex - 1, 0));
+      setIndex(Math.max(index - 1, 0));
     } else {
-      setCurrentIndex(Math.min(currentIndex + 1, images.length - 1));
+      setIndex(Math.min(index + 1, images.length - 1));
     }
   };
 
@@ -46,7 +48,7 @@ const ImageSlider = ({ images }: ImageSlider) => {
   }, []);
 
   const handleChangeIndex = (index: number) => {
-    setCurrentIndex(index);
+    setIndex(index);
   };
 
   return (
@@ -58,17 +60,16 @@ const ImageSlider = ({ images }: ImageSlider) => {
         className="flex h-full w-full transition-transform duration-500 ease-in-out"
         style={{
           width: `${sliderWidth * images.length}px`,
-          transform: `translateX(-${currentIndex * sliderWidth}px)`,
+          transform: `translateX(-${index * sliderWidth}px)`,
         }}
       >
-        {images.map(({ alt, src, title }) => (
+        {images.map(({ alt, src, title, description }) => (
           <div
             onClick={handleClick}
             key={alt}
             className="flex h-full max-w-89 flex-col items-center justify-center gap-6 break-words"
             style={{ width: `${sliderWidth}px` }}
           >
-            <span className="whitespace-pre-line text-center text-h3 font-bold">{title}</span>
             <Image
               className="h-full max-h-89 w-auto max-w-89"
               width="0"
@@ -76,15 +77,21 @@ const ImageSlider = ({ images }: ImageSlider) => {
               alt="image"
               src={src}
             />
+            <div className="flex flex-col items-center justify-center gap-2">
+              <span className="whitespace-pre-line text-center text-h3 font-bold">{title}</span>
+              <span className="whitespace-pre-line text-center text-body2 text-gray-700">
+                {description}
+              </span>
+            </div>
           </div>
         ))}
       </div>
       <div className="flex h-fit w-full justify-center gap-2">
-        {new Array(images.length).fill(0).map((_, index) => (
+        {new Array(images.length).fill(0).map((_, dotIndex) => (
           <SliderIndexDot
-            key={index}
-            isCurrentIndex={currentIndex === index}
-            onClick={() => handleChangeIndex(index)}
+            key={dotIndex}
+            isCurrentIndex={dotIndex === index}
+            onClick={() => handleChangeIndex(dotIndex)}
           />
         ))}
       </div>
