@@ -12,7 +12,7 @@ const Loading = ({ title = DEFAULT_TEXT }: LoadingProps) => {
     <>
       <div className="flex h-full w-full select-none flex-col items-center justify-center gap-6 p-10">
         <Image
-          className="h-auto w-full animate-bounce"
+          className="animate-loading h-auto w-full"
           width="0"
           height="0"
           alt="error_image"

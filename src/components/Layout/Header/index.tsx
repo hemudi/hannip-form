@@ -2,7 +2,7 @@ import Menu, { HeaderMenu } from '@components/Layout/Header/Menu';
 
 interface HeaderProps {
   leftMenu?: HeaderMenu;
-  rightMenu: HeaderMenu;
+  rightMenu?: HeaderMenu;
 }
 
 const Header = ({ leftMenu, rightMenu }: HeaderProps) => {

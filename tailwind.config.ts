@@ -12,13 +12,13 @@ const config: Config = {
         pretendard: ['Pretendard'],
       },
       fontSize: {
-        h1: '2.375rem',
-        h2: '1.875rem',
-        h3: '1.5rem',
-        h4: '1.25rem',
-        body1: '1rem',
-        body2: '0.875rem',
-        footnote: '0.75rem',
+        h1: '2.375rem', // 38px
+        h2: '1.875rem', // 30px
+        h3: '1.5rem', // 24px
+        h4: '1.25rem', // 20px
+        body1: '1rem', // 16px
+        body2: '0.875rem', // 14px
+        footnote: '0.75rem', // 12px
       },
       colors: {
         white: '#FFFFFF',
@@ -49,6 +49,7 @@ const config: Config = {
         },
       },
       spacing: {
+        17: '4.375rem', // 70px
         42: '10.5rem', // 168px
         43: '10.938rem', // 175px
         47: '11.875rem', // 190px
@@ -60,14 +61,16 @@ const config: Config = {
       },
       boxShadow: {
         around: '0 0 25px 0 #0000001A',
+        bubble: '0 4px 20px 0 #0000001A',
       },
       animation: {
-        bounce: 'bounce 2s infinite',
+        loading: 'loading-bounce 2s infinite',
+        'bounce-slow': 'bounce 1.5s infinite',
         'toast-enter': 'toast-enter 0.3s ease-in-out forwards',
         'toast-exit': 'toast-exit 0.3s ease-in-out forwards',
       },
       keyframes: {
-        bounce: {
+        'loading-bounce': {
           '0%, 100%': {
             transform: 'translateY(-10%)',
             'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',

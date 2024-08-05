@@ -11,15 +11,15 @@ interface LoginButtonProps {
 
 const buttonSettings = {
   kakao: {
-    icon: <Icon type="kakao" />,
+    icon: <Icon className="mt-1.5" type="kakao" />,
     text: '카카오 로그인',
-    styles: 'bg-kakao',
+    styles: 'bg-kakao text-black',
     href: AUTH_URL_PATH.LOG_IN.KAKAO,
   },
   naver: {
-    icon: <Icon type="naver" />,
+    icon: <Icon className="mt-1.5" type="naver" color="#ffffff" />,
     text: '네이버 로그인',
-    styles: 'bg-naver',
+    styles: 'bg-naver text-white',
     href: '/',
   },
 };
@@ -35,7 +35,7 @@ const LoginButton = ({ type }: LoginButtonProps) => {
         }
       }}
       href={href}
-      className={`flex h-12 w-full items-center justify-center rounded-lg text-body1 text-black disabled:bg-gray-100 disabled:text-gray-500 ${styles}`}
+      className={`flex h-12 w-full items-center justify-center gap-2 rounded-lg text-body1 disabled:bg-gray-100 disabled:text-gray-500 ${styles}`}
     >
       <div className="flex items-center justify-center">{icon}</div>
       {text}
