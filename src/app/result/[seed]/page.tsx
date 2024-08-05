@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import Menu from '@components/Layout/Header/Menu';
 
 const BOTTOM_MENU_TEXT = '새로운 스크립트 쓰러가기';
 
@@ -28,7 +29,7 @@ const ResultPage = ({ params }: { params: { seed: string } }) => {
   return (
     params.seed === String(seed) && (
       <>
-        <Layout.Header leftMenu="home" rightMenu="myPage" />
+        <Layout.Header leftMenu={<Menu type="home" />} rightMenu={<Menu type="myPage" />} />
         <Layout.Main isSpacing={false}>
           {
             <>

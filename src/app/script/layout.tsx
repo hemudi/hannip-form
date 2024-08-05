@@ -1,4 +1,5 @@
 import Layout from '@components/Layout';
+import Menu from '@components/Layout/Header/Menu';
 import Button from '@components/common/Button';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Link from 'next/link';
@@ -12,7 +13,7 @@ const MyPageLayout = ({
 }>) => {
   return (
     <>
-      <Layout.Header leftMenu="home" rightMenu="myPage" />
+      <Layout.Header leftMenu={<Menu type="home" />} rightMenu={<Menu type="myPage" />} />
       <Layout.Main isSpacing={false}>{children}</Layout.Main>
       <Layout.BottomMenu>
         <Link href={ROUTING_PATH.PLANNING}>
