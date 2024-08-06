@@ -1,13 +1,13 @@
 import Image from 'next/image';
 
-const ERROR_IMAGE_URL = 'assets/images/loading.svg';
+const ERROR_IMAGE_URL = '/assets/images/loading.svg';
 
 const ResultLoading = () => {
   return (
     <>
       <div className="flex h-full w-full select-none flex-col items-center justify-center gap-6 p-10">
         <Image
-          className="animate-loading h-auto w-full"
+          className="h-auto w-full animate-loading"
           width="0"
           height="0"
           alt="error_image"

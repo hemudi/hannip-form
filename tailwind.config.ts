@@ -49,6 +49,7 @@ const config: Config = {
         },
       },
       spacing: {
+        15: '3.75rem', // 60px
         17: '4.375rem', // 70px
         42: '10.5rem', // 168px
         43: '10.938rem', // 175px

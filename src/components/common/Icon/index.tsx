@@ -20,12 +20,15 @@ const iconSize = {
     width: '24',
     height: '24',
   },
+  large: {
+    width: '50',
+    height: '50',
+  },
 } as const;
 
 const Icon = ({ type = 'leftArrow', size = 'medium', color = '#121212', ...props }: IconProps) => {
   const Component = SvgComponents[type];
-  const viewBox = type === 'check' ? '0 0 26 26' : '0 0 24 24';
-  return <Component viewBox={viewBox} color={color} {...iconSize[size]} {...props} />;
+  return <Component color={color} {...iconSize[size]} {...props} />;
 };
 
 export default Icon;

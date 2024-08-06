@@ -1,3 +1,4 @@
+import { splitScriptAndAdvice } from '@utils/script';
 import { create } from 'zustand';
 
 interface ScriptStoreState {
@@ -10,6 +11,7 @@ interface ScriptStoreState {
   accent: string;
   trend: string;
   script: string;
+  advice: string;
   seed?: number;
 }
 
@@ -33,14 +35,7 @@ export const SCRIPT_INIT_STATE: ScriptStoreState = {
   trend: '',
   script: '',
   accent: '',
-};
-
-const parseScript = (script: string) => {
-  const removeAside = script
-    .replace(/<aside>/g, '')
-    .replace(/<\/aside>/g, '')
-    .trim();
-  return removeAside;
+  advice: '',
 };
 
 const useScriptStore = create<ScriptStore>((set) => ({
@@ -49,9 +44,9 @@ const useScriptStore = create<ScriptStore>((set) => ({
     setScriptState: (state: Partial<ScriptStoreState>) => {
       set(() => ({ ...state }));
     },
-    setScript: (script: string, seed: number) => {
-      const parsedScript = parseScript(script);
-      set(() => ({ script: parsedScript, seed }));
+    setScript: (originScript: string, seed: number) => {
+      const [script, advice] = splitScriptAndAdvice(originScript);
+      set(() => ({ script, seed, advice }));
     },
     clearScriptState: () => {
       set(() => ({ ...SCRIPT_INIT_STATE }));

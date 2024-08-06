@@ -2,7 +2,7 @@ import Layout from '@components/Layout';
 import Menu from '@components/Layout/Header/Menu';
 import Image from 'next/image';
 
-const ERROR_IMAGE_URL = 'assets/images/error.svg';
+const ERROR_IMAGE_URL = '/assets/images/error.svg';
 
 const ErrorLayout = ({ errorMsg }: { errorMsg: string }) => {
   return (

@@ -5,8 +5,8 @@ import { ROUTING_PATH } from '@constants/routingPath';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const LOGO_IMAGE_URL = 'assets/images/logo.svg';
-const MAIN_IMAGE_URL = 'assets/images/main.svg';
+const LOGO_IMAGE_URL = '/assets/images/logo.svg';
+const MAIN_IMAGE_URL = '/assets/images/main.svg';
 const MAIN_TITLE_TEXT = '한국 트렌드 맞춤형 숏폼 대본 생성서비스';
 const LOGIN_INFO_TEXT = '로그인 시 숏폼 대본과 아이디어를 저장하실 수 있어요!';
 const NO_LOGIN_TEXT = '로그인없이 바로 시작하기';
@@ -22,7 +22,7 @@ const Home = async () => {
                 {MAIN_TITLE_TEXT}
               </span>
               <Image
-                className="max-h-17 h-full w-auto max-w-48"
+                className="h-full max-h-17 w-auto max-w-48"
                 width="0"
                 height="0"
                 alt="hannip_main"
