@@ -9,7 +9,6 @@ type Image = {
   alt: string;
   src: string;
 };
-
 interface ImageSlider {
   images: Image[];
   index: number;
