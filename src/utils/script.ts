@@ -29,6 +29,7 @@ export const splitScriptAndIdeas = (originScript: string) => {
 };
 
 export const splitScriptAndAdvice = (inputString: string) => {
+  console.log(inputString);
   const advicePattern = /\d+\.\s/;
   const adviceIndex = inputString.search(advicePattern);
 
