@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="mx-auto h-screen w-full bg-primary-50">
+      <body className="mx-auto h-svh w-svw bg-primary-50">
         <ToastProvider />
         <CookiesProvider>
           <Layout>{children}</Layout>

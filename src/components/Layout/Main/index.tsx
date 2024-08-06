@@ -8,7 +8,7 @@ interface MainProps {
 const Main = ({ children, isSpacing = true }: MainProps) => {
   return (
     <main
-      className={`scrollbar-hide w-full flex-1 flex-grow justify-items-center overflow-y-auto ${isSpacing ? 'px-4 py-2' : ''}`}
+      className={`w-full flex-1 flex-grow justify-items-center overflow-y-auto bg-white scrollbar-hide ${isSpacing ? 'px-4 py-2' : ''}`}
     >
       {children}
     </main>
