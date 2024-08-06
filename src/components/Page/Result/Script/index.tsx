@@ -1,5 +1,6 @@
 import { bookmarkScript } from '@api/script';
 import Button from '@components/common/Button';
+import ScriptCopyButton from '@components/common/Button/ScriptCopyButton';
 import Icon from '@components/common/Icon';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import LoginModal from '@components/common/Modal/LoginModal';
@@ -58,10 +59,7 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT }: ScriptProps) => {
           {'북마크'}
           <BookmarkIcon isChecked={isChecked} />
         </Button>
-        <Button onClick={() => copyText(scriptText)}>
-          {'스크립트 복사'}
-          <Icon type="copy" color="#FFFFFF" />
-        </Button>
+        <ScriptCopyButton text={scriptText} />
       </div>
       <LoginModal type={'스크립트'} isShow={isShow} clickModal={() => setIsShow((prev) => !prev)} />
     </div>

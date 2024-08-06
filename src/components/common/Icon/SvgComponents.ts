@@ -19,6 +19,9 @@ import User from '@assets/icons/user.svg';
 import Video from '@assets/icons/video.svg';
 import Naver from '@assets/icons/naver.svg';
 import Kakao from '@assets/icons/kakao.svg';
+import LinkNaver from '@assets/icons/link_naver.svg';
+import LinkInstagram from '@assets/icons/link_instagram.svg';
+import LinkYoutube from '@assets/icons/link_youtube.svg';
 
 const SvgComponents = {
   leftArrow: LeftArrow,
@@ -42,6 +45,9 @@ const SvgComponents = {
   video: Video,
   naver: Naver,
   kakao: Kakao,
+  linkNaver: LinkNaver,
+  linkInstagram: LinkInstagram,
+  linkYoutube: LinkYoutube,
 } as const;
 
 export default SvgComponents;

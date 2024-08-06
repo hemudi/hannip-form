@@ -1,4 +1,5 @@
 import Layout from '@components/Layout';
+import Menu from '@components/Layout/Header/Menu';
 
 const PlanningLayout = ({
   children,
@@ -7,7 +8,7 @@ const PlanningLayout = ({
 }>) => {
   return (
     <>
-      <Layout.Header leftMenu="prevPage" rightMenu="close" />
+      <Layout.Header leftMenu={<Menu type="prevPage" />} rightMenu={<Menu type="close" />} />
       {children}
     </>
   );

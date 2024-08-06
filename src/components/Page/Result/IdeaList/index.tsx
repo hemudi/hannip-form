@@ -1,3 +1,4 @@
+import Accordion from '@components/common/Accordion';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import ItemList from '@components/common/ItemList';
 import LoginModal from '@components/common/Modal/LoginModal';
@@ -7,21 +8,21 @@ import { toast } from 'react-toastify';
 
 interface IdeaListProps {
   contentList: string[];
-  title?: string;
   iconColor?: `#${string}`;
   onClick: (texts: string) => boolean;
 }
 
-const ContentList = ({ contentList, title, onClick = () => false }: IdeaListProps) => {
+const IDEA_LIST_TITLE = '주제와 유사한 아이디어를 가져왔어요!';
+
+const IdeaList = ({ contentList, onClick = () => false }: IdeaListProps) => {
   return (
-    <div className="flex h-fit w-full flex-col gap-4 bg-white px-4 py-6">
-      {title && <h4 className="w-full whitespace-pre-line text-h4 font-bold">{title}</h4>}
+    <Accordion title={IDEA_LIST_TITLE}>
       <ItemList
         itemList={contentList.map((text, index) => (
           <Item text={text} onClick={onClick} key={text + index} />
         ))}
       />
-    </div>
+    </Accordion>
   );
 };
 
@@ -52,11 +53,11 @@ const Item = ({ text, onClick }: ItemProps) => {
     <div className="flex w-full items-center justify-between">
       <span>{text}</span>
       <div className="cursor-pointer" onClick={handleOncClick}>
-        <BookmarkIcon isChecked={isChecked} />
+        <BookmarkIcon isChecked={isChecked} color="#A5A5A7" />
       </div>
       <LoginModal type={'아이디어'} isShow={isShow} clickModal={() => setIsShow((prev) => !prev)} />
     </div>
   );
 };
 
-export default ContentList;
+export default IdeaList;

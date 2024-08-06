@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Header from '@components/Layout/Header';
-import Icon from '@components/common/Icon';
+import Menu from '@components/Layout/Header/Menu';
 
 const meta = {
   title: 'Components/Layout/Header',
@@ -20,12 +20,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: ({ ...args }) => (
-    <div className="w-97 h-fit bg-slate-400">
+    <div className="h-fit w-97 bg-slate-400">
       <Header {...args} />
     </div>
   ),
   args: {
-    leftMenu: 'prevPage',
-    rightMenu: 'myPage',
+    leftMenu: <Menu type="prevPage" />,
+    rightMenu: <Menu type="myPage" />,
   },
 };

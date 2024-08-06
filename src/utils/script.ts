@@ -6,21 +6,10 @@ export const parseScriptTitle = (script: string) => {
     .filter((line) => line);
 
   const scriptTitle = lines[0].replace(TITLE_PREFIX, '');
-  //   const scenes = lines
-  //     .map((line, index) => {
-  //       if (line.startsWith('[') && lines[index + 1]) {
-  //         return { title: line, content: lines[index + 1] };
-  //       }
-  //       return null;
-  //     })
-  //     .filter((scene) => scene !== null);
-
-  //   const { title, content } = scenes[0] || {};
-  // return `${TITLE_PREFIX}${scriptTitle}\n${title}${content}`;
   return `${TITLE_PREFIX}${scriptTitle}`;
 };
 
-export const parseScript = (originScript: string) => {
+export const splitScriptAndIdeas = (originScript: string) => {
   const ideaPrefix = '아이디어 : ';
   const ideaStart = originScript.indexOf(ideaPrefix);
   const NO_IDEA_PREFIX = -1;
@@ -37,4 +26,23 @@ export const parseScript = (originScript: string) => {
     (ideaEnd !== NO_IDEA_PREFIX ? '\n' + originScript.slice(ideaEnd).trim() : '');
 
   return { script, idea };
+};
+
+export const splitScriptAndAdvice = (inputString: string) => {
+  console.log(inputString);
+  const advicePattern = /\d+\.\s/;
+  const adviceIndex = inputString.search(advicePattern);
+
+  if (adviceIndex === -1) {
+    return [inputString, ''];
+  }
+
+  const script = inputString.slice(0, adviceIndex).trim();
+  const advice = inputString.slice(adviceIndex).trim();
+
+  const scriptLines = script.split('\n');
+  scriptLines.pop();
+  const finalScript = scriptLines.join('\n').trim();
+
+  return [finalScript, advice];
 };

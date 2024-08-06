@@ -19,6 +19,7 @@ const sizeStyles = {
   small: 'w-43',
   medium: 'w-89',
   full: 'w-full',
+  fit: 'w-fit',
 } as const;
 
 const colorStyles = {

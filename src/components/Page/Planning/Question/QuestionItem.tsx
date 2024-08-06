@@ -133,7 +133,11 @@ export const QuestionItem2 = ({ setIsDone }: QuestionItemProps) => {
                 <div className="flex w-full items-center justify-between">
                   <span>{ideaText}</span>
                   <div>
-                    <Icon type={'check'} color={isSelected ? '#ffffff' : '#121212'} />
+                    <Icon
+                      type={'check'}
+                      color={isSelected ? '#ffffff' : '#121212'}
+                      viewBox="0 0 26 26"
+                    />
                   </div>
                 </div>
               </div>

@@ -1,4 +1,5 @@
 import Layout from '@components/Layout';
+import Menu from '@components/Layout/Header/Menu';
 import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
 import ItemList from '@components/common/ItemList';
@@ -71,7 +72,7 @@ export const Example: Story = {
   args: {
     children: (
       <>
-        <Layout.Header leftMenu="home" rightMenu="setting" />
+        <Layout.Header leftMenu={<Menu type="home" />} rightMenu={<Menu type="setting" />} />
         <Layout.Main>
           <UserInfo {...userInfoProps} />
           <TabBar tabs={tabs} />
