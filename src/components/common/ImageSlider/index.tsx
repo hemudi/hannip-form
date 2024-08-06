@@ -70,7 +70,7 @@ const ImageSlider = ({ images, index, setIndex }: ImageSlider) => {
             style={{ width: `${sliderWidth}px` }}
           >
             <Image
-              className="h-full max-h-89 w-auto max-w-89"
+              className="h-full max-h-89 w-full max-w-89"
               width="0"
               height="0"
               alt="image"
