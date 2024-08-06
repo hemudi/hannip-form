@@ -7,7 +7,10 @@ import { CookiesProvider } from 'next-client-cookies/server';
 
 export const metadata: Metadata = {
   title: '한입폼',
-  description: '',
+  description: '한국 트렌드 맞춤형 숏폼 대본 생성 서비스',
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
