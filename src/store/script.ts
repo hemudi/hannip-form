@@ -12,12 +12,11 @@ interface ScriptStoreState {
   trend: string;
   script: string;
   advice: string;
-  seed?: number;
 }
 
 interface ScriptAction {
   setScriptState: (states: Partial<ScriptStoreState>) => void;
-  setScript: (script: string, seed: number) => void;
+  setScript: (script: string, advice: string) => void;
   clearScriptState: () => void;
 }
 
@@ -33,9 +32,9 @@ export const SCRIPT_INIT_STATE: ScriptStoreState = {
   length: '',
   tone: '',
   trend: '',
-  script: '',
   accent: '',
   advice: '',
+  script: '',
 };
 
 const useScriptStore = create<ScriptStore>((set) => ({
@@ -44,9 +43,8 @@ const useScriptStore = create<ScriptStore>((set) => ({
     setScriptState: (state: Partial<ScriptStoreState>) => {
       set(() => ({ ...state }));
     },
-    setScript: (originScript: string, seed: number) => {
-      const [script, advice] = splitScriptAndAdvice(originScript);
-      set(() => ({ script, seed, advice }));
+    setScript: (script: string, advice: string) => {
+      set(() => ({ script, advice }));
     },
     clearScriptState: () => {
       set(() => ({ ...SCRIPT_INIT_STATE }));
