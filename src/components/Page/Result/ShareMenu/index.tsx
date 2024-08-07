@@ -9,7 +9,7 @@ const FOOTER_TEXT = '저희 서비스를 이용해주셔서 감사합니다.\n�
 
 const SHARE = {
   TEXT: '공유하기',
-  URL: 'https://hannip-form.vercel.app',
+  URL: 'hannip-form.vercel.app',
   SUCCESS_MESSAGE: '서비스 링크가 복사되었습니다!',
 };
 
