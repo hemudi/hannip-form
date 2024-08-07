@@ -167,7 +167,11 @@ export const QuestionItem3 = ({ setIsDone }: QuestionItemProps) => {
   return (
     <QuestionLayout title="어떤 내용이 필수인가요?">
       <ItemLayout title="스크립트에 꼭 들어가야할 내용을 작성해주세요">
-        <TextArea placeholder="최소 1자, 최대 500자 이내 (공백포함)" onChange={handleOnChange} />
+        <TextArea
+          placeholder="최소 1자, 최대 500자 이내 (공백포함)"
+          defaultValue={essential}
+          onChange={handleOnChange}
+        />
       </ItemLayout>
     </QuestionLayout>
   );
@@ -192,12 +196,14 @@ export const QuestionItem4 = ({ setIsDone }: QuestionItemProps) => {
     <QuestionLayout title="어떤 내용이 필수인가요?">
       <ItemLayout title="인트로 문구가 있다면 작성해주세요">
         <TextArea
+          defaultValue={intro}
           onChange={(event) => handleOnChange(event, 'intro')}
           placeholder="최소 1자, 최대 500자 이내 (공백포함)&#13;&#10;ex) 이거 모르면 큰일납니다!"
         />
       </ItemLayout>
       <ItemLayout title="엔딩 문구가 있다면 작성해주세요">
         <TextArea
+          defaultValue={ending}
           onChange={(event) => handleOnChange(event, 'ending')}
           placeholder="최소 1자, 최대 500자 이내 (공백포함)&#13;&#10;ex) 가시기전에 좋댓구알 안잊으셨죠?"
         />
@@ -229,6 +235,7 @@ export const QuestionItem5 = ({ setIsDone }: QuestionItemProps) => {
             { value: '45초', label: '45초' },
             { value: '1분', label: '1분' },
           ]}
+          defaultOption={length !== '' ? { value: length, label: length } : undefined}
           handleOptionChange={handleOptionChange}
         />
       </ItemLayout>
@@ -258,6 +265,7 @@ export const QuestionItem6 = ({ setIsDone }: QuestionItemProps) => {
             { value: '존댓말', label: '존댓말' },
             { value: '상관 없음', label: '상관 없음' },
           ]}
+          defaultOption={tone !== '' ? { value: tone, label: tone } : undefined}
           handleOptionChange={handleOptionChange('tone')}
         />
       </ItemLayout>
@@ -271,6 +279,7 @@ export const QuestionItem6 = ({ setIsDone }: QuestionItemProps) => {
             { value: '제주도', label: '제주도 사투리' },
             { value: '사용 안함', label: '사용 안함' },
           ]}
+          defaultOption={accent !== '' ? { value: accent, label: accent } : undefined}
           handleOptionChange={handleOptionChange('accent')}
         />
       </ItemLayout>
@@ -284,6 +293,7 @@ export const QuestionItem6 = ({ setIsDone }: QuestionItemProps) => {
             { value: '완전 럭키비키잖아', label: '완전 럭키비키잖아' },
             { value: '사용 안함', label: '사용 안함' },
           ]}
+          defaultOption={trend !== '' ? { value: trend, label: trend } : undefined}
           handleOptionChange={handleOptionChange('trend')}
         />
       </ItemLayout>
@@ -292,12 +302,12 @@ export const QuestionItem6 = ({ setIsDone }: QuestionItemProps) => {
 };
 
 const questionList = [
-  QuestionItem1,
-  QuestionItem2,
-  QuestionItem3,
-  QuestionItem4,
-  QuestionItem5,
-  QuestionItem6,
+  QuestionItem1, // 0 : 채널 주제 작성
+  QuestionItem2, // 1 : 아이디어 생성
+  QuestionItem3, // 2 : 필수내용
+  QuestionItem4, // 3 : 인트로, 엔딩
+  QuestionItem5, // 4 : 영상 길이
+  QuestionItem6, // 5 : 대본 문체
 ];
 
 export default questionList;

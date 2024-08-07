@@ -9,18 +9,20 @@ export type Option = {
 interface DropDownProps {
   options: Option[];
   placeholder: string;
+  defaultOption?: Option;
   handleOptionChange?: (option: Option) => void;
 }
 
 const Dropdown = ({
   options,
   placeholder,
+  defaultOption,
   handleOptionChange = () => {},
   ...props
 }: DropDownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<Option>();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [selectedOption, setSelectedOption] = useState<Option | null>(defaultOption || null);
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);

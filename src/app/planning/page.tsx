@@ -8,6 +8,8 @@ import Question from '@components/Page/Planning/Question';
 import questionList from '@components/Page/Planning/Question/QuestionItem';
 import { useRouter } from 'next/navigation';
 import { ROUTING_PATH } from '@constants/routingPath';
+import Menu from '@components/Layout/Header/Menu';
+import Icon from '@components/common/Icon';
 
 const BOTTOM_MENU_TEXT = {
   NEXT: '다음',
@@ -23,9 +25,14 @@ const PlanningPage = () => {
   const handleOnClickButton = () => {
     if (currentQuestion + 1 !== questionList.length) {
       setCurrentQuestion((prev) => Math.min(prev + 1, questionList.length));
+      setIsDone(false);
       return;
     }
     router.replace(ROUTING_PATH.RESULT);
+  };
+
+  const returnToPrevQuestion = () => {
+    setCurrentQuestion((prev) => Math.max(prev - 1, 0));
   };
 
   const handleSetIsDone = ({
@@ -39,12 +46,18 @@ const PlanningPage = () => {
     setVisible(isVisible);
   };
 
-  useEffect(() => {
-    setIsDone(false);
-  }, [currentQuestion]);
-
   return (
     <>
+      <Layout.Header
+        leftMenu={
+          currentQuestion !== 0 && currentQuestion !== 2 ? (
+            <div onClick={returnToPrevQuestion}>
+              <Icon type="leftDirection" />
+            </div>
+          ) : null
+        }
+        rightMenu={<Menu type="close" />}
+      />
       <Layout.Main>
         <div className="flex w-full flex-col items-center justify-center">
           <ProgressBar max={questionList.length} current={currentQuestion + 1} />

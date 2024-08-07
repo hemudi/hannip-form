@@ -110,7 +110,7 @@ const PrevPage = () => (
 );
 
 const Close = () => (
-  <Link href={'/'}>
+  <Link href={'/onboarding'}>
     <Icon type="closeCross" />
   </Link>
 );
