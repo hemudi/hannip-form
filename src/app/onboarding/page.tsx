@@ -1,13 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { onboardingData } from '@app/onboarding/constants';
 import Layout from '@components/Layout';
 import Menu from '@components/Layout/Header/Menu';
 import ImageSlider from '@components/common/ImageSlider';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Button from '@components/common/Button';
+import useToken from '@hooks/useToken';
+import { useCookies } from 'next-client-cookies';
 
 const BOTTOM_MENU_TEXT = {
   TO_NEXT: '다음',
@@ -22,11 +24,19 @@ const SLIDER_INDEX = {
 const OnboardingPage = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(SLIDER_INDEX.FIRST);
   const isLastSlider = currentIndex === SLIDER_INDEX.LAST;
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const cookies = useCookies();
+
+  useEffect(() => {
+    const token = cookies.get('token');
+    console.log(token);
+    setIsLogin(token !== undefined);
+  }, []);
 
   return (
     <>
       <Layout.Header
-        leftMenu={<Menu type="prevPage" />}
+        leftMenu={isLogin ? <Menu type="myPage" /> : <Menu type="prevPage" />}
         rightMenu={
           isLastSlider || (
             <Link
