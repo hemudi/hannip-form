@@ -17,22 +17,23 @@ const copyDocumentText = (text: string) => {
 };
 
 const copyShareApi = async (text: string) => {
-  const canUseShareApi =
-    typeof window !== 'undefined' &&
-    window.navigator.canShare &&
-    window.navigator.canShare({ text });
+  // const canUseShareApi =
+  //   typeof window !== 'undefined' &&
+  //   window.navigator.canShare &&
+  //   window.navigator.canShare({ text });
+
   try {
-    if (!canUseShareApi) {
-      console.log('clipboard!!!!');
-      await window.navigator.clipboard?.writeText(text);
-      return true;
-    }
+    // if (!canUseShareApi) {
+    // console.log('clipboard!!!!');
+    await window.navigator.clipboard?.writeText(text);
+    //   return true;
+    // }
 
-    console.log('share!!!!');
+    // console.log('share!!!!');
 
-    window.navigator.share({
-      text: text,
-    });
+    // window.navigator.share({
+    //   text: text,
+    // });
 
     return true;
   } catch (e) {

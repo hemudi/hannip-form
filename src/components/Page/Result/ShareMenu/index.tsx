@@ -29,9 +29,7 @@ const linkData: LinkData[] = [
 const ShareMenu = () => {
   const handleClickShareText = async () => {
     copyText(SHARE.URL).then(() => {
-      if (detectDevice() === DEVICE_TYPE.WEB) {
-        toast.success(SHARE.SUCCESS_MESSAGE);
-      }
+      toast.success(SHARE.SUCCESS_MESSAGE);
     });
   };
 
