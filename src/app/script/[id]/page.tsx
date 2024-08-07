@@ -1,12 +1,10 @@
-import { getScriptDetail } from '@api/script';
+import { getScriptDetail } from '@apis/script';
 import ScriptCopyButton from '@components/common/Button/ScriptCopyButton';
-import { getCookie } from '@utils/cookie/server';
 
 import { splitScriptAndIdeas } from '@utils/script';
 
 const ScriptDetailPage = async ({ params: { id } }: { params: { id: string } }) => {
-  const token = await getCookie('token');
-  const { content } = await getScriptDetail(token, id);
+  const { content } = await getScriptDetail(id);
   const { script, idea } = splitScriptAndIdeas(content);
 
   return (

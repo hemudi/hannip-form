@@ -1,6 +1,6 @@
 'use client';
 
-import { BookmarkContent } from '@api/user';
+import { BookmarkContent } from '@apis/user';
 import Icon from '@components/common/Icon';
 import ItemList from '@components/common/ItemList';
 import TabBar from '@components/common/TabBar';
@@ -8,8 +8,8 @@ import { ROUTING_PATH } from '@constants/routingPath';
 import { useRouter } from 'next/navigation';
 import { MouseEvent, useState } from 'react';
 import { parseScriptTitle } from '@utils/script';
-import { deleteScript } from '@api/script';
-import { deleteIdea } from '@api/idea';
+import { deleteScript } from '@apis/script';
+import { deleteIdea } from '@apis/idea';
 
 const EmptyMessage = ({ label }: { label: string }) => (
   <div className="flex h-96 w-full flex-col items-center justify-center text-body1 text-gray-700">

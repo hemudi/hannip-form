@@ -1,6 +1,6 @@
 'use client';
 
-import { createScript } from '@api/clova';
+import { createScript } from '@apis/clova';
 import Layout from '@components/Layout';
 import Menu from '@components/Layout/Header/Menu';
 import Loading from '@components/Layout/Loading';
@@ -11,7 +11,7 @@ import ShareMenu from '@components/Page/Result/ShareMenu';
 import Button from '@components/common/Button';
 import { useScriptAction, useScriptState } from '@store/script';
 import Link from 'next/link';
-import { bookmarkIdea } from '@api/idea';
+import { bookmarkIdea } from '@apis/idea';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useIdeaState } from '@store/idea';

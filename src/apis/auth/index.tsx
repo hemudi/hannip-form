@@ -1,5 +1,5 @@
-import { getCookieToDocument } from '@utils/cookie/client';
 import axios from 'axios';
+import { getCookie } from 'cookies-next';
 
 const AUTH_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/auth`;
 
@@ -11,13 +11,9 @@ export const AUTH_URL_PATH = {
   LOG_OUT: `${AUTH_API_URL}/logout`,
 };
 
-export const loginKakao = async (token: string) => {
-  const res = (await axios.get(`${process.env.NEXT_PUBLIC_API_FE_URL}/auth/${token}`)).data;
-  return res;
-};
-
 export const deleteAccount = async () => {
-  const token = await getCookieToDocument('token');
+  const token = getCookie('token');
+  console.log(token);
   const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_FE_URL}/users`, {
     headers: {
       Authorization: `Bearer ${token}`,

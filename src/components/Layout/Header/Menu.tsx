@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { ReactNode, useState } from 'react';
 import useToken from '@hooks/useToken';
-import { deleteAccount } from '@api/auth';
+import { deleteAccount } from '@apis/auth';
 import Modal from '@components/common/Modal';
 import Button from '@components/common/Button';
 import { toast } from 'react-toastify';

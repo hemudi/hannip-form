@@ -1,11 +1,7 @@
 import axios from 'axios';
-import { cookies } from 'next/headers';
+import { getCookie } from 'cookies-next';
 
 const USER_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/users`;
-
-const getCookie = async (name: string) => {
-  return cookies().get(name)?.value ?? '';
-};
 
 export interface BookmarkContent {
   id: string;
@@ -22,12 +18,12 @@ interface UserInfoResponse {
   ideas: BookmarkContent[];
 }
 
-interface UserInfo extends Omit<UserInfoResponse, 'profile_image_url'> {
+export interface UserInfoType extends Omit<UserInfoResponse, 'profile_image_url'> {
   profileImageUrl: string;
 }
 
-export const getUser = async (): Promise<UserInfo> => {
-  const token = await getCookie('token');
+export const getUser = async (): Promise<UserInfoType> => {
+  const token = getCookie('token');
 
   const res = await axios.get<UserInfoResponse>(USER_API_URL, {
     headers: {

@@ -1,4 +1,4 @@
-import { createIdea } from '@api/clova';
+import { createIdea } from '@apis/clova';
 import Loading from '@components/Layout/Loading';
 import { ItemLayout, QuestionLayout } from '@components/Page/Planning/Question/Layout';
 import Dropdown, { Option } from '@components/common/DropDown';

@@ -1,3 +1,4 @@
+import { getCookie } from 'cookies-next';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
@@ -15,6 +16,10 @@ const ROUTING_PATH = {
 const TOKEN_COOKIE_NAME = 'token';
 
 const mainRouter = (request: NextRequest) => {
+  const token = getCookie(TOKEN_COOKIE_NAME);
+  if (token) {
+    return NextResponse.redirect(new URL(ROUTING_PATH.ONBOARDING, request.url));
+  }
   if (request.cookies.has(TOKEN_COOKIE_NAME)) {
     return NextResponse.redirect(new URL(ROUTING_PATH.ONBOARDING, request.url));
   }
