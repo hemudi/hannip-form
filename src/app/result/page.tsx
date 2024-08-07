@@ -55,10 +55,14 @@ const ResultPage = () => {
 
   const handleOnRetryClick = () => {
     setIsRetry(true);
-    createScript(scriptParams).then(({ script, advice }) => {
-      setScript(script, advice);
-      setIsRetry(false);
-    });
+    setTimeout(
+      () =>
+        createScript(scriptParams).then(({ script, advice }) => {
+          setScript(script, advice);
+          setIsRetry(false);
+        }),
+      1000,
+    );
   };
 
   return isLoading ? (

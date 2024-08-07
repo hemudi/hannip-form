@@ -9,7 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        pretendard: ['Pretendard'],
+        // pretendard: ['Pretendard'],
+        pretendard: ['var(--font-pretendard)'],
       },
       fontSize: {
         h1: '2.375rem', // 38px

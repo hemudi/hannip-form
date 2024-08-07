@@ -4,6 +4,7 @@ import Layout from '@components/Layout';
 import { ToastProvider } from '@components/common/Toast';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { CookiesProvider } from 'next-client-cookies/server';
+import { pretendard } from '@styles/fonts';
 
 export const metadata: Metadata = {
   title: '한입폼',
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={`${pretendard.variable} font-pretendard`}>
       <body className="mx-auto h-svh w-svw bg-primary-50">
         <ToastProvider />
         <CookiesProvider>

@@ -2,11 +2,11 @@ import Icon from '@components/common/Icon';
 
 interface BookmarkIconProps {
   isChecked: boolean;
-  disabled: boolean;
+  disabled?: boolean;
   color?: `#${string}`;
 }
 
-const BookmarkIcon = ({ isChecked, disabled, color = '#121212' }: BookmarkIconProps) => {
+const BookmarkIcon = ({ isChecked, disabled = false, color = '#121212' }: BookmarkIconProps) => {
   return (
     <Icon
       type={'bookmark'}
