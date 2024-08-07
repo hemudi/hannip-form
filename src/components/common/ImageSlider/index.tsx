@@ -75,6 +75,7 @@ const ImageSlider = ({ images, index, setIndex }: ImageSlider) => {
               height="0"
               alt="image"
               src={src}
+              priority
             />
             <div className="flex flex-col items-center justify-center gap-2">
               <span className="whitespace-pre-line text-center text-h3 font-bold">{title}</span>

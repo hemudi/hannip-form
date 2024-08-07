@@ -12,6 +12,7 @@ const ResultLoading = () => {
           height="0"
           alt="error_image"
           src={ERROR_IMAGE_URL}
+          priority
         />
         <div className="text-h4 font-bold">스크립트가 구워지고 있어요</div>
       </div>

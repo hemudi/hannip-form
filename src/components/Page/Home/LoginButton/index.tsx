@@ -1,6 +1,6 @@
 'use client';
 
-import { AUTH_URL_PATH, loginKakao } from '@api/auth';
+import { AUTH_URL_PATH } from '@api/auth';
 import Icon from '@components/common/Icon';
 import Link from 'next/link';
 import { toast } from 'react-toastify';

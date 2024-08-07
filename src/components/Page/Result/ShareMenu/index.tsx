@@ -41,6 +41,7 @@ const ShareMenu = () => {
         height="0"
         alt="image"
         src={'/assets/images/hannip.svg'}
+        priority
       />
       <h4 className="whitespace-pre-line pt-2 text-center text-h4 font-bold">{TITLE_TEXT}</h4>
       <div className="flex h-fit w-full items-center justify-center gap-9 p-5">

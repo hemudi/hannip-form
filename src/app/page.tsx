@@ -27,6 +27,7 @@ const Home = async () => {
                 height="0"
                 alt="hannip_main"
                 src={LOGO_IMAGE_URL}
+                priority
               />
             </div>
             <Image
@@ -35,6 +36,7 @@ const Home = async () => {
               height="0"
               alt="hannip_main"
               src={MAIN_IMAGE_URL}
+              priority
             />
           </div>
           <div className="flex h-fit w-full flex-col items-center gap-2">

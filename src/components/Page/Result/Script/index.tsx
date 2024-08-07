@@ -48,7 +48,14 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT, onRetry, isRetry }: Sc
       <h4 className="w-full text-h4 font-bold">{`${title}`}</h4>
       <div className="flex h-fit w-full items-center justify-center whitespace-pre-line rounded-lg bg-white p-4">
         {isRetry ? (
-          <Image className="w-fit" width="0" height="0" alt="loading" src={LOADING_SPINNER_PATH} />
+          <Image
+            className="w-fit"
+            width="0"
+            height="0"
+            alt="loading"
+            src={LOADING_SPINNER_PATH}
+            priority
+          />
         ) : (
           scriptText
         )}

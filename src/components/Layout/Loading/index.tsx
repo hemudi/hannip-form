@@ -17,6 +17,7 @@ const Loading = ({ title = DEFAULT_TEXT }: LoadingProps) => {
           height="0"
           alt="error_image"
           src={IMAGE_URL}
+          priority
         />
         <div className="text-h4 font-bold">{title}</div>
       </div>

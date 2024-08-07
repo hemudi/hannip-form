@@ -15,6 +15,7 @@ const ErrorLayout = ({ errorMsg }: { errorMsg: string }) => {
           height="0"
           alt="error_image"
           src={ERROR_IMAGE_URL}
+          priority
         />
         <div className="text-footnote text-gray-600">{errorMsg}</div>
         <div className="text-h4 font-bold">무언가 잘못되었어요</div>
