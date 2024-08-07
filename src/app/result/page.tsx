@@ -26,6 +26,7 @@ const ResultPage = () => {
   const { setScript, clearScriptState } = useScriptAction();
   const { script, advice, ...scriptParams } = useScriptState();
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isRetry, setIsRetry] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -52,6 +53,14 @@ const ResultPage = () => {
     return true;
   };
 
+  const handleOnRetryClick = () => {
+    setIsRetry(true);
+    createScript(scriptParams).then(({ script, advice }) => {
+      setScript(script, advice);
+      setIsRetry(false);
+    });
+  };
+
   return isLoading ? (
     <Loading title="스크립트가 구워지고 있어요!" />
   ) : (
@@ -69,9 +78,9 @@ const ResultPage = () => {
         }
       />
       <Layout.Main isSpacing={false}>
-        <Script scriptText={script} />
+        <Script scriptText={script} onRetry={handleOnRetryClick} isRetry={isRetry} />
         <div className="flex h-fit w-full flex-col items-center justify-center gap-4 bg-gray-50 p-4">
-          <Advice advice={advice} />
+          <Advice advice={advice} isRetry={isRetry} />
           <IdeaList contentList={ideaList} onClick={(idea: string) => handleOnClick(idea)} />
           <ShareMenu />
         </div>

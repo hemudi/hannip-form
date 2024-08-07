@@ -22,6 +22,7 @@ import Kakao from '@assets/icons/kakao.svg';
 import LinkNaver from '@assets/icons/link_naver.svg';
 import LinkInstagram from '@assets/icons/link_instagram.svg';
 import LinkYoutube from '@assets/icons/link_youtube.svg';
+import Repeat from '@assets/icons/repeat.svg';
 
 const SvgComponents = {
   leftArrow: LeftArrow,
@@ -48,6 +49,7 @@ const SvgComponents = {
   linkNaver: LinkNaver,
   linkInstagram: LinkInstagram,
   linkYoutube: LinkYoutube,
+  repeat: Repeat,
 } as const;
 
 export default SvgComponents;
