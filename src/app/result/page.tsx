@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 import { useIdeaState } from '@store/idea';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { useRouter } from 'next/navigation';
+import Icon from '@components/common/Icon';
 
 const BOTTOM_MENU_TEXT = '새로운 스크립트 쓰러가기';
 
@@ -55,7 +56,18 @@ const ResultPage = () => {
     <Loading title="스크립트가 구워지고 있어요!" />
   ) : (
     <>
-      <Layout.Header leftMenu={<Menu type="home" />} rightMenu={<Menu type="myPage" />} />
+      <Layout.Header
+        leftMenu={
+          <Link href={ROUTING_PATH.ONBOARDING} replace>
+            <Icon type="home" />
+          </Link>
+        }
+        rightMenu={
+          <Link href={ROUTING_PATH.MY_PAGE} replace>
+            <Icon type="user" />
+          </Link>
+        }
+      />
       <Layout.Main isSpacing={false}>
         <Script scriptText={script} />
         <div className="flex h-fit w-full flex-col items-center justify-center gap-4 bg-gray-50 p-4">

@@ -17,24 +17,8 @@ const copyDocumentText = (text: string) => {
 };
 
 const copyShareApi = async (text: string) => {
-  // const canUseShareApi =
-  //   typeof window !== 'undefined' &&
-  //   window.navigator.canShare &&
-  //   window.navigator.canShare({ text });
-
   try {
-    // if (!canUseShareApi) {
-    // console.log('clipboard!!!!');
     await window.navigator.clipboard?.writeText(text);
-    //   return true;
-    // }
-
-    // console.log('share!!!!');
-
-    // window.navigator.share({
-    //   text: text,
-    // });
-
     return true;
   } catch (e) {
     return false;
@@ -43,11 +27,8 @@ const copyShareApi = async (text: string) => {
 
 const copyText = async (text: string) => {
   const protocol = document.location.protocol;
-  const userAgent = navigator.userAgent;
-  console.log(userAgent);
 
   if (protocol === HTTP_PROTOCOL) {
-    console.log('copyDocumentText');
     return copyDocumentText(text);
   }
 

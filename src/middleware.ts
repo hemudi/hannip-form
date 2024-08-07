@@ -47,7 +47,6 @@ const callbackRouter = (request: NextRequest) => {
 
 const resultRouter = (request: NextRequest) => {
   const response = NextResponse.next();
-  // console.log('스크립트 생성 결과페이지 - ', request.nextUrl.pathname);
   return response;
 };
 

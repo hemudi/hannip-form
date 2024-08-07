@@ -29,7 +29,6 @@ const OnboardingPage = () => {
 
   useEffect(() => {
     const token = cookies.get('token');
-    console.log(token);
     setIsLogin(token !== undefined);
   }, []);
 
