@@ -1,5 +1,6 @@
 import Icon from '@components/common/Icon';
 import copyText from '@utils/copyText';
+import detectDevice, { DEVICE_TYPE } from '@utils/detectDevice';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
@@ -9,7 +10,7 @@ const FOOTER_TEXT = '저희 서비스를 이용해주셔서 감사합니다.\n�
 
 const SHARE = {
   TEXT: '공유하기',
-  URL: 'hannip-form.vercel.app',
+  URL: 'https://hannip-form.vercel.app',
   SUCCESS_MESSAGE: '서비스 링크가 복사되었습니다!',
 };
 
@@ -28,7 +29,9 @@ const linkData: LinkData[] = [
 const ShareMenu = () => {
   const handleClickShareText = async () => {
     copyText(SHARE.URL).then(() => {
-      toast.success(SHARE.SUCCESS_MESSAGE);
+      if (detectDevice() === DEVICE_TYPE.WEB) {
+        toast.success(SHARE.SUCCESS_MESSAGE);
+      }
     });
   };
 
