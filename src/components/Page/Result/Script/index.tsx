@@ -54,8 +54,9 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT, onRetry, isRetry }: Sc
         )}
       </div>
       <button
-        className="flex w-full items-center justify-center gap-1 text-center text-footnote text-gray-600 hover:text-black"
+        className="flex w-full items-center justify-center gap-1 text-center text-footnote text-gray-600 enabled:hover:text-black"
         onClick={onRetry}
+        disabled={isRetry}
       >
         {RETRY_TEXT}
         <Icon type="repeat" />
@@ -63,7 +64,7 @@ const Script = ({ scriptText, title = DEFAULT_TITLE_TEXT, onRetry, isRetry }: Sc
       <div className="flex gap-2">
         <Button color="white" variant="colored" onClick={handleOnClick} disabled={isRetry}>
           {'북마크'}
-          <BookmarkIcon isChecked={isChecked} />
+          <BookmarkIcon isChecked={isChecked} disabled={isRetry} />
         </Button>
         <ScriptCopyButton text={scriptText} disabled={isRetry} />
       </div>

@@ -2,15 +2,16 @@ import Icon from '@components/common/Icon';
 
 interface BookmarkIconProps {
   isChecked: boolean;
+  disabled: boolean;
   color?: `#${string}`;
 }
 
-const BookmarkIcon = ({ isChecked, color = '#121212' }: BookmarkIconProps) => {
+const BookmarkIcon = ({ isChecked, disabled, color = '#121212' }: BookmarkIconProps) => {
   return (
     <Icon
       type={'bookmark'}
-      color={isChecked ? '#F95D5D' : color}
-      fill={isChecked ? '#F95D5D' : 'none'}
+      color={disabled ? '#FFFFFF' : isChecked ? '#F95D5D' : color}
+      fill={disabled ? 'none' : isChecked ? '#F95D5D' : 'none'}
     />
   );
 };
