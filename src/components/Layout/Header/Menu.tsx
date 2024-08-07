@@ -59,6 +59,10 @@ const Setting = () => {
     });
   };
 
+  const handlePolicy = async () => {};
+
+  const handleMemberPolicy = async () => {};
+
   return (
     <>
       <div className="relative cursor-pointer select-none">
@@ -66,7 +70,7 @@ const Setting = () => {
           <Icon type="gear" />
         </div>
         {isOpen && (
-          <div className="absolute right-0 z-10 mt-2 flex h-24 w-42 flex-col items-center justify-center overflow-hidden rounded-2xl border-gray-300 bg-white text-body1 font-medium text-black shadow-around">
+          <div className="absolute right-0 z-10 mt-2 flex h-fit w-42 flex-col items-center justify-center overflow-hidden rounded-2xl border-gray-300 bg-white text-body1 font-medium text-black shadow-around">
             <button
               onClick={() => clickModal('로그아웃')}
               className="block h-full w-full px-4 py-2 text-center text-gray-700 hover:bg-gray-100"
@@ -79,6 +83,20 @@ const Setting = () => {
             >
               회원탈퇴
             </button>
+            <a
+              href="/assets/file/한입폼_개인정보처리방침.pdf"
+              target="_blank"
+              className="block h-full w-full px-4 py-2 text-center text-gray-700 hover:bg-gray-100"
+            >
+              개인정보처리방침
+            </a>
+            <a
+              href="/assets/file/한입폼_이용약관.pdf"
+              target="_blank"
+              className="block h-full w-full px-4 py-2 text-center text-gray-700 hover:bg-gray-100"
+            >
+              이용 약관
+            </a>
           </div>
         )}
       </div>
