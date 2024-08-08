@@ -6,7 +6,7 @@ import ItemList from '@components/common/ItemList';
 import TabBar from '@components/common/TabBar';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { useRouter } from 'next/navigation';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { parseScriptTitle } from '@utils/script';
 import { deleteScript } from '@apis/script';
 import { deleteIdea } from '@apis/idea';

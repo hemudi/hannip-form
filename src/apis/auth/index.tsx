@@ -13,7 +13,6 @@ export const AUTH_URL_PATH = {
 
 export const deleteAccount = async () => {
   const token = getCookie('token');
-  console.log(token);
   const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_FE_URL}/users`, {
     headers: {
       Authorization: `Bearer ${token}`,

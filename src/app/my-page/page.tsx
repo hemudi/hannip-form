@@ -16,14 +16,7 @@ interface UserInfoData {
 }
 
 const MyPage = () => {
-  const [{ scripts, ideas, ...userData }, setUserInfo] = useState<UserInfoData>({
-    scripts: [],
-    ideas: [],
-    id: '',
-    email: '',
-    nickname: '',
-    profileImageUrl: '',
-  });
+  const [userInfo, setUserInfo] = useState<UserInfoData>();
 
   useEffect(() => {
     getUser().then((data) => {
@@ -32,10 +25,16 @@ const MyPage = () => {
   }, []);
 
   return (
-    <>
-      <UserInfo {...userData} />
-      <BookmarkList scripts={scripts} ideas={ideas} />
-    </>
+    userInfo && (
+      <>
+        <UserInfo
+          nickname={userInfo.nickname}
+          email={userInfo.email}
+          profileImageUrl={userInfo.profileImageUrl}
+        />
+        <BookmarkList scripts={userInfo.scripts} ideas={userInfo.ideas} />
+      </>
+    )
   );
 };
 

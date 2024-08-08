@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const BOTTOM_MENU_TEXT = '새로운 스크립트 쓰러가기';
 
-const MyPageLayout = async ({
+const MyPageLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;

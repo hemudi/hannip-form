@@ -43,6 +43,7 @@ const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
       setIsChecked(true);
     });
   };
+
   return (
     <div className={`flex h-fit w-full flex-col justify-center gap-4 bg-script bg-cover p-4`}>
       <h4 className="w-full text-h4 font-bold">

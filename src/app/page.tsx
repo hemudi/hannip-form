@@ -11,7 +11,7 @@ const MAIN_TITLE_TEXT = '한국 트렌드 맞춤형 숏폼 대본 생성서비�
 const LOGIN_INFO_TEXT = '로그인 시 숏폼 대본과 아이디어를 저장하실 수 있어요!';
 const NO_LOGIN_TEXT = '로그인없이 바로 시작하기';
 
-const Home = async () => {
+const Home = () => {
   return (
     <>
       <Layout.Main>
