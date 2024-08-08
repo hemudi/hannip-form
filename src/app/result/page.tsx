@@ -46,11 +46,12 @@ const ResultPage = () => {
     }
   }, [script, advice]);
 
-  const handleOnClick = (idea: string) => {
-    bookmarkIdea(idea).then(() => {
+  const handleOnClick = async (idea: string) => {
+    const id = await bookmarkIdea(idea).then(({ id }) => {
       toast.success('아이디어가 북마크 되었습니다!');
+      return id;
     });
-    return true;
+    return id;
   };
 
   const handleOnRetryClick = () => {
@@ -85,7 +86,10 @@ const ResultPage = () => {
         <Script scriptText={script} onRetry={handleOnRetryClick} isRetry={isRetry} />
         <div className="flex h-fit w-full flex-col items-center justify-center gap-4 bg-gray-50 p-4">
           <Advice advice={advice} isRetry={isRetry} />
-          <IdeaList contentList={ideaList} onClick={(idea: string) => handleOnClick(idea)} />
+          <IdeaList
+            contentList={ideaList}
+            onClick={async (idea: string) => await handleOnClick(idea)}
+          />
           <ShareMenu />
         </div>
       </Layout.Main>

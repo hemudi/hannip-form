@@ -1,4 +1,4 @@
-import { bookmarkScript } from '@apis/script';
+import { bookmarkScript, deleteScript } from '@apis/script';
 import Button from '@components/common/Button';
 import ScriptCopyButton from '@components/common/Button/ScriptCopyButton';
 import Icon from '@components/common/Icon';
@@ -23,8 +23,8 @@ const RETRY_TEXT = '스크립트 다시 생성하기';
 
 const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
   const { idea } = useScriptState();
-  const [isChecked, setIsChecked] = useState(false);
   const [isShow, setIsShow] = useState<boolean>(false);
+  const [bookmarkId, setBookmarkId] = useState<string | null>(null);
 
   const handleOnClick = async () => {
     const token = getCookie('token');
@@ -34,13 +34,17 @@ const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
       return;
     }
 
-    if (isChecked) {
-      toast.success('이미 북마크 된 스크립트입니다');
+    if (bookmarkId) {
+      deleteScript(bookmarkId).then(() => {
+        toast.success('스크립트의 북마크가 해제되었습니다!');
+        setBookmarkId(null);
+      });
       return;
     }
-    bookmarkScript(`${scriptText}\n아이디어 : ${idea}`).then(() => {
+
+    bookmarkScript(`${scriptText}\n아이디어 : ${idea}`).then(({ id }) => {
       toast.success('스크립트가 북마크 되었습니다!');
-      setIsChecked(true);
+      setBookmarkId(id);
     });
   };
 
@@ -65,7 +69,10 @@ const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
       </div>
       <button
         className="flex w-full items-center justify-center gap-1 text-center text-footnote text-gray-600 enabled:hover:text-black"
-        onClick={onRetry}
+        onClick={() => {
+          setBookmarkId(null);
+          onRetry();
+        }}
         disabled={isRetry}
       >
         {RETRY_TEXT}
@@ -74,7 +81,7 @@ const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
       <div className="flex gap-2">
         <Button color="white" variant="colored" onClick={handleOnClick} disabled={isRetry}>
           {'북마크'}
-          <BookmarkIcon isChecked={isChecked} disabled={isRetry} />
+          <BookmarkIcon isChecked={bookmarkId !== null} disabled={isRetry} />
         </Button>
         <ScriptCopyButton text={scriptText} disabled={isRetry} />
       </div>
