@@ -3,7 +3,6 @@ import '@styles/globals.css';
 import Layout from '@components/Layout';
 import { ToastProvider } from '@components/common/Toast';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { CookiesProvider } from 'next-client-cookies/server';
 import { pretendard } from '@styles/fonts';
 
 export const metadata: Metadata = {
@@ -23,9 +22,7 @@ export default function RootLayout({
     <html lang="ko" className={`${pretendard.variable} font-pretendard`}>
       <body className="mx-auto h-svh w-svw bg-primary-50">
         <ToastProvider />
-        <CookiesProvider>
-          <Layout>{children}</Layout>
-        </CookiesProvider>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );

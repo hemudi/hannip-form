@@ -4,12 +4,12 @@ import Icon from '@components/common/Icon';
 import Link from 'next/link';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { ReactNode, useState } from 'react';
-import useToken from '@hooks/useToken';
 import Modal from '@components/common/Modal';
 import Button from '@components/common/Button';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { deleteUser } from '@apis/user';
+import { deleteCookie } from 'cookies-next';
 
 const Home = () => (
   <Link href={ROUTING_PATH.ONBOARDING}>
@@ -30,7 +30,6 @@ interface ModalState {
 
 const Setting = () => {
   const router = useRouter();
-  const { token, deleteToken, isLogin } = useToken();
   const [isOpen, setIsOpen] = useState(false);
   const [{ type, isShow }, setModalState] = useState<ModalState>({
     type: '로그아웃',
@@ -45,7 +44,7 @@ const Setting = () => {
   };
 
   const handleLogout = async () => {
-    deleteToken();
+    deleteCookie('token');
     clickModal('로그아웃');
     toast.success('정상적으로 로그아웃 되었습니다.');
     router.replace(ROUTING_PATH.MAIN);
@@ -53,15 +52,11 @@ const Setting = () => {
 
   const handleWithdraw = async () => {
     deleteUser().then(() => {
-      deleteToken();
+      deleteCookie('token');
       toast.success('회원탈퇴가 완료되었습니다! 다음에 또 만나요!');
       router.replace(ROUTING_PATH.MAIN);
     });
   };
-
-  const handlePolicy = async () => {};
-
-  const handleMemberPolicy = async () => {};
 
   return (
     <>

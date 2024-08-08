@@ -1,6 +1,6 @@
 'use client';
 
-import { BookmarkContent } from '@apis/user';
+import { BookmarkContent, getUser } from '@apis/user';
 import Icon from '@components/common/Icon';
 import ItemList from '@components/common/ItemList';
 import TabBar from '@components/common/TabBar';
@@ -68,14 +68,16 @@ const BookmarkContents = ({ type, bookmarkList, deleteContent }: BookmarkContent
   );
 };
 
-interface BookmarkProps {
-  scripts: BookmarkContent[];
-  ideas: BookmarkContent[];
-}
+const BookmarkList = () => {
+  const [scriptList, setScriptList] = useState<BookmarkContent[]>([]);
+  const [ideaList, setIdeaList] = useState<BookmarkContent[]>([]);
 
-const BookmarkList = ({ scripts, ideas }: BookmarkProps) => {
-  const [scriptList, setScriptList] = useState<BookmarkContent[]>(scripts);
-  const [ideaList, setIdeaList] = useState<BookmarkContent[]>(ideas);
+  useEffect(() => {
+    getUser().then((data) => {
+      setScriptList(data.scripts);
+      setIdeaList(data.ideas);
+    });
+  }, []);
 
   const deleteContent = (type: 'idea' | 'script', id: string) => {
     type === 'script' ? deleteScript(id) : null;

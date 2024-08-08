@@ -27,7 +27,6 @@ export const bookmarkScript = async (script: string) => {
 export const getScriptDetail = async (id: string): Promise<Omit<BookmarkContent, 'user_id'>> => {
   try {
     const token = getCookie('token');
-    console.log(token);
     const response = await axios.get<BookmarkContent>(`${SCRIPT_API_URL}/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,

@@ -16,25 +16,11 @@ interface UserInfoData {
 }
 
 const MyPage = () => {
-  const [userInfo, setUserInfo] = useState<UserInfoData>();
-
-  useEffect(() => {
-    getUser().then((data) => {
-      setUserInfo(data);
-    });
-  }, []);
-
   return (
-    userInfo && (
-      <>
-        <UserInfo
-          nickname={userInfo.nickname}
-          email={userInfo.email}
-          profileImageUrl={userInfo.profileImageUrl}
-        />
-        <BookmarkList scripts={userInfo.scripts} ideas={userInfo.ideas} />
-      </>
-    )
+    <>
+      <UserInfo />
+      <BookmarkList />
+    </>
   );
 };
 
