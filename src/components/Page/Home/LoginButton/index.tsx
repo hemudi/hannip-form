@@ -1,6 +1,5 @@
 'use client';
 
-import { AUTH_URL_PATH } from '@apis/auth';
 import Icon from '@components/common/Icon';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
@@ -14,7 +13,7 @@ const buttonSettings = {
     icon: <Icon className="mt-1.5" type="kakao" />,
     text: '카카오 로그인',
     styles: 'bg-kakao text-black',
-    href: AUTH_URL_PATH.LOG_IN.KAKAO,
+    href: `${process.env.NEXT_PUBLIC_API_FE_URL}/auth/kakao`,
   },
   naver: {
     icon: <Icon className="mt-1.5" type="naver" color="#ffffff" />,

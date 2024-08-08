@@ -5,11 +5,11 @@ import Link from 'next/link';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { ReactNode, useState } from 'react';
 import useToken from '@hooks/useToken';
-import { deleteAccount } from '@apis/auth';
 import Modal from '@components/common/Modal';
 import Button from '@components/common/Button';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { deleteUser } from '@apis/user';
 
 const Home = () => (
   <Link href={ROUTING_PATH.ONBOARDING}>
@@ -52,7 +52,7 @@ const Setting = () => {
   };
 
   const handleWithdraw = async () => {
-    deleteAccount().then(() => {
+    deleteUser().then(() => {
       deleteToken();
       toast.success('회원탈퇴가 완료되었습니다! 다음에 또 만나요!');
       router.replace(ROUTING_PATH.MAIN);
