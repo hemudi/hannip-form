@@ -49,7 +49,7 @@ const BookmarkContents = ({ type, bookmarkList, deleteContent }: BookmarkContent
       <ItemList
         itemList={bookmarkList.map(({ content, id }) => (
           <div
-            className={`flex w-full cursor-pointer items-center justify-between`}
+            className={`flex w-full cursor-pointer items-center justify-between gap-2`}
             onClick={() => handleOnClick(id)}
             key={id}
           >

@@ -55,7 +55,7 @@ const Item = ({ text, onClick }: ItemProps) => {
     setBookmarkId(id);
   };
   return (
-    <div className="flex w-full items-center justify-between">
+    <div className="flex w-full items-center justify-between gap-2">
       <span>{text}</span>
       <div className="cursor-pointer" onClick={handleOncClick}>
         <BookmarkIcon isChecked={bookmarkId !== null} color="#A5A5A7" />
