@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 interface UserInfoData {
   nickname: string;
-  email: string;
+  email?: string;
   profileImageUrl: string;
 }
 
@@ -24,7 +24,7 @@ const UserInfo = () => {
       <div className="flex w-97 select-none items-center justify-between p-4">
         <div className="flex flex-col gap-2">
           <span className="text-h4 text-black">{`${userInfo.nickname}님`}</span>
-          <span className="text-body1 text-gray-700">{userInfo.email}</span>
+          {userInfo.email && <span className="text-body1 text-gray-700">{userInfo.email}</span>}
         </div>
         <ProfileImage src={userInfo.profileImageUrl} alt="thumbnail image" />
       </div>
