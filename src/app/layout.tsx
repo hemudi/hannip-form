@@ -4,7 +4,7 @@ import Layout from '@components/Layout';
 import { ToastProvider } from '@components/common/Toast';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { pretendard } from '@styles/fonts';
-import GoogleAnalytics from '@lib/GoogleAnalytics';
+import WebAnalytics from '@components/WebAnalytics';
 
 export const metadata: Metadata = {
   title: '한입폼',
@@ -22,9 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${pretendard.variable} font-pretendard`}>
       <body className="mx-auto h-svh w-svw bg-primary-50">
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
-        ) : null}
+        <WebAnalytics />
         <ToastProvider />
         <Layout>{children}</Layout>
       </body>
