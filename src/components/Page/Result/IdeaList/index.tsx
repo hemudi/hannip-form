@@ -36,7 +36,7 @@ const Item = ({ text, onClick }: ItemProps) => {
   const [bookmarkId, setBookmarkId] = useState<string | null>(null);
   const [isShow, setIsShow] = useState<boolean>(false);
   const handleOncClick = async () => {
-    const token = getCookie('token');
+    const token = getCookie('access');
 
     if (!token) {
       setIsShow(true);

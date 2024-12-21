@@ -11,8 +11,8 @@ const AuthCallbackPage = () => {
   const code = searchParams.get('code');
 
   useEffect(() => {
-    setCookie('token', code);
-    if (getCookie('token')) {
+    setCookie('access', code);
+    if (getCookie('access')) {
       router.replace(ROUTING_PATH.ONBOARDING);
     } else {
       router.replace(ROUTING_PATH.NOT_FOUND);

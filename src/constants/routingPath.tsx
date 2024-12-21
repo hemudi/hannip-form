@@ -1,5 +1,6 @@
 export const ROUTING_PATH = {
-  MAIN: '/',
+  MAIN: '/', // [TODO] 리뉴얼 전 login -> 리뉴얼 후 home
+  LOGIN: '/login',
   ONBOARDING: '/onboarding',
   PLANNING: '/planning',
   RESULT: '/result',

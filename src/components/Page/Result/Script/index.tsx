@@ -27,7 +27,7 @@ const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
   const [bookmarkId, setBookmarkId] = useState<string | null>(null);
 
   const handleOnClick = async () => {
-    const token = getCookie('token');
+    const token = getCookie('access');
 
     if (!token) {
       setIsShow(true);

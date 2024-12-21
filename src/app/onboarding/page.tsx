@@ -26,7 +26,7 @@ const OnboardingPage = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
-    const token = getCookie('token');
+    const token = getCookie('access');
     setIsLogin(token !== undefined);
   }, []);
 
