@@ -3,7 +3,7 @@ import Button from '@components/common/Button';
 import ScriptCopyButton from '@components/common/Button/ScriptCopyButton';
 import Icon from '@components/common/Icon';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
-import LoginModal from '@components/common/Modal/LoginModal';
+import LoginModal from '@components/Page/Login/LoginModal';
 import { COOKIE_NAME } from '@constants/cookieName';
 import { useScriptState } from '@store/script';
 import { getCookie } from 'cookies-next';
@@ -86,7 +86,11 @@ const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
         </Button>
         <ScriptCopyButton text={scriptText} disabled={isRetry} />
       </div>
-      <LoginModal type={'스크립트'} isShow={isShow} clickModal={() => setIsShow((prev) => !prev)} />
+      <LoginModal
+        warningText={'스크립트를 북마크하려면'}
+        isShow={isShow}
+        clickModal={() => setIsShow((prev) => !prev)}
+      />
     </div>
   );
 };
