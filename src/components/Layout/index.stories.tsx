@@ -74,7 +74,7 @@ export const Example: Story = {
       <>
         <Layout.Header leftMenu={<Menu type="home" />} rightMenu={<Menu type="setting" />} />
         <Layout.Main>
-          <UserInfo />
+          {/* <UserInfo /> */}
           <TabBar tabs={tabs} />
         </Layout.Main>
         <Layout.BottomMenu>

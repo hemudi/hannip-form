@@ -10,4 +10,7 @@ export const ROUTING_PATH = {
   SCRIPT: '/script',
   RECENT: '/recent',
   CHANNEL_INFO: '/channel-info',
+  Notice: '/notice',
+  Question: '/question',
+  QNA: '/qna',
 } as const;
