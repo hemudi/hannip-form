@@ -37,10 +37,11 @@ const onboardingRouter = (request: NextRequest) => {
 };
 
 const channelInfoRouter = (request: NextRequest) => {
-  const response = NextResponse.next();
-  response.cookies.set(COOKIE_NAME.VISITED, 'true');
+  if (!isLogIn(request)) {
+    return NextResponse.redirect(new URL(ROUTING_PATH.MAIN, request.url));
+  }
 
-  return response;
+  return NextResponse.next();
 };
 
 export function middleware(request: NextRequest) {
