@@ -6,6 +6,7 @@ export const ROUTING_PATH = {
   RESULT: '/result',
   MY_PAGE: '/my-page',
   NOT_FOUND: '/not-found',
+  IDEA: '/idea',
   SCRIPT: '/script',
   RECENT: '/recent',
 } as const;

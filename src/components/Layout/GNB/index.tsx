@@ -49,7 +49,7 @@ const GNB = ({ currentPath }: GNBProps) => {
 
   return (
     <>
-      <div className="flex w-full">
+      <div className="flex w-full border-t-2 border-gray-50 px-4 pb-4 pt-4">
         {menus.map(({ path, iconType, name }) => (
           <Link
             key={path}

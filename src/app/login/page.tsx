@@ -32,11 +32,12 @@ const LoginPage = () => {
             </div>
             <Image
               className="h-full max-h-89 w-auto max-w-89"
-              width="0"
-              height="0"
+              width={358}
+              height={358}
               alt="hannip_main"
               src={MAIN_IMAGE_URL}
               priority
+              loading="eager"
             />
           </div>
           <div className="flex h-fit w-full flex-col items-center gap-2">
