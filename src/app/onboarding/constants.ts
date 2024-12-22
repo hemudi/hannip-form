@@ -22,12 +22,12 @@ export const onboardingData = [
   },
 ];
 
-export const SLIDER_TEXT = {
+export const SLIDER = {
   INDEX: {
     FIRST: 0,
     LAST: onboardingData.length - 1,
   },
-  BUTTON: {
+  BUTTON_TEXT: {
     TO_NEXT: '다음',
     TO_PLANNING: '한입폼 사용하러 가기',
   },
