@@ -46,7 +46,7 @@ const LoginPage = () => {
             </div>
             <Link
               className="text-700 whitespace-pre-line text-center text-body2 text-gray-700 underline underline-offset-2"
-              href={ROUTING_PATH.ONBOARDING}
+              href={ROUTING_PATH.MAIN}
             >
               {NO_LOGIN_TEXT}
             </Link>

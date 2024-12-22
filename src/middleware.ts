@@ -14,26 +14,22 @@ const isVisited = (request: NextRequest) => {
 };
 
 const mainRouter = (request: NextRequest) => {
+  if (!isVisited(request)) {
+    return NextResponse.redirect(new URL(ROUTING_PATH.ONBOARDING, request.url));
+  }
+
+  return NextResponse.next();
+};
+
+const loginRouter = (request: NextRequest) => {
   if (isLogIn(request)) {
     return NextResponse.redirect(new URL(ROUTING_PATH.MAIN, request.url));
   }
 
-  if (isVisited(request)) {
-    return NextResponse.redirect(new URL(ROUTING_PATH.LOGIN, request.url));
-  }
-
-  return NextResponse.redirect(new URL(ROUTING_PATH.ONBOARDING, request.url));
+  return NextResponse.next();
 };
 
 const onboardingRouter = (request: NextRequest) => {
-  if (isLogIn(request)) {
-    return NextResponse.redirect(new URL(ROUTING_PATH.MAIN, request.url));
-  }
-
-  if (isVisited(request)) {
-    return NextResponse.next();
-  }
-
   const response = NextResponse.next();
   response.cookies.set(COOKIE_NAME.VISITED, 'true');
 
@@ -55,6 +51,10 @@ export function middleware(request: NextRequest) {
     return mainRouter(request);
   }
 
+  if (pathname === ROUTING_PATH.LOGIN) {
+    return loginRouter(request);
+  }
+
   if (pathname === ROUTING_PATH.ONBOARDING) {
     return onboardingRouter(request);
   }
@@ -67,5 +67,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/onboarding', '/planning', '/result', '/my-page'],
+  matcher: ['/', '/onboarding', '/planning', '/result', '/login', '/my-page'],
 };
