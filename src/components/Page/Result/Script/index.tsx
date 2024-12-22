@@ -4,6 +4,7 @@ import ScriptCopyButton from '@components/common/Button/ScriptCopyButton';
 import Icon from '@components/common/Icon';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import LoginModal from '@components/common/Modal/LoginModal';
+import { COOKIE_NAME } from '@constants/cookieName';
 import { useScriptState } from '@store/script';
 import { getCookie } from 'cookies-next';
 import Image from 'next/image';
@@ -27,7 +28,7 @@ const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
   const [bookmarkId, setBookmarkId] = useState<string | null>(null);
 
   const handleOnClick = async () => {
-    const token = getCookie('access');
+    const token = getCookie(COOKIE_NAME.ACCESS);
 
     if (!token) {
       setIsShow(true);

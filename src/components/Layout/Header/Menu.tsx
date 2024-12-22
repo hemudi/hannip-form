@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { deleteUser } from '@apis/user';
 import { deleteCookie } from 'cookies-next';
+import { COOKIE_NAME } from '@constants/cookieName';
 
 const Home = () => (
   <Link href={ROUTING_PATH.ONBOARDING}>
@@ -44,7 +45,7 @@ const Setting = () => {
   };
 
   const handleLogout = async () => {
-    deleteCookie('access');
+    deleteCookie(COOKIE_NAME.ACCESS);
     clickModal('로그아웃');
     toast.success('정상적으로 로그아웃 되었습니다.');
     router.replace(ROUTING_PATH.MAIN);
@@ -52,7 +53,7 @@ const Setting = () => {
 
   const handleWithdraw = async () => {
     deleteUser().then(() => {
-      deleteCookie('access');
+      deleteCookie(COOKIE_NAME.ACCESS);
       toast.success('회원탈퇴가 완료되었습니다! 다음에 또 만나요!');
       router.replace(ROUTING_PATH.MAIN);
     });

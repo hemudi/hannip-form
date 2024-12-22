@@ -3,6 +3,7 @@ import Accordion from '@components/common/Accordion';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import ItemList from '@components/common/ItemList';
 import LoginModal from '@components/common/Modal/LoginModal';
+import { COOKIE_NAME } from '@constants/cookieName';
 import { getCookie } from 'cookies-next';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -36,7 +37,7 @@ const Item = ({ text, onClick }: ItemProps) => {
   const [bookmarkId, setBookmarkId] = useState<string | null>(null);
   const [isShow, setIsShow] = useState<boolean>(false);
   const handleOncClick = async () => {
-    const token = getCookie('access');
+    const token = getCookie(COOKIE_NAME.ACCESS);
 
     if (!token) {
       setIsShow(true);

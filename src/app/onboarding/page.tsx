@@ -9,6 +9,7 @@ import ImageSlider from '@components/common/ImageSlider';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Button from '@components/common/Button';
 import { getCookie } from 'cookies-next';
+import { COOKIE_NAME } from '@constants/cookieName';
 
 const OnboardingPage = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(SLIDER_TEXT.INDEX.FIRST);
@@ -16,7 +17,7 @@ const OnboardingPage = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
-    const token = getCookie('access');
+    const token = getCookie(COOKIE_NAME.ACCESS);
     setIsLogin(token !== undefined);
   }, []);
 
