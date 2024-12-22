@@ -1,3 +1,4 @@
+import path from 'path';
 import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
@@ -37,6 +38,13 @@ const config: StorybookConfig = {
         use: ['@svgr/webpack'],
       },
     ];
+
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve?.alias,
+        '@assets': path.resolve(__dirname, '../public/assets'),
+      };
+    }
 
     return config;
   },
