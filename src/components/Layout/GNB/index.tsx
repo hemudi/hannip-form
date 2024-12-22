@@ -25,10 +25,25 @@ const menus: NavigationMenu[] = [
 ];
 
 const GNB = ({ currentPath }: GNBProps) => {
+  const accessToken = getCookie(COOKIE_NAME.ACCESS);
+  const [isShow, setIsShow] = useState<boolean>(false);
+  const [selectedMenu, setSelectedMenu] = useState<string>('');
+
   const handleMenuClick = (path: string) => (e: MouseEvent<HTMLAnchorElement>) => {
+    setSelectedMenu(path);
+
     if (currentPath === path) {
       e.preventDefault();
       return;
+    }
+
+    if (path === ROUTING_PATH.MAIN) {
+      return;
+    }
+
+    if (!accessToken) {
+      e.preventDefault();
+      setIsShow(true);
     }
   };
 
@@ -47,6 +62,11 @@ const GNB = ({ currentPath }: GNBProps) => {
           </Link>
         ))}
       </div>
+      <LoginModal
+        warningText={`${selectedMenu === 'recent' ? '최근생성내역은' : '마이페이지는'}`}
+        isShow={isShow}
+        clickModal={() => setIsShow((prev) => !prev)}
+      />
     </>
   );
 };
