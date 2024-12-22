@@ -8,13 +8,26 @@ export interface BookmarkContent {
   id: string;
   content: string;
   user_id: string;
+  created_at: string;
+}
+
+export interface ChannelInfo {
+  description: string;
+  category: string;
+}
+
+interface ChannelInfoResponse {
+  channel_description: string;
+  category: string;
 }
 
 interface UserInfoResponse {
   id: string;
-  email: string;
   nickname: string;
   profile_image_url: string;
+  channel_description: string;
+  category: string;
+  is_admin: boolean;
   scripts: BookmarkContent[];
   ideas: BookmarkContent[];
 }
@@ -31,6 +44,7 @@ export const getUser = async (): Promise<UserInfoType> => {
       Authorization: `Bearer ${token}`,
     },
   });
+
   const { profile_image_url, ...rest } = res.data;
   return { profileImageUrl: profile_image_url, ...rest };
 };
@@ -43,4 +57,54 @@ export const deleteUser = async () => {
     },
   });
   return res;
+};
+
+export const getChannelInfo = async (): Promise<ChannelInfo> => {
+  const token = getCookie(COOKIE_NAME.ACCESS);
+
+  const res = await axios.get<UserInfoResponse>(USER_API_URL, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const { channel_description, category } = res.data;
+  return { description: channel_description, category: category };
+};
+
+export const checkChannelInfo = async (): Promise<boolean> => {
+  const token = getCookie(COOKIE_NAME.ACCESS);
+
+  const res = await axios.get<boolean>(`${USER_API_URL}/channel`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const isChannelInfo = res.data;
+  return isChannelInfo;
+};
+
+export const editChannelInfo = async (channelInfo: ChannelInfo) => {
+  const token = getCookie(COOKIE_NAME.ACCESS);
+
+  try {
+    const response = await axios.put(
+      USER_API_URL,
+      {
+        channel_description: channelInfo.description,
+        category: channelInfo.category,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error('PUT 요청에 실패했습니다:', error);
+    throw error;
+  }
 };
