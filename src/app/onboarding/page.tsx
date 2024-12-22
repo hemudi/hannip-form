@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { onboardingData } from '@app/onboarding/constants';
+import { onboardingData, SLIDER_TEXT } from '@app/onboarding/constants';
 import Layout from '@components/Layout';
 import Menu from '@components/Layout/Header/Menu';
 import ImageSlider from '@components/common/ImageSlider';
@@ -10,19 +10,9 @@ import { ROUTING_PATH } from '@constants/routingPath';
 import Button from '@components/common/Button';
 import { getCookie } from 'cookies-next';
 
-const BOTTOM_MENU_TEXT = {
-  TO_NEXT: '다음',
-  TO_PLANNING: '기획하러 가기',
-};
-
-const SLIDER_INDEX = {
-  FIRST: 0,
-  LAST: onboardingData.length - 1,
-};
-
 const OnboardingPage = () => {
-  const [currentIndex, setCurrentIndex] = useState<number>(SLIDER_INDEX.FIRST);
-  const isLastSlider = currentIndex === SLIDER_INDEX.LAST;
+  const [currentIndex, setCurrentIndex] = useState<number>(SLIDER_TEXT.INDEX.FIRST);
+  const isLastSlider = currentIndex === SLIDER_TEXT.INDEX.LAST;
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
@@ -53,11 +43,11 @@ const OnboardingPage = () => {
       <Layout.BottomMenu>
         {isLastSlider ? (
           <Link href={ROUTING_PATH.PLANNING}>
-            <Button color="primary">{BOTTOM_MENU_TEXT.TO_PLANNING}</Button>
+            <Button color="primary">{SLIDER_TEXT.BUTTON.TO_PLANNING}</Button>
           </Link>
         ) : (
           <Button onClick={() => setCurrentIndex((prev) => prev + 1)}>
-            {BOTTOM_MENU_TEXT.TO_NEXT}
+            {SLIDER_TEXT.BUTTON.TO_NEXT}
           </Button>
         )}
       </Layout.BottomMenu>

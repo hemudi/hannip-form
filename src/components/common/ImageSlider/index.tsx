@@ -110,8 +110,8 @@ interface SliderIndexDotProps {
 }
 
 const dotStyles = {
-  current: 'w-4 h-2 rounded-lg bg-primary-500',
-  default: 'w-2 h-2 rounded-full bg-gray-300',
+  current: 'w-5 h-1 rounded-lg bg-primary-500',
+  default: 'w-1 h-1 rounded-full bg-gray-300',
 };
 
 const SliderIndexDot = ({ isCurrentIndex, onClick }: SliderIndexDotProps) => {
