@@ -26,6 +26,10 @@ const mainRouter = (request: NextRequest) => {
 };
 
 const onboardingRouter = (request: NextRequest) => {
+  if (isLogIn(request)) {
+    return NextResponse.redirect(new URL(ROUTING_PATH.MAIN, request.url));
+  }
+
   if (isVisited(request)) {
     return NextResponse.next();
   }
@@ -36,25 +40,12 @@ const onboardingRouter = (request: NextRequest) => {
   return response;
 };
 
-const resultRouter = (request: NextRequest) => {
-  const response = NextResponse.next();
-  return response;
-};
-
 const myPageRouter = (request: NextRequest) => {
-  if (!request.cookies.has(COOKIE_NAME.ACCESS)) {
-    return NextResponse.redirect(new URL(ROUTING_PATH.MAIN, request.url));
+  if (isLogIn(request)) {
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
-};
-
-const scriptRouter = (request: NextRequest) => {
-  if (!request.cookies.has(COOKIE_NAME.ACCESS)) {
-    return NextResponse.redirect(new URL(ROUTING_PATH.MAIN, request.url));
-  }
-
-  return NextResponse.next();
+  return NextResponse.redirect(new URL(ROUTING_PATH.LOGIN, request.url));
 };
 
 export function middleware(request: NextRequest) {
@@ -68,16 +59,8 @@ export function middleware(request: NextRequest) {
     return onboardingRouter(request);
   }
 
-  if (pathname.startsWith(ROUTING_PATH.RESULT)) {
-    return resultRouter(request);
-  }
-
   if (pathname.startsWith(ROUTING_PATH.MY_PAGE)) {
     return myPageRouter(request);
-  }
-
-  if (pathname.startsWith(ROUTING_PATH.SCRIPT)) {
-    return scriptRouter(request);
   }
 
   return NextResponse.next();
