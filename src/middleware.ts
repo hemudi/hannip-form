@@ -36,14 +36,6 @@ const onboardingRouter = (request: NextRequest) => {
   return response;
 };
 
-const myPageRouter = (request: NextRequest) => {
-  if (isLogIn(request)) {
-    return NextResponse.next();
-  }
-
-  return NextResponse.redirect(new URL(ROUTING_PATH.LOGIN, request.url));
-};
-
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
@@ -59,13 +51,9 @@ export function middleware(request: NextRequest) {
     return onboardingRouter(request);
   }
 
-  if (pathname.startsWith(ROUTING_PATH.MY_PAGE)) {
-    return myPageRouter(request);
-  }
-
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/', '/onboarding', '/planning', '/result', '/login', '/my-page'],
+  matcher: ['/', '/onboarding', '/planning', '/result', '/login'],
 };
