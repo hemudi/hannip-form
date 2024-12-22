@@ -7,4 +7,5 @@ export const ROUTING_PATH = {
   MY_PAGE: '/my-page',
   NOT_FOUND: '/not-found',
   SCRIPT: '/script',
+  RECENT: '/recent',
 } as const;

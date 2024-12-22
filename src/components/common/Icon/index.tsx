@@ -6,7 +6,7 @@ type IconProps = {
   size?: keyof typeof iconSize;
   type: IconType;
   fill?: `#${string}` | 'none';
-  color?: `#${string}`;
+  color?: `#${string}` | 'inherit';
   viewBox?: string;
   className?: string;
 };

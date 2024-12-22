@@ -4,6 +4,9 @@ const Home = () => {
   return (
     <>
       <Layout.Main>홈화면</Layout.Main>
+      <Layout.BottomMenu>
+        <Layout.GNB currentPath="home" />
+      </Layout.BottomMenu>
     </>
   );
 };
