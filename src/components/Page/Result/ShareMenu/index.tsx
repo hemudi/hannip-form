@@ -1,6 +1,5 @@
 import Icon from '@components/common/Icon';
 import copyText from '@utils/copyText';
-import detectDevice, { DEVICE_TYPE } from '@utils/detectDevice';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
@@ -16,12 +15,11 @@ const SHARE = {
 
 interface LinkData {
   title: string;
-  iconType: 'linkNaver' | 'linkYoutube' | 'linkInstagram';
+  iconType: 'linkYoutube' | 'linkInstagram';
   href: string;
 }
 
 const linkData: LinkData[] = [
-  { title: '네이버 클립', iconType: 'linkNaver', href: 'https://tv.naver.com/h' },
   { title: '유튜브 쇼츠', iconType: 'linkYoutube', href: 'https://studio.youtube.com/' },
   { title: '인스타그램 릴스', iconType: 'linkInstagram', href: 'https://www.instagram.com/reels/' },
 ];

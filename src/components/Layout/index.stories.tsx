@@ -4,7 +4,7 @@ import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
 import ItemList from '@components/common/ItemList';
 import TabBar from '@components/common/TabBar';
-import UserInfo from '@components/common/UserInfo';
+import UserInfo from '@components/Page/MyPage/UserInfo';
 import { Meta, StoryObj } from '@storybook/react';
 
 const userInfoProps = {
@@ -74,7 +74,7 @@ export const Example: Story = {
       <>
         <Layout.Header leftMenu={<Menu type="home" />} rightMenu={<Menu type="setting" />} />
         <Layout.Main>
-          <UserInfo />
+          {/* <UserInfo /> */}
           <TabBar tabs={tabs} />
         </Layout.Main>
         <Layout.BottomMenu>

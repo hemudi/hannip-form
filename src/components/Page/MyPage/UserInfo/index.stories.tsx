@@ -1,4 +1,4 @@
-import UserInfo from '@components/common/UserInfo';
+import UserInfo from '@components/Page/MyPage/UserInfo';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -6,7 +6,7 @@ const meta = {
   component: UserInfo,
   args: {
     nickname: 'Hemdi',
-    // email: 'suminhesam@gmail.com',
+    email: 'suminhesam@gmail.com',
     profileImageUrl: 'https://avatars.githubusercontent.com/u/34249911?v=4',
   },
   tags: ['autodocs'],

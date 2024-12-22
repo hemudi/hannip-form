@@ -1,33 +1,35 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { onboardingData, SLIDER_TEXT } from '@app/onboarding/constants';
+import { useState } from 'react';
+import { onboardingData, SLIDER } from '@app/onboarding/constants';
 import Layout from '@components/Layout';
-import Menu from '@components/Layout/Header/Menu';
 import ImageSlider from '@components/common/ImageSlider';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Button from '@components/common/Button';
-import { getCookie } from 'cookies-next';
+import Icon from '@components/common/Icon';
 
 const OnboardingPage = () => {
-  const [currentIndex, setCurrentIndex] = useState<number>(SLIDER_TEXT.INDEX.FIRST);
-  const isLastSlider = currentIndex === SLIDER_TEXT.INDEX.LAST;
-  const [isLogin, setIsLogin] = useState<boolean>(false);
-
-  useEffect(() => {
-    const token = getCookie('access');
-    setIsLogin(token !== undefined);
-  }, []);
+  const [currentIndex, setCurrentIndex] = useState<number>(SLIDER.INDEX.FIRST);
+  const isLastSlider = currentIndex === SLIDER.INDEX.LAST;
 
   return (
     <>
       <Layout.Header
-        leftMenu={isLogin ? <Menu type="myPage" /> : <Menu type="prevPage" />}
+        leftMenu={
+          currentIndex !== SLIDER.INDEX.FIRST && (
+            <div
+              className="w-fit cursor-pointer"
+              onClick={() => setCurrentIndex((prev) => Math.max(prev - 1, SLIDER.INDEX.FIRST))}
+            >
+              <Icon type="leftDirection" />
+            </div>
+          )
+        }
         rightMenu={
           isLastSlider || (
             <Link
-              href={ROUTING_PATH.PLANNING}
+              href={ROUTING_PATH.MAIN}
               className="h-full w-fit text-center text-body2 text-gray-500 hover:text-black"
             >
               SKIP
@@ -43,11 +45,11 @@ const OnboardingPage = () => {
       <Layout.BottomMenu>
         {isLastSlider ? (
           <Link href={ROUTING_PATH.PLANNING}>
-            <Button color="primary">{SLIDER_TEXT.BUTTON.TO_PLANNING}</Button>
+            <Button color="primary">{SLIDER.BUTTON_TEXT.TO_PLANNING}</Button>
           </Link>
         ) : (
           <Button onClick={() => setCurrentIndex((prev) => prev + 1)}>
-            {SLIDER_TEXT.BUTTON.TO_NEXT}
+            {SLIDER.BUTTON_TEXT.TO_NEXT}
           </Button>
         )}
       </Layout.BottomMenu>

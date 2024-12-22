@@ -17,12 +17,11 @@ import Menu from '@assets/icons/menu.svg';
 import Trash from '@assets/icons/trash.svg';
 import User from '@assets/icons/user.svg';
 import Video from '@assets/icons/video.svg';
-import Naver from '@assets/icons/naver.svg';
 import Kakao from '@assets/icons/kakao.svg';
-import LinkNaver from '@assets/icons/link_naver.svg';
 import LinkInstagram from '@assets/icons/link_instagram.svg';
 import LinkYoutube from '@assets/icons/link_youtube.svg';
 import Repeat from '@assets/icons/repeat.svg';
+import Recent from '@assets/icons/recent.svg';
 
 const SvgComponents = {
   leftArrow: LeftArrow,
@@ -44,12 +43,11 @@ const SvgComponents = {
   trash: Trash,
   user: User,
   video: Video,
-  naver: Naver,
   kakao: Kakao,
-  linkNaver: LinkNaver,
   linkInstagram: LinkInstagram,
   linkYoutube: LinkYoutube,
   repeat: Repeat,
+  recent: Recent,
 } as const;
 
 export default SvgComponents;

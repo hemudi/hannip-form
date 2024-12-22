@@ -14,47 +14,26 @@ const isVisited = (request: NextRequest) => {
 };
 
 const mainRouter = (request: NextRequest) => {
+  if (!isVisited(request)) {
+    return NextResponse.redirect(new URL(ROUTING_PATH.ONBOARDING, request.url));
+  }
+
+  return NextResponse.next();
+};
+
+const loginRouter = (request: NextRequest) => {
   if (isLogIn(request)) {
     return NextResponse.redirect(new URL(ROUTING_PATH.MAIN, request.url));
   }
 
-  if (isVisited(request)) {
-    return NextResponse.redirect(new URL(ROUTING_PATH.LOGIN, request.url));
-  }
-
-  return NextResponse.redirect(new URL(ROUTING_PATH.ONBOARDING, request.url));
+  return NextResponse.next();
 };
 
 const onboardingRouter = (request: NextRequest) => {
-  if (isVisited(request)) {
-    return NextResponse.next();
-  }
-
   const response = NextResponse.next();
   response.cookies.set(COOKIE_NAME.VISITED, 'true');
 
   return response;
-};
-
-const resultRouter = (request: NextRequest) => {
-  const response = NextResponse.next();
-  return response;
-};
-
-const myPageRouter = (request: NextRequest) => {
-  if (!request.cookies.has(COOKIE_NAME.ACCESS)) {
-    return NextResponse.redirect(new URL(ROUTING_PATH.MAIN, request.url));
-  }
-
-  return NextResponse.next();
-};
-
-const scriptRouter = (request: NextRequest) => {
-  if (!request.cookies.has(COOKIE_NAME.ACCESS)) {
-    return NextResponse.redirect(new URL(ROUTING_PATH.MAIN, request.url));
-  }
-
-  return NextResponse.next();
 };
 
 export function middleware(request: NextRequest) {
@@ -64,25 +43,17 @@ export function middleware(request: NextRequest) {
     return mainRouter(request);
   }
 
+  if (pathname === ROUTING_PATH.LOGIN) {
+    return loginRouter(request);
+  }
+
   if (pathname === ROUTING_PATH.ONBOARDING) {
     return onboardingRouter(request);
-  }
-
-  if (pathname.startsWith(ROUTING_PATH.RESULT)) {
-    return resultRouter(request);
-  }
-
-  if (pathname.startsWith(ROUTING_PATH.MY_PAGE)) {
-    return myPageRouter(request);
-  }
-
-  if (pathname.startsWith(ROUTING_PATH.SCRIPT)) {
-    return scriptRouter(request);
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/', '/onboarding', '/planning', '/result', '/my-page'],
+  matcher: ['/', '/onboarding', '/planning', '/result', '/login'],
 };

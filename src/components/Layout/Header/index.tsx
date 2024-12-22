@@ -1,4 +1,3 @@
-import Menu, { HeaderMenu } from '@components/Layout/Header/Menu';
 import { ReactNode } from 'react';
 
 interface HeaderProps {

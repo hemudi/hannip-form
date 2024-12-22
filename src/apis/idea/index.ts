@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { BookmarkContent } from '../user';
 import { getCookie } from 'cookies-next';
+import { COOKIE_NAME } from '@constants/cookieName';
 
 const IDEA_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/ideas`;
 
 export const bookmarkIdea = async (idea: string) => {
-  const token = getCookie('access');
+  const token = getCookie(COOKIE_NAME.ACCESS);
 
   try {
     const response = await axios.post(
@@ -26,7 +27,7 @@ export const bookmarkIdea = async (idea: string) => {
 
 export const deleteIdea = async (id: string) => {
   try {
-    const token = getCookie('access');
+    const token = getCookie(COOKIE_NAME.ACCESS);
 
     if (!token) return;
     const res = await axios.delete<BookmarkContent>(IDEA_API_URL, {

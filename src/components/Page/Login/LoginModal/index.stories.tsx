@@ -1,17 +1,17 @@
 import Layout from '@components/Layout';
-import LoginButton from '@components/Page/Home/LoginButton';
+import LoginModal from '@components/Page/Login/LoginModal';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Components/LoginButton',
-  component: LoginButton,
+  title: 'Components/LoginModal',
+  component: LoginModal,
   render: (args) => (
     <Layout>
-      <LoginButton {...args} />
+      <LoginModal {...args} />
     </Layout>
   ),
   tags: ['autodocs'],
-} satisfies Meta<typeof LoginButton>;
+} satisfies Meta<typeof LoginModal>;
 
 export default meta;
 
@@ -19,12 +19,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Kakao: Story = {
   args: {
-    type: 'kakao',
-  },
-};
-
-export const Naver: Story = {
-  args: {
-    type: 'naver',
+    warningText: '최근생성내역은',
+    isShow: true,
+    clickModal: () => {},
   },
 };
