@@ -21,6 +21,7 @@ import Kakao from '@assets/icons/kakao.svg';
 import LinkInstagram from '@assets/icons/link_instagram.svg';
 import LinkYoutube from '@assets/icons/link_youtube.svg';
 import Repeat from '@assets/icons/repeat.svg';
+import Recent from '@assets/icons/recent.svg';
 
 const SvgComponents = {
   leftArrow: LeftArrow,
@@ -46,6 +47,7 @@ const SvgComponents = {
   linkInstagram: LinkInstagram,
   linkYoutube: LinkYoutube,
   repeat: Repeat,
+  recent: Recent,
 } as const;
 
 export default SvgComponents;

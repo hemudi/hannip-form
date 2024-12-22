@@ -26,7 +26,7 @@ const iconSize = {
   },
 } as const;
 
-const Icon = ({ type = 'leftArrow', size = 'medium', color = '#121212', ...props }: IconProps) => {
+const Icon = ({ type = 'leftArrow', size = 'medium', color = '##121212', ...props }: IconProps) => {
   const Component = SvgComponents[type];
   return <Component color={color} {...iconSize[size]} {...props} />;
 };
