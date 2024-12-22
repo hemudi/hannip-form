@@ -73,11 +73,12 @@ const ImageSlider = ({ images, index, setIndex }: ImageSlider) => {
               >
                 <Image
                   className="h-full max-h-89 w-full max-w-89"
-                  width="0"
-                  height="0"
+                  width={358}
+                  height={358}
                   alt="image"
                   src={src}
                   priority
+                  loading="eager"
                 />
                 <div className="flex flex-col items-center justify-center gap-2">
                   <span className="whitespace-pre-line text-center text-h3 font-bold">{title}</span>
