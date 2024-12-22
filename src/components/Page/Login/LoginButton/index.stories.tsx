@@ -1,5 +1,5 @@
 import Layout from '@components/Layout';
-import LoginButton from '@components/Page/Home/LoginButton';
+import LoginButton from '@components/Page/Login/LoginButton';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -20,11 +20,5 @@ type Story = StoryObj<typeof meta>;
 export const Kakao: Story = {
   args: {
     type: 'kakao',
-  },
-};
-
-export const Naver: Story = {
-  args: {
-    type: 'naver',
   },
 };

@@ -1,5 +1,5 @@
 import Layout from '@components/Layout';
-import LoginButton from '@components/Page/Home/LoginButton';
+import LoginButton from '@components/Page/Login/LoginButton';
 import BubbleText from '@components/common/BubbleText';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Image from 'next/image';

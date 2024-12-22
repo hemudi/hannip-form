@@ -25,7 +25,6 @@ const config: Config = {
         black: '#121212',
         error: '#FF2C20',
         kakao: '#FEE500',
-        naver: '#03C75A',
         primary: {
           50: '#FEEFEF',
           100: '#FEDFDF',
