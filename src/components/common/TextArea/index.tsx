@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef } from 'react';
 interface TextAreaProps extends ComponentPropsWithoutRef<'textarea'> {
   variant?: keyof typeof variantStyle;
   helperText?: string;
-  defaultValue: string;
+  defaultValue?: string;
 }
 
 const variantStyle = {
@@ -11,7 +11,12 @@ const variantStyle = {
   default: 'border-gray-50 bg-gray-50 ',
 };
 
-const TextArea = ({ variant = 'default', helperText, defaultValue, ...props }: TextAreaProps) => {
+const TextArea = ({
+  variant = 'default',
+  helperText,
+  defaultValue = '',
+  ...props
+}: TextAreaProps) => {
   return (
     <div className="flex h-fit w-full flex-col gap-1">
       <textarea

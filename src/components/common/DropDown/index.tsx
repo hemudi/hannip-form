@@ -51,14 +51,14 @@ const Dropdown = ({
     <div className="relative h-fit w-full select-none" ref={dropdownRef} {...props}>
       <div
         tabIndex={0}
-        className={`flex h-12 cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-body1 ${isOpen ? 'bg-white text-black' : 'bg-gray-50'} ${selectedOption ? 'text-black' : 'text-gray-500'}`}
+        className={`flex h-12 cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-body1 ${isOpen ? 'border border-gray-300 bg-white text-black' : 'bg-gray-50'} ${selectedOption ? 'text-black' : 'text-gray-500'}`}
         onClick={toggleDropdown}
       >
         {selectedOption ? selectedOption.label : placeholder}
         <Icon type={isOpen ? 'upDirection' : 'rightDirection'} color="#888889" />
       </div>
       {isOpen && (
-        <div className="absolute z-10 mt-1 max-h-56 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white p-[0.375rem] shadow-lg">
+        <div className="absolute z-10 mt-1 max-h-44 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white p-[0.375rem] shadow-lg">
           {options.map(({ value, label }) => (
             <div
               key={value}
