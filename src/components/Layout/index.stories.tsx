@@ -4,7 +4,7 @@ import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
 import ItemList from '@components/common/ItemList';
 import TabBar from '@components/common/TabBar';
-import UserInfo from '@components/common/UserInfo';
+import UserInfo from '@components/Page/MyPage/UserInfo';
 import { Meta, StoryObj } from '@storybook/react';
 
 const userInfoProps = {
