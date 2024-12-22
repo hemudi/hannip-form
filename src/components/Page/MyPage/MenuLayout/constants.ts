@@ -24,15 +24,15 @@ export const MY_PAGE_MENUS: MyPageMenu[] = [
   {
     title: '서비스 이용 관련',
     subMenus: [
-      { name: '서비스 이용약관', href: '' },
-      { name: '개인정보 처리방침', href: '' },
+      { name: '서비스 이용약관', href: '/assets/file/한입폼_이용약관.pdf' },
+      { name: '개인정보 처리방침', href: '/assets/file/한입폼_개인정보처리방침.pdf' },
     ],
   },
   {
     title: '계정 관련',
     subMenus: [
-      { name: '로그아웃', href: '' },
-      { name: '회원탈퇴', href: '' },
+      { name: '로그아웃', href: '', isHidden: true },
+      { name: '회원탈퇴', href: '', isHidden: true },
     ],
   },
 ];
