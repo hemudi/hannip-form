@@ -23,7 +23,7 @@ export interface UserInfoType extends Omit<UserInfoResponse, 'profile_image_url'
 }
 
 export const getUser = async (): Promise<UserInfoType> => {
-  const token = getCookie('token');
+  const token = getCookie('access');
   // console.log(token);
 
   const res = await axios.get<UserInfoResponse>(USER_API_URL, {
@@ -36,7 +36,7 @@ export const getUser = async (): Promise<UserInfoType> => {
 };
 
 export const deleteUser = async () => {
-  const token = getCookie('token');
+  const token = getCookie('access');
   const res = await axios.delete(USER_API_URL, {
     headers: {
       Authorization: `Bearer ${token}`,

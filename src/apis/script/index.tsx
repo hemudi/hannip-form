@@ -5,7 +5,7 @@ import { getCookie } from 'cookies-next';
 const SCRIPT_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/scripts`;
 
 export const bookmarkScript = async (script: string) => {
-  const token = getCookie('token');
+  const token = getCookie('access');
 
   try {
     const response = await axios.post(
@@ -26,7 +26,7 @@ export const bookmarkScript = async (script: string) => {
 
 export const getScriptDetail = async (id: string): Promise<Omit<BookmarkContent, 'user_id'>> => {
   try {
-    const token = getCookie('token');
+    const token = getCookie('access');
     const response = await axios.get<BookmarkContent>(`${SCRIPT_API_URL}/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ export const getScriptDetail = async (id: string): Promise<Omit<BookmarkContent,
 
 export const deleteScript = async (id: string) => {
   try {
-    const token = getCookie('token');
+    const token = getCookie('access');
 
     if (!token) return;
     const res = await axios.delete<BookmarkContent>(SCRIPT_API_URL, {
