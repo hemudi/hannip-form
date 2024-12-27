@@ -38,7 +38,7 @@ const OnboardingPage = () => {
         }
       />
       <Layout.Main>
-        <div className="flex h-full max-w-89 items-center justify-center">
+        <div className="flex h-full w-full max-w-89 items-center justify-center">
           <ImageSlider index={currentIndex} setIndex={setCurrentIndex} images={onboardingData} />
         </div>
       </Layout.Main>
