@@ -43,3 +43,16 @@ export const deleteIdea = async (id: string) => {
     throw error;
   }
 };
+
+export const getBookmarkIdeaList = async (): Promise<BookmarkContent[]> => {
+  const token = getCookie(COOKIE_NAME.ACCESS);
+
+  const res = await axios.get<BookmarkContent[]>(`${IDEA_API_URL}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const ideaList = res.data;
+  return ideaList;
+};

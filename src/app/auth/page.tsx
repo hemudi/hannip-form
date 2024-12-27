@@ -1,8 +1,9 @@
 'use client';
 
+import { checkChannelInfo } from '@apis/user';
 import { COOKIE_NAME } from '@constants/cookieName';
 import { ROUTING_PATH } from '@constants/routingPath';
-import { getCookie, setCookie } from 'cookies-next';
+import { setCookie } from 'cookies-next';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -13,7 +14,13 @@ const AuthCallbackPage = () => {
 
   useEffect(() => {
     setCookie(COOKIE_NAME.ACCESS, code);
-    router.replace(ROUTING_PATH.MAIN);
+    checkChannelInfo().then((isExist) => {
+      if (isExist) {
+        router.replace(ROUTING_PATH.MAIN);
+      } else {
+        router.replace(ROUTING_PATH.CHANNEL_INFO);
+      }
+    });
   }, []);
 
   return null;

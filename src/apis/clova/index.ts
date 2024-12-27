@@ -7,7 +7,7 @@ export const CLOVA_URL_PATH = {
   SCRIPT: `${CLOVA_API_URL}/script`,
 };
 
-interface IdeaParams {
+export interface IdeaParams {
   category: string;
   info: string;
   content: string;
@@ -21,12 +21,7 @@ export const createIdea = async (params: IdeaParams) => {
 interface ScriptParams {
   idea: string;
   essential: string;
-  intro: string;
-  ending: string;
   length: string;
-  tone: string;
-  accent: string;
-  trend: string;
 }
 
 interface ScriptResponse {

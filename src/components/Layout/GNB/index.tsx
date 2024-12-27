@@ -13,15 +13,16 @@ interface GNBProps {
 }
 
 interface NavigationMenu {
-  path: 'home' | 'recent' | 'my-page';
+  pathName: 'home' | 'recent' | 'my-page';
+  absolutePath: `/${string}`;
   iconType: IconType;
   name: string;
 }
 
 const menus: NavigationMenu[] = [
-  { path: 'home', iconType: 'home', name: '홈' },
-  { path: 'recent', iconType: 'recent', name: '최근생성내역' },
-  { path: 'my-page', iconType: 'user', name: '마이페이지' },
+  { pathName: 'home', absolutePath: '/', iconType: 'home', name: '홈' },
+  { pathName: 'recent', absolutePath: '/recent', iconType: 'recent', name: '최근생성내역' },
+  { pathName: 'my-page', absolutePath: '/my-page', iconType: 'user', name: '마이페이지' },
 ];
 
 const GNB = ({ currentPath }: GNBProps) => {
@@ -43,12 +44,12 @@ const GNB = ({ currentPath }: GNBProps) => {
   return (
     <>
       <div className="flex w-full border-t-2 border-gray-50 px-4 pb-4 pt-4">
-        {menus.map(({ path, iconType, name }) => (
+        {menus.map(({ pathName, absolutePath, iconType, name }) => (
           <Link
-            key={path}
-            className={`flex h-full w-full flex-col items-center justify-center gap-2 text-footnote ${currentPath === path ? 'text-black' : 'text-gray-500'}`}
-            onClick={handleMenuClick(path)}
-            href={`/${path}`}
+            key={pathName}
+            className={`flex h-full w-full flex-col items-center justify-center gap-2 text-footnote ${currentPath === pathName ? 'text-black' : 'text-gray-500'}`}
+            onClick={handleMenuClick(pathName)}
+            href={absolutePath}
           >
             <Icon type={iconType} color={'inherit'} size="medium" />
             {name}

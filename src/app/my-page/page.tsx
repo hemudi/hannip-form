@@ -81,7 +81,7 @@ const MyPage = () => {
         <Link
           onClick={handleRequireLogin('채널정보는')}
           className="flex w-full p-5"
-          href={ROUTING_PATH.CHANNEL_INFO}
+          href={ROUTING_PATH.CHANNEL_INFO_EDIT}
         >
           <div className="flex w-full flex-col justify-center">
             <span className="text-h4 font-semibold">내 채널 정보</span>

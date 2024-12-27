@@ -58,3 +58,16 @@ export const deleteScript = async (id: string) => {
     throw error;
   }
 };
+
+export const getBookmarkScriptList = async (): Promise<BookmarkContent[]> => {
+  const token = getCookie(COOKIE_NAME.ACCESS);
+
+  const res = await axios.get<BookmarkContent[]>(`${SCRIPT_API_URL}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const scriptList = res.data;
+  return scriptList;
+};
