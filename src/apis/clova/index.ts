@@ -7,7 +7,7 @@ export const CLOVA_URL_PATH = {
   SCRIPT: `${CLOVA_API_URL}/script`,
 };
 
-interface IdeaParams {
+export interface IdeaParams {
   category: string;
   info: string;
   content: string;

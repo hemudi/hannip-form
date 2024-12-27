@@ -37,6 +37,11 @@ const colorStyles = {
     colored: 'bg-white text-black border border-gray-100',
     line: '',
   },
+  disabled: {
+    colored:
+      'bg-gray-100 text-gray-500 border-gray-100 enabled:hover:bg-gray-300 enabled:active:bg-gray-200',
+    line: '',
+  },
 } as const;
 
 type ButtonColor = keyof typeof colorStyles;
