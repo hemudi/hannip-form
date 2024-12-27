@@ -22,7 +22,7 @@ const Dropdown = ({
 }: DropDownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const [selectedOption, setSelectedOption] = useState<Option | null>(defaultOption || null);
+  const [selectedOption, setSelectedOption] = useState<Option | undefined>(defaultOption);
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
@@ -54,7 +54,7 @@ const Dropdown = ({
         className={`flex h-12 cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-body1 ${isOpen ? 'border border-gray-300 bg-white text-black' : 'bg-gray-50'} ${selectedOption ? 'text-black' : 'text-gray-500'}`}
         onClick={toggleDropdown}
       >
-        {selectedOption ? selectedOption.label : placeholder}
+        {selectedOption?.label ? selectedOption.label : placeholder}
         <Icon type={isOpen ? 'upDirection' : 'rightDirection'} color="#888889" />
       </div>
       {isOpen && (

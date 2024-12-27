@@ -102,7 +102,7 @@ export const editChannelInfo = async (channelInfo: ChannelInfo) => {
       },
     );
 
-    return response.data;
+    return response;
   } catch (error) {
     console.error('PUT 요청에 실패했습니다:', error);
     throw error;

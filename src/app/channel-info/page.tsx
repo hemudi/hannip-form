@@ -1,12 +1,15 @@
 'use client';
 
-import type { ChannelInfo } from '@apis/user';
+import { editChannelInfo, type ChannelInfo } from '@apis/user';
 import Button from '@components/common/Button';
 import Dropdown, { Option } from '@components/common/DropDown';
 import TextArea from '@components/common/TextArea';
 import Layout from '@components/Layout';
 import Menu from '@components/Layout/Header/Menu';
+import { ROUTING_PATH } from '@constants/routingPath';
+import { useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const categoryList = [
   '게임',
@@ -32,6 +35,8 @@ const ChannelInfo = () => {
     category: '',
   });
 
+  const router = useRouter();
+
   const handleOnChange = ({ target }: ChangeEvent<HTMLTextAreaElement>) => {
     setChannelInfo((prev) => ({ ...prev, description: target.value }));
   };
@@ -39,6 +44,18 @@ const ChannelInfo = () => {
   const handleOptionChange = (option: Option) => {
     setChannelInfo((prev) => ({ ...prev, category: option.value }));
   };
+
+  const saveChannelInfo = () => {
+    editChannelInfo({ description, category }).then(({ status, statusText }) => {
+      if (status === 200 && statusText === 'OK') {
+        toast.success('채널 정보가 저장되었습니다!');
+        router.replace(ROUTING_PATH.MY_PAGE);
+      } else {
+        toast.error('채널 정보 저장에 실패했습니다!');
+      }
+    });
+  };
+
   return (
     <>
       <Layout.Header rightMenu={<Menu type="close" />} />
@@ -68,7 +85,9 @@ const ChannelInfo = () => {
         </div>
       </Layout.Main>
       <Layout.BottomMenu>
-        <Button disabled={category === '' || description === ''}>채널 정보 저장하기</Button>
+        <Button onClick={saveChannelInfo} disabled={category === '' || description === ''}>
+          채널 정보 저장하기
+        </Button>
       </Layout.BottomMenu>
     </>
   );
