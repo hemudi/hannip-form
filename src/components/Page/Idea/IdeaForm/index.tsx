@@ -36,7 +36,7 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
     setIdeaState({ content: target.value });
   };
 
-  const handleOnClick = (isReflectedChannelInfo: boolean) => () => {
+  const handleOnClick = (isReflectedChannelInfo: boolean) => {
     if (!isLogin) {
       setIsLoginShow(true);
       return;
@@ -72,7 +72,7 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
         <div className="w-full text-body1 font-semibold text-gray-900">
           채널 정보를 불러와 반영하시겠습니까?<span className="text-gray-400"> *</span>
         </div>
-        <BooleanSelector onChange={(value) => handleOnClick(value)} />
+        <BooleanSelector onChange={handleOnClick} />
         <span className="px-1 text-footnote text-gray-500">
           채널 정보가 있으면 나에게 맞춤 아이디어를 제공받을 수 있어요.
         </span>
