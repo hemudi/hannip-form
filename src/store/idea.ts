@@ -1,8 +1,9 @@
+import { ChannelInfo } from '@apis/user';
 import { create } from 'zustand';
 
 interface IdeaStoreState {
-  category: string;
-  info: string;
+  channelInfo?: ChannelInfo;
+  isReflectedChannelInfo: boolean;
   content: string;
   ideaList: string[];
   selectedIdea: string;
@@ -19,11 +20,10 @@ interface IdeaStore extends IdeaStoreState {
 }
 
 const IDEA_INIT_STATE: IdeaStoreState = {
-  category: '',
-  info: '',
   content: '',
   ideaList: [],
   selectedIdea: '',
+  isReflectedChannelInfo: false,
 };
 
 const useIdeaStore = create<IdeaStore>((set) => ({
