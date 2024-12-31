@@ -86,7 +86,11 @@ const ChannelInfo = () => {
         </div>
       </Layout.Main>
       <Layout.BottomMenu>
-        <Button onClick={saveChannelInfo} disabled={category === '' || description === ''}>
+        <Button
+          size="full"
+          onClick={saveChannelInfo}
+          disabled={category === '' || description === ''}
+        >
           채널 정보 저장하기
         </Button>
       </Layout.BottomMenu>

@@ -5,7 +5,11 @@ interface BottomMenu {
 }
 
 const BottomMenu = ({ children }: BottomMenu) => {
-  return <div className="h-fit w-full bg-white px-4 pb-8 pt-2">{children}</div>;
+  return (
+    <div className="flex h-fit w-full items-center justify-center gap-2 bg-white px-4 pb-8 pt-2">
+      {children}
+    </div>
+  );
 };
 
 export default BottomMenu;

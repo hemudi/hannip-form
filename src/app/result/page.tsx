@@ -94,8 +94,8 @@ const ResultPage = () => {
         </div>
       </Layout.Main>
       <Layout.BottomMenu>
-        <Link href={ROUTING_PATH.PLANNING}>
-          <Button>{BOTTOM_MENU_TEXT}</Button>
+        <Link className="w-full" href={ROUTING_PATH.PLANNING}>
+          <Button size="full">{BOTTOM_MENU_TEXT}</Button>
         </Link>
       </Layout.BottomMenu>
     </>

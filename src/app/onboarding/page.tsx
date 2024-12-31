@@ -44,11 +44,13 @@ const OnboardingPage = () => {
       </Layout.Main>
       <Layout.BottomMenu>
         {isLastSlider ? (
-          <Link href={ROUTING_PATH.PLANNING}>
-            <Button color="primary">{SLIDER.BUTTON_TEXT.TO_PLANNING}</Button>
+          <Link className="w-full" href={ROUTING_PATH.PLANNING}>
+            <Button size="full" color="primary">
+              {SLIDER.BUTTON_TEXT.TO_PLANNING}
+            </Button>
           </Link>
         ) : (
-          <Button onClick={() => setCurrentIndex((prev) => prev + 1)}>
+          <Button size="full" onClick={() => setCurrentIndex((prev) => prev + 1)}>
             {SLIDER.BUTTON_TEXT.TO_NEXT}
           </Button>
         )}

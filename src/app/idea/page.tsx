@@ -17,11 +17,13 @@ const IdeaPage = () => {
       </Layout.Main>
       <Layout.BottomMenu>
         <Link
-          className={`${isDone ? '' : 'pointer-events-none'}`}
+          className={`w-full ${isDone ? '' : 'pointer-events-none'}`}
           aria-disabled={!isDone}
           href={ROUTING_PATH.IDEA_RESULT}
         >
-          <Button disabled={!isDone}>아이디어 생성하기</Button>
+          <Button size="full" disabled={!isDone}>
+            아이디어 생성하기
+          </Button>
         </Link>
       </Layout.BottomMenu>
     </>
