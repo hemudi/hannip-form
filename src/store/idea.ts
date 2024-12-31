@@ -1,8 +1,6 @@
-import { ChannelInfo } from '@apis/user';
 import { create } from 'zustand';
 
 interface IdeaStoreState {
-  channelInfo?: ChannelInfo;
   isReflectedChannelInfo: boolean;
   content: string;
   ideaList: string[];
