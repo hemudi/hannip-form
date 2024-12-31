@@ -77,6 +77,7 @@ const ChannelInfo = () => {
               만들고 싶은 영상의 카테고리를 알려주세요<span className="text-gray-400"> *</span>
             </div>
             <Dropdown
+              defaultOption={{ value: description, label: description }}
               placeholder="카테고리를 선택해주세요"
               options={categoryList.map((category) => ({ value: category, label: category }))}
               handleOptionChange={handleOptionChange}
