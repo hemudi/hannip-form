@@ -1,3 +1,5 @@
+import { Option } from '@components/common/DropDown';
+
 interface ScriptTip {
   title: string;
   content: string;
@@ -33,3 +35,15 @@ export const scriptTips: ScriptTip[] = [
       "ex) '독일의 크리스마스 마켓', '최근 인기 있는 넷플릭스 드라마'와 같은 구체적인 예시를 포함해주세요",
   },
 ];
+
+export const scriptLengthOptions: Option[] = [
+  { value: '15초', label: '15초' },
+  { value: '30초', label: '30초' },
+  { value: '45초', label: '45초' },
+  { value: '1분', label: '1분' },
+];
+
+export const TONE = {
+  INFORMAL: '반말',
+  FORMAL: '존댓말',
+};
