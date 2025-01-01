@@ -7,6 +7,7 @@ export const ROUTING_PATH = {
   MY_PAGE: '/my-page',
   NOT_FOUND: '/not-found',
   IDEA: '/idea',
+  IDEA_RESULT: '/idea/result',
   SCRIPT: '/script',
   RECENT: '/recent',
   CHANNEL_INFO: '/channel-info',

@@ -41,6 +41,7 @@ const Dropdown = ({
   };
 
   useEffect(() => {
+    if (defaultOption) setSelectedOption(defaultOption);
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);

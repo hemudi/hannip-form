@@ -78,7 +78,7 @@ export const Example: Story = {
           <TabBar tabs={tabs} />
         </Layout.Main>
         <Layout.BottomMenu>
-          <Button>새로운 스크립트 쓰러가기</Button>
+          <Button size="full">새로운 스크립트 쓰러가기</Button>
         </Layout.BottomMenu>
       </>
     ),

@@ -36,65 +36,65 @@ const categoryList = [
   '코미디',
 ];
 
-export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
-  const { setIdeaState, clearIdeaState } = useIdeaAction();
-  const { category, info, content } = useIdeaState();
-  const { clearScriptState } = useScriptAction();
+// export const QuestionItem1 = ({ setIsDone }: QuestionItemProps) => {
+//   const { setIdeaState, clearIdeaState } = useIdeaAction();
+//   const { content } = useIdeaState();
+//   const { clearScriptState } = useScriptAction();
 
-  useEffect(() => {
-    clearIdeaState();
-    clearScriptState();
-  }, []);
+//   useEffect(() => {
+//     clearIdeaState();
+//     clearScriptState();
+//   }, []);
 
-  useEffect(() => {
-    setIsDone({
-      isDone:
-        checkTextLength(1, 30, category) &&
-        checkTextLength(1, 30, info) &&
-        checkTextLength(1, 30, content),
-    });
-  }, [category, info, content]);
+//   useEffect(() => {
+//     setIsDone({
+//       isDone:
+//         checkTextLength(1, 30, category) &&
+//         checkTextLength(1, 30, info) &&
+//         checkTextLength(1, 30, content),
+//     });
+//   }, [category, info, content]);
 
-  const handleOnChange = ({ target }: ChangeEvent<HTMLInputElement>, type: 'info' | 'content') => {
-    setIdeaState({ [type]: target.value });
-  };
+//   const handleOnChange = ({ target }: ChangeEvent<HTMLInputElement>, type: 'info' | 'content') => {
+//     setIdeaState({ [type]: target.value });
+//   };
 
-  const handleOptionChange = (option: Option) => {
-    setIdeaState({ category: option.value });
-  };
+//   const handleOptionChange = (option: Option) => {
+//     setIdeaState({ category: option.value });
+//   };
 
-  return (
-    <QuestionLayout title="스크립트의 시작은 주제부터!">
-      <ItemLayout title="내 채널을 한줄로 소개해주세요">
-        <TextField
-          variant={checkTextLength(0, 30, info) ? 'default' : 'error'}
-          onChange={(event) => handleOnChange(event, 'info')}
-          placeholder="최소 1자, 최대 30자 이내 (공백포함)"
-          helperText={
-            checkTextLength(0, 30, info) ? undefined : '최소 1자, 최대 30자 이내로 입력해주세요'
-          }
-        />
-      </ItemLayout>
-      <ItemLayout title="만들고 싶은 영상의 카테고리를 알려주세요">
-        <Dropdown
-          placeholder="카테고리를 선택해주세요"
-          options={categoryList.map((category) => ({ value: category, label: category }))}
-          handleOptionChange={handleOptionChange}
-        />
-      </ItemLayout>
-      <ItemLayout title="영상의 간단한 내용을 입력해주세요">
-        <TextField
-          variant={checkTextLength(0, 30, content) ? 'default' : 'error'}
-          onChange={(event) => handleOnChange(event, 'content')}
-          placeholder="최소 1자, 최대 30자 이내 (공백포함)"
-          helperText={
-            checkTextLength(0, 30, content) ? undefined : '최소 1자, 최대 30자 이내로 입력해주세요'
-          }
-        />
-      </ItemLayout>
-    </QuestionLayout>
-  );
-};
+//   return (
+//     <QuestionLayout title="스크립트의 시작은 주제부터!">
+//       <ItemLayout title="내 채널을 한줄로 소개해주세요">
+//         <TextField
+//           variant={checkTextLength(0, 30, info) ? 'default' : 'error'}
+//           onChange={(event) => handleOnChange(event, 'info')}
+//           placeholder="최소 1자, 최대 30자 이내 (공백포함)"
+//           helperMsg={
+//             checkTextLength(0, 30, info) ? undefined : '최소 1자, 최대 30자 이내로 입력해주세요'
+//           }
+//         />
+//       </ItemLayout>
+//       <ItemLayout title="만들고 싶은 영상의 카테고리를 알려주세요">
+//         <Dropdown
+//           placeholder="카테고리를 선택해주세요"
+//           options={categoryList.map((category) => ({ value: category, label: category }))}
+//           handleOptionChange={handleOptionChange}
+//         />
+//       </ItemLayout>
+//       <ItemLayout title="영상의 간단한 내용을 입력해주세요">
+//         <TextField
+//           variant={checkTextLength(0, 30, content) ? 'default' : 'error'}
+//           onChange={(event) => handleOnChange(event, 'content')}
+//           placeholder="최소 1자, 최대 30자 이내 (공백포함)"
+//           helperMsg={
+//             checkTextLength(0, 30, content) ? undefined : '최소 1자, 최대 30자 이내로 입력해주세요'
+//           }
+//         />
+//       </ItemLayout>
+//     </QuestionLayout>
+//   );
+// };
 
 export const QuestionItem2 = ({ setIsDone }: QuestionItemProps) => {
   const [ideaList, setIdeaList] = useState<string[] | null>(null);
@@ -302,7 +302,7 @@ export const QuestionItem6 = ({ setIsDone }: QuestionItemProps) => {
 };
 
 const questionList = [
-  QuestionItem1, // 0 : 채널 주제 작성
+  // QuestionItem1, // 0 : 채널 주제 작성
   QuestionItem2, // 1 : 아이디어 생성
   QuestionItem3, // 2 : 필수내용
   QuestionItem4, // 3 : 인트로, 엔딩

@@ -24,6 +24,6 @@ export const Default: Story = {
 export const Error: Story = {
   args: {
     variant: 'error',
-    helperText: '10글자 이상 입력해주세요',
+    helperMsg: '10글자 이상 입력해주세요',
   },
 };

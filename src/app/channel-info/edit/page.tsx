@@ -73,6 +73,7 @@ const ChannelInfo = () => {
             </div>
             <Dropdown
               placeholder="카테고리를 선택해주세요"
+              defaultOption={{ value: description, label: description }}
               options={categoryList.map((category) => ({ value: category, label: category }))}
               handleOptionChange={handleOptionChange}
             />
@@ -80,7 +81,11 @@ const ChannelInfo = () => {
         </div>
       </Layout.Main>
       <Layout.BottomMenu>
-        <Button onClick={saveChannelInfo} disabled={category === '' || description === ''}>
+        <Button
+          size="full"
+          onClick={saveChannelInfo}
+          disabled={category === '' || description === ''}
+        >
           수정하기
         </Button>
       </Layout.BottomMenu>

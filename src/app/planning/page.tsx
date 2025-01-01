@@ -66,7 +66,7 @@ const PlanningPage = () => {
       </Layout.Main>
       {isVisible && (
         <Layout.BottomMenu>
-          <Button disabled={!isDone} onClick={handleOnClickButton}>
+          <Button size="full" disabled={!isDone} onClick={handleOnClickButton}>
             {currentQuestion + 1 < questionList.length
               ? BOTTOM_MENU_TEXT.NEXT
               : BOTTOM_MENU_TEXT.CREATE}
