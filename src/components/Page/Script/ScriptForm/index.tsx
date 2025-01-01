@@ -68,7 +68,7 @@ const ScriptForm = ({ setIsDone }: ScriptFormProps) => {
           스크립트에 꼭 들어가야할 내용을 작성해주세요<span className="text-gray-400"> *</span>
         </div>
         <TextArea
-          defaultValue={selectedIdea}
+          defaultValue={essential}
           placeholder="예시) 섭지코지는 유채꽃이 만발해서 인생샷을 찍을 수 있는 ‘사진 맛집’으로 유명하다는 내용이 들어가면 좋겠어요. 바닷가를 따라 산책로를 걸으며 일몰을 보여주면서 30분 정도 소요된다는 것과 일출과 일몰 시간대에 와서 구경하는 것을 추천하는내용의 꿀팁을 제공하면 좋겠어요."
           onChange={handleOnChangeEssential}
           validateValue={(value) => value.length >= 10 && value.length <= 500}
