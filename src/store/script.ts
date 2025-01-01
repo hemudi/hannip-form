@@ -1,15 +1,11 @@
-import { splitScriptAndAdvice } from '@utils/script';
+import { TONE } from '@app/script/constants';
 import { create } from 'zustand';
 
 interface ScriptStoreState {
   idea: string;
   essential: string;
-  intro: string;
-  ending: string;
   length: string;
   tone: string;
-  accent: string;
-  trend: string;
   script: string;
   advice: string;
 }
@@ -27,12 +23,8 @@ interface ScriptStore extends ScriptStoreState {
 export const SCRIPT_INIT_STATE: ScriptStoreState = {
   idea: '',
   essential: '',
-  intro: '',
-  ending: '',
   length: '',
-  tone: '',
-  trend: '',
-  accent: '',
+  tone: TONE.FORMAL,
   advice: '',
   script: '',
 };
