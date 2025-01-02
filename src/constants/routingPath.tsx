@@ -5,6 +5,7 @@ export const ROUTING_PATH = {
   PLANNING: '/planning',
   RESULT: '/result',
   MY_PAGE: '/my-page',
+  BOOKMARK: '/bookmark',
   NOT_FOUND: '/not-found',
   IDEA: '/idea',
   IDEA_RESULT: '/idea/result',
