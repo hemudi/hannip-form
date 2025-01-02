@@ -7,7 +7,7 @@ import UserInfo from '@components/Page/MyPage/UserInfo';
 import { ROUTING_PATH } from '@constants/routingPath';
 import LoginModal from '@components/Page/Login/LoginModal';
 import Link from 'next/link';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { deleteCookie, getCookie } from 'cookies-next';
 import { COOKIE_NAME } from '@constants/cookieName';
 import { useRouter } from 'next/navigation';
@@ -29,15 +29,18 @@ interface UserModalState {
 }
 
 const MyPage = () => {
+  const router = useRouter();
   const [isShow, setIsShow] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const [warningText, setWarningText] = useState<string>('');
   const [{ type, isModalShow }, setModalState] = useState<UserModalState>({
     type: '로그아웃',
     isModalShow: false,
   });
 
-  const isLogin = getCookie(COOKIE_NAME.ACCESS);
-  const router = useRouter();
+  useEffect(() => {
+    setIsLogin(Boolean(getCookie(COOKIE_NAME.ACCESS)));
+  }, []);
 
   const clickModal = (type: string) =>
     setModalState(({ isModalShow }) => ({ type, isModalShow: !isModalShow }));
