@@ -3,7 +3,7 @@
 import Icon from '@components/common/Icon';
 import MenuLayout from '@components/Page/MyPage/MenuLayout';
 import { MY_PAGE_MENUS } from '@components/Page/MyPage/MenuLayout/constants';
-import UserInfo, { UserInfoData } from '@components/Page/MyPage/UserInfo';
+import UserInfo from '@components/Page/MyPage/UserInfo';
 import { ROUTING_PATH } from '@constants/routingPath';
 import LoginModal from '@components/Page/Login/LoginModal';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ import { MouseEvent, useEffect, useState } from 'react';
 import { deleteCookie, getCookie } from 'cookies-next';
 import { COOKIE_NAME } from '@constants/cookieName';
 import { useRouter } from 'next/navigation';
-import { deleteUser, getUser } from '@apis/user';
+import { deleteUser } from '@apis/user';
 import { toast } from 'react-toastify';
 import Modal from '@components/common/Modal';
 import Button from '@components/common/Button';
@@ -29,23 +29,17 @@ interface UserModalState {
 }
 
 const MyPage = () => {
+  const router = useRouter();
   const [isShow, setIsShow] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const [warningText, setWarningText] = useState<string>('');
-  const [userInfo, setUserInfo] = useState<UserInfoData>();
   const [{ type, isModalShow }, setModalState] = useState<UserModalState>({
     type: '로그아웃',
     isModalShow: false,
   });
 
-  const isLogin = getCookie(COOKIE_NAME.ACCESS);
-  const router = useRouter();
-
   useEffect(() => {
-    if (isLogin) {
-      getUser().then((data) => {
-        setUserInfo(data);
-      });
-    }
+    setIsLogin(Boolean(getCookie(COOKIE_NAME.ACCESS)));
   }, []);
 
   const clickModal = (type: string) =>
@@ -76,7 +70,7 @@ const MyPage = () => {
 
   return (
     <div className="h-full w-full pt-10">
-      {isLogin ? userInfo && <UserInfo {...userInfo} /> : <NoUserInfo />}
+      {isLogin ? <UserInfo /> : <NoUserInfo />}
       <div className="h-full w-full bg-gray-50">
         <Link
           onClick={handleRequireLogin('채널정보는')}

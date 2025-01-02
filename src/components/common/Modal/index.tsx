@@ -4,6 +4,7 @@ import Icon from '@components/common/Icon';
 interface ModalProps {
   title?: string;
   children: ReactNode;
+  className?: string;
   onClose?: () => void;
 }
 
@@ -15,10 +16,12 @@ const ModalContainer = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const Modal = ({ title, children, onClose }: ModalProps) => {
+const Modal = ({ title, children, onClose, className }: ModalProps) => {
   return (
     <ModalContainer>
-      <div className="flex h-full w-89 flex-col items-center justify-center gap-6 rounded-lg bg-white p-5 text-black shadow">
+      <div
+        className={`flex w-89 flex-col items-center justify-center gap-6 rounded-lg bg-white p-5 text-black shadow ${className}`}
+      >
         <div className="flex w-full flex-col items-end gap-1">
           {onClose && (
             <div className="cursor-pointer" onClick={onClose}>

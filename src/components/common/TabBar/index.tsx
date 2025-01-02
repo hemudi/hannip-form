@@ -7,12 +7,15 @@ interface Tab {
 
 interface TabBarProps {
   tabs: Tab[];
+  defaultTab?: number;
+  onChange?: (index: number) => void;
 }
 
-const TabBar = ({ tabs }: TabBarProps) => {
-  const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
+const TabBar = ({ tabs, defaultTab = 0, onChange }: TabBarProps) => {
+  const [activeTabIndex, setActiveTabIndex] = useState<number>(defaultTab);
 
   const handleTabClick = (index: number) => {
+    if (onChange) onChange(index);
     setActiveTabIndex(index);
   };
 

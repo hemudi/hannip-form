@@ -38,7 +38,15 @@ const onboardingRouter = (request: NextRequest) => {
 
 const channelInfoRouter = (request: NextRequest) => {
   if (!isLogIn(request)) {
-    return NextResponse.redirect(new URL(ROUTING_PATH.MAIN, request.url));
+    return NextResponse.redirect(new URL(ROUTING_PATH.LOGIN, request.url));
+  }
+
+  return NextResponse.next();
+};
+
+const bookmarkRouter = (request: NextRequest) => {
+  if (!isLogIn(request)) {
+    return NextResponse.redirect(new URL(ROUTING_PATH.LOGIN, request.url));
   }
 
   return NextResponse.next();
@@ -63,9 +71,13 @@ export function middleware(request: NextRequest) {
     return channelInfoRouter(request);
   }
 
+  if (pathname === ROUTING_PATH.BOOKMARK) {
+    return bookmarkRouter(request);
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/', '/onboarding', '/planning', '/result', '/login', '/channel-info'],
+  matcher: ['/', '/onboarding', '/planning', '/result', '/login', '/channel-info', '/bookmark'],
 };

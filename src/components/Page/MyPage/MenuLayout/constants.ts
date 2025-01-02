@@ -1,4 +1,5 @@
 import { LinkMenu } from '@components/Page/MyPage/MenuLayout';
+import { ROUTING_PATH } from '@constants/routingPath';
 
 interface MyPageMenu {
   title: string;
@@ -10,8 +11,8 @@ export const MY_PAGE_MENUS: MyPageMenu[] = [
   {
     title: '북마크',
     subMenus: [
-      { name: '스크립트 북마크 내역', href: '' },
-      { name: '아이디어 북마크 내역', href: '' },
+      { name: '스크립트 북마크 내역', href: `${ROUTING_PATH.BOOKMARK}/?type=0` },
+      { name: '아이디어 북마크 내역', href: `${ROUTING_PATH.BOOKMARK}/?type=1` },
     ],
     isPrivate: true,
   },

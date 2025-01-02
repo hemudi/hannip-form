@@ -10,7 +10,7 @@ interface ScriptTipModalProps {
 const ScriptTipModal = ({ isOpen, onClose }: ScriptTipModalProps) => {
   return (
     isOpen && (
-      <Modal>
+      <Modal className="h-full">
         <div className="w-full whitespace-pre-line text-h4 font-bold">
           원하는 답변을 받을 수 있는 꿀팁!
         </div>

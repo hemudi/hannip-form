@@ -117,11 +117,14 @@ const Setting = () => {
   );
 };
 
-const PrevPage = () => (
-  <Link href={'/'}>
-    <Icon type="leftDirection" />
-  </Link>
-);
+const PrevPage = () => {
+  const router = useRouter();
+  return (
+    <div className="cursor-pointer" onClick={() => router.back()}>
+      <Icon type="leftDirection" />
+    </div>
+  );
+};
 
 const Close = () => (
   <Link href={'/'}>
