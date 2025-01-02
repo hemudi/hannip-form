@@ -2,38 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @font-face {
-  font-family: Pretendard;
-  font-weight: 400;
-  src:
-    local('Pretendard Regular'),
-    url('/assets/fonts/Pretendard/woff2/Pretendard-Regular.woff2') format('woff2'),
-    url('/assets/fonts/Pretendard/woff/Pretendard-Regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: Pretendard;
-  font-weight: 500;
-  src:
-    local('Pretendard Medium'),
-    url('/assets/fonts/Pretendard/woff2/Pretendard-Medium.woff2') format('woff2'),
-    url('/assets/fonts/Pretendard/woff/Pretendard-Medium.woff') format('woff');
-}
-
-@font-face {
-  font-family: Pretendard;
-  font-weight: 700;
-  src:
-    local('Pretendard Bold'),
-    url('/assets/fonts/Pretendard/woff2/Pretendard-Bold.woff2') format('woff2'),
-    url('/assets/fonts/Pretendard/woff/Pretendard-Bold.woff') format('woff');
-} */
-
 @layer base {
-  html {
-    /* font-family: Pretendard, 'system-ui', sans-serif; */
-  }
-
   body {
     line-height: 1.5;
   }
@@ -75,4 +44,12 @@
   border-bottom: 0;
   margin-left: -8px;
   margin-bottom: -8px;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }

@@ -2,7 +2,8 @@ import { deleteIdea } from '@apis/idea';
 import Accordion from '@components/common/Accordion';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import ItemList from '@components/common/ItemList';
-import LoginModal from '@components/common/Modal/LoginModal';
+import LoginModal from '@components/Page/Login/LoginModal';
+import { COOKIE_NAME } from '@constants/cookieName';
 import { getCookie } from 'cookies-next';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -36,7 +37,7 @@ const Item = ({ text, onClick }: ItemProps) => {
   const [bookmarkId, setBookmarkId] = useState<string | null>(null);
   const [isShow, setIsShow] = useState<boolean>(false);
   const handleOncClick = async () => {
-    const token = getCookie('token');
+    const token = getCookie(COOKIE_NAME.ACCESS);
 
     if (!token) {
       setIsShow(true);
@@ -60,7 +61,11 @@ const Item = ({ text, onClick }: ItemProps) => {
       <div className="cursor-pointer" onClick={handleOncClick}>
         <BookmarkIcon isChecked={bookmarkId !== null} color="#A5A5A7" />
       </div>
-      <LoginModal type={'아이디어'} isShow={isShow} clickModal={() => setIsShow((prev) => !prev)} />
+      <LoginModal
+        warningText={'아이디어를 북마크하려면'}
+        isShow={isShow}
+        clickModal={() => setIsShow((prev) => !prev)}
+      />
     </div>
   );
 };

@@ -1,36 +1,36 @@
 import Icon from '@components/common/Icon';
-import copyText from '@utils/copyText';
-import detectDevice, { DEVICE_TYPE } from '@utils/detectDevice';
 import Image from 'next/image';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
+import { MouseEvent } from 'react';
 
-const TITLE_TEXT = '한입폼의 스크립트로\n숏폼을 제작하러 가볼까요?';
-const FOOTER_TEXT = '저희 서비스를 이용해주셔서 감사합니다.\n마음에 드셨다면?';
+const TITLE_TEXT = '한입폼의 서비스가\n마음에 드셨으면 공유해주세요';
 
-const SHARE = {
-  TEXT: '공유하기',
-  URL: 'https://hannip-form.vercel.app',
-  SUCCESS_MESSAGE: '서비스 링크가 복사되었습니다!',
+const handleKakaoShare = async () => {
+  window.Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: '한입폼',
+      description: '한국 트렌드 맞춤형 숏폼 대본 생성서비스',
+      imageUrl: 'assets/images/main.png',
+      link: {
+        mobileWebUrl: 'https://hannip-form.vercel.app/',
+        webUrl: 'https://hannip-form.vercel.app/',
+      },
+    },
+  });
 };
 
-interface LinkData {
-  title: string;
-  iconType: 'linkNaver' | 'linkYoutube' | 'linkInstagram';
-  href: string;
-}
-
-const linkData: LinkData[] = [
-  { title: '네이버 클립', iconType: 'linkNaver', href: 'https://tv.naver.com/h' },
-  { title: '유튜브 쇼츠', iconType: 'linkYoutube', href: 'https://studio.youtube.com/' },
-  { title: '인스타그램 릴스', iconType: 'linkInstagram', href: 'https://www.instagram.com/reels/' },
-];
-
 const ShareMenu = () => {
-  const handleClickShareText = async () => {
-    copyText(SHARE.URL).then(() => {
-      toast.success(SHARE.SUCCESS_MESSAGE);
-    });
+  const handleClickShareAPI = async (e: MouseEvent<HTMLAnchorElement>) => {
+    if (typeof navigator.share !== 'undefined') {
+      e.preventDefault();
+      window.navigator.share({
+        title: '한입폼',
+        text: '한국 트렌드 맞춤형 숏폼 대본 생성서비스',
+        url: 'https://hannip-form.vercel.app/',
+      });
+      return;
+    }
   };
 
   return (
@@ -45,28 +45,26 @@ const ShareMenu = () => {
       />
       <h4 className="whitespace-pre-line pt-2 text-center text-h4 font-bold">{TITLE_TEXT}</h4>
       <div className="flex h-fit w-full items-center justify-center gap-9 p-5">
-        {linkData.map(({ title, iconType, href }) => (
-          <Link
-            key={title}
-            href={href}
-            target="_black"
-            className="flex h-fit w-14 flex-col items-center gap-2 text-gray-400 hover:text-black"
-          >
-            <Icon type={iconType} size="large" />
-            <span className="h-fit w-fit overflow-visible whitespace-nowrap text-footnote">
-              {title}
-            </span>
-          </Link>
-        ))}
-      </div>
-      <div className="whitespace-pre-line pt-2 text-center text-body2 text-gray-700">
-        {FOOTER_TEXT}
-        <span
-          className="cursor-pointer pl-1 text-body2 text-gray-700 underline underline-offset-2 hover:text-black"
-          onClick={handleClickShareText}
+        <div
+          className="flex h-fit w-14 cursor-pointer flex-col items-center gap-2 text-gray-400 hover:text-black"
+          onClick={handleKakaoShare}
         >
-          {SHARE.TEXT}
-        </span>
+          <Icon type="linkKakao" size="large" />
+          <span className="h-fit w-fit overflow-visible whitespace-nowrap text-footnote">
+            카카오톡
+          </span>
+        </div>
+        <Link
+          href={'https://www.instagram.com/'}
+          target="_black"
+          className="flex h-fit w-14 flex-col items-center gap-2 text-gray-400 hover:text-black"
+          onClick={handleClickShareAPI}
+        >
+          <Icon type="linkInstagram" size="large" />
+          <span className="h-fit w-fit overflow-visible whitespace-nowrap text-footnote">
+            인스타그램
+          </span>
+        </Link>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { getChannelInfo } from '@apis/user';
 import axios from 'axios';
 
 const CLOVA_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/clova`;
@@ -7,13 +8,26 @@ export const CLOVA_URL_PATH = {
   SCRIPT: `${CLOVA_API_URL}/script`,
 };
 
-interface IdeaParams {
-  category: string;
-  info: string;
+export interface IdeaParams {
+  isReflectedChannelInfo: boolean;
   content: string;
 }
 
-export const createIdea = async (params: IdeaParams) => {
+interface IdeaPostParams {
+  content: string;
+  category?: string;
+  info?: string;
+}
+
+export const createIdea = async ({ content, isReflectedChannelInfo }: IdeaParams) => {
+  const params: IdeaPostParams = { content };
+
+  if (isReflectedChannelInfo) {
+    const { category, description } = await getChannelInfo();
+    params.category = category;
+    params.info = description;
+  }
+
   const res = (await axios.post(CLOVA_URL_PATH.IDEA, params)).data;
   return res;
 };
@@ -21,12 +35,7 @@ export const createIdea = async (params: IdeaParams) => {
 interface ScriptParams {
   idea: string;
   essential: string;
-  intro: string;
-  ending: string;
   length: string;
-  tone: string;
-  accent: string;
-  trend: string;
 }
 
 interface ScriptResponse {

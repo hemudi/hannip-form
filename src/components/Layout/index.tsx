@@ -1,4 +1,5 @@
 import BottomMenu from '@components/Layout/BottomMenu';
+import GNB from '@components/Layout/GNB';
 import Header from '@components/Layout/Header';
 import Main from '@components/Layout/Main';
 import { ReactNode } from 'react';
@@ -18,5 +19,6 @@ const Layout = ({ children }: LayoutProps) => {
 Layout.Header = Header;
 Layout.Main = Main;
 Layout.BottomMenu = BottomMenu;
+Layout.GNB = GNB;
 
 export default Layout;

@@ -22,7 +22,7 @@ const Dropdown = ({
 }: DropDownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const [selectedOption, setSelectedOption] = useState<Option | null>(defaultOption || null);
+  const [selectedOption, setSelectedOption] = useState<Option | undefined>(defaultOption);
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
@@ -41,6 +41,7 @@ const Dropdown = ({
   };
 
   useEffect(() => {
+    if (defaultOption) setSelectedOption(defaultOption);
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -51,14 +52,14 @@ const Dropdown = ({
     <div className="relative h-fit w-full select-none" ref={dropdownRef} {...props}>
       <div
         tabIndex={0}
-        className={`flex h-12 cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-body1 ${isOpen ? 'bg-white text-black' : 'bg-gray-50'} ${selectedOption ? 'text-black' : 'text-gray-500'}`}
+        className={`flex h-12 cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-body1 ${isOpen ? 'border border-gray-300 bg-white text-black' : 'bg-gray-50'} ${selectedOption ? 'text-black' : 'text-gray-500'}`}
         onClick={toggleDropdown}
       >
-        {selectedOption ? selectedOption.label : placeholder}
+        {selectedOption?.label ? selectedOption.label : placeholder}
         <Icon type={isOpen ? 'upDirection' : 'rightDirection'} color="#888889" />
       </div>
       {isOpen && (
-        <div className="absolute z-10 mt-1 max-h-56 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white p-[0.375rem] shadow-lg">
+        <div className="absolute z-10 mt-1 max-h-44 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white p-[0.375rem] shadow-lg">
           {options.map(({ value, label }) => (
             <div
               key={value}

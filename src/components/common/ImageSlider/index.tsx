@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Dispatch, SetStateAction, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useLayoutEffect, useRef, useState } from 'react';
 
 type Image = {
   title: string;
@@ -21,6 +21,7 @@ const ImageSlider = ({ images, index, setIndex }: ImageSlider) => {
 
   const updateWidth = () => {
     if (sliderRef.current) {
+      console.log(sliderRef.current.clientWidth);
       setSliderWidth(sliderRef.current.clientWidth);
     }
   };
@@ -73,11 +74,12 @@ const ImageSlider = ({ images, index, setIndex }: ImageSlider) => {
               >
                 <Image
                   className="h-full max-h-89 w-full max-w-89"
-                  width="0"
-                  height="0"
+                  width={358}
+                  height={358}
                   alt="image"
                   src={src}
                   priority
+                  loading="eager"
                 />
                 <div className="flex flex-col items-center justify-center gap-2">
                   <span className="whitespace-pre-line text-center text-h3 font-bold">{title}</span>
@@ -109,8 +111,8 @@ interface SliderIndexDotProps {
 }
 
 const dotStyles = {
-  current: 'w-4 h-2 rounded-lg bg-primary-500',
-  default: 'w-2 h-2 rounded-full bg-gray-300',
+  current: 'w-5 h-1 rounded-lg bg-primary-500',
+  default: 'w-1 h-1 rounded-full bg-gray-300',
 };
 
 const SliderIndexDot = ({ isCurrentIndex, onClick }: SliderIndexDotProps) => {

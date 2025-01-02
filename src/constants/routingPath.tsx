@@ -1,9 +1,21 @@
 export const ROUTING_PATH = {
-  MAIN: '/',
+  MAIN: '/', // [TODO] 리뉴얼 전 login -> 리뉴얼 후 home
+  LOGIN: '/login',
   ONBOARDING: '/onboarding',
   PLANNING: '/planning',
   RESULT: '/result',
   MY_PAGE: '/my-page',
+  BOOKMARK: '/bookmark',
   NOT_FOUND: '/not-found',
+  IDEA: '/idea',
+  IDEA_RESULT: '/idea/result',
   SCRIPT: '/script',
+  SCRIPT_RESULT: '/script/result',
+  RECENT: '/recent',
+  CHANNEL_INFO: '/channel-info',
+  CHANNEL_INFO_EDIT: '/channel-info/edit',
+  Notice: '/notice',
+  Question: '/question',
+  QNA: '/qna',
+  DETAIL_SCRIPT: '/detail/script',
 } as const;
