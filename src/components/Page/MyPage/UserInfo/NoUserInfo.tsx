@@ -7,12 +7,15 @@ const NO_INFO = {
 
 const NoUserInfo = () => {
   return (
-    <div className="flex w-full select-none items-center justify-between p-4">
+    <a
+      href={`${process.env.NEXT_PUBLIC_API_FE_URL}/auth/kakao/callback`}
+      className="flex w-full cursor-pointer select-none items-center justify-between p-4"
+    >
       <div className="flex flex-col gap-2">
         <span className="text-h4 font-semibold text-black">{NO_INFO.TEXT}</span>
       </div>
       <ProfileImage src={NO_INFO.IMAGE_URL} alt="default thumbnail" />
-    </div>
+    </a>
   );
 };
 
