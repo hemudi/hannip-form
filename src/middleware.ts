@@ -31,7 +31,7 @@ const loginRouter = (request: NextRequest) => {
 
 const onboardingRouter = (request: NextRequest) => {
   const response = NextResponse.next();
-  response.cookies.set(COOKIE_NAME.VISITED, 'true');
+  response.cookies.set(COOKIE_NAME.VISITED, 'true', { maxAge: 86400 });
 
   return response;
 };
