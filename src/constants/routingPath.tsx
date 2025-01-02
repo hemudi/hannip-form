@@ -9,6 +9,7 @@ export const ROUTING_PATH = {
   IDEA: '/idea',
   IDEA_RESULT: '/idea/result',
   SCRIPT: '/script',
+  SCRIPT_RESULT: '/script/result',
   RECENT: '/recent',
   CHANNEL_INFO: '/channel-info',
   CHANNEL_INFO_EDIT: '/channel-info/edit',

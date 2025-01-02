@@ -32,7 +32,7 @@ const TextField = ({
   return (
     <div className="flex h-fit w-full flex-col gap-1">
       <input
-        className={`${isError ? variantStyle.error : variantStyle.default} box-border h-12 w-full rounded-lg border px-4 text-body1 text-black placeholder:text-gray-500 enabled:focus:border enabled:focus:border-gray-600 enabled:focus:bg-white enabled:focus:outline-none disabled:text-gray-500`}
+        className={`${isError ? variantStyle.error : variantStyle.default} box-border h-12 w-full rounded-lg border px-4 text-body1 text-black placeholder:text-gray-500 enabled:focus:border enabled:focus:bg-white enabled:focus:outline-none disabled:text-gray-500`}
         defaultValue={defaultValue}
         onChange={handleOnChangeWithValidation}
         {...props}

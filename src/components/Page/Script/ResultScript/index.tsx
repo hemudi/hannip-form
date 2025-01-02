@@ -1,11 +1,10 @@
 import { bookmarkScript, deleteScript } from '@apis/script';
 import Button from '@components/common/Button';
-import ScriptCopyButton from '@components/common/Button/ScriptCopyButton';
 import Icon from '@components/common/Icon';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import LoginModal from '@components/Page/Login/LoginModal';
+import ImageDownloader from '@components/Page/Script/ImageDownloader';
 import { COOKIE_NAME } from '@constants/cookieName';
-import { useScriptState } from '@store/script';
 import { getCookie } from 'cookies-next';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -22,8 +21,7 @@ const DEFAULT_TITLE_TEXT = '스크립트가 완성되었어요!';
 const RETRY_TITLE_TEXT = '스크립트가 다시 구워지고 있어요!';
 const RETRY_TEXT = '스크립트 다시 생성하기';
 
-const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
-  const { idea } = useScriptState();
+const ResultScript = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const [bookmarkId, setBookmarkId] = useState<string | null>(null);
 
@@ -43,7 +41,7 @@ const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
       return;
     }
 
-    bookmarkScript(`${scriptText}\n아이디어 : ${idea}`).then(({ id }) => {
+    bookmarkScript(scriptText).then(({ id }) => {
       toast.success('스크립트가 북마크 되었습니다!');
       setBookmarkId(id);
     });
@@ -84,7 +82,7 @@ const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
           {'북마크'}
           <BookmarkIcon isChecked={bookmarkId !== null} disabled={isRetry} />
         </Button>
-        <ScriptCopyButton text={scriptText} disabled={isRetry} />
+        <ImageDownloader text={scriptText} disabled={isRetry} />
       </div>
       <LoginModal
         warningText={'스크립트를 북마크하려면'}
@@ -95,4 +93,4 @@ const Script = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
   );
 };
 
-export default Script;
+export default ResultScript;

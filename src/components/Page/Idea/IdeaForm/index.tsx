@@ -66,7 +66,6 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
           validateValue={(value) => value.length >= 10 && value.length <= 100}
           helperMsg="최소 10자, 최대 300자 이내 (공백포함)"
         />
-        <span className="px-1 text-footnote text-gray-500"></span>
       </div>
       <div className={`flex w-full flex-col gap-2`}>
         <div className="w-full text-body1 font-semibold text-gray-900">
