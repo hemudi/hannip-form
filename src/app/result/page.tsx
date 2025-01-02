@@ -6,7 +6,7 @@ import Menu from '@components/Layout/Header/Menu';
 import Loading from '@components/Layout/Loading';
 import Advice from '@components/Page/Result/Advice';
 import IdeaList from '@components/Page/Result/IdeaList';
-import Script from '@components/Page/Result/Script';
+
 import ShareMenu from '@components/Page/Result/ShareMenu';
 import Button from '@components/common/Button';
 import { useScriptAction, useScriptState } from '@store/script';
@@ -18,6 +18,7 @@ import { useIdeaState } from '@store/idea';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { useRouter } from 'next/navigation';
 import Icon from '@components/common/Icon';
+import ResultScript from '@components/Page/Script/ResultScript';
 
 const BOTTOM_MENU_TEXT = '새로운 스크립트 쓰러가기';
 
@@ -83,7 +84,7 @@ const ResultPage = () => {
         }
       />
       <Layout.Main isSpacing={false}>
-        <Script scriptText={script} onRetry={handleOnRetryClick} isRetry={isRetry} />
+        <ResultScript scriptText={script} onRetry={handleOnRetryClick} isRetry={isRetry} />
         <div className="flex h-fit w-full flex-col items-center justify-center gap-4 bg-gray-50 p-4">
           <Advice advice={advice} isRetry={isRetry} />
           <IdeaList
