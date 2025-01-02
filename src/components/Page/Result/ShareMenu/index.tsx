@@ -40,7 +40,7 @@ const ShareMenu = () => {
         width="0"
         height="0"
         alt="image"
-        src={'https://hannip-form.vercel.app/assets/images/main.png'}
+        src={'/assets/images/hannip.svg'}
         priority
       />
       <h4 className="whitespace-pre-line pt-2 text-center text-h4 font-bold">{TITLE_TEXT}</h4>

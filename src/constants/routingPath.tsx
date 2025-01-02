@@ -17,4 +17,5 @@ export const ROUTING_PATH = {
   Notice: '/notice',
   Question: '/question',
   QNA: '/qna',
+  DETAIL_SCRIPT: '/detail/script',
 } as const;
