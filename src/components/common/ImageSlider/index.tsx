@@ -21,7 +21,6 @@ const ImageSlider = ({ images, index, setIndex }: ImageSlider) => {
 
   const updateWidth = () => {
     if (sliderRef.current) {
-      console.log(sliderRef.current.clientWidth);
       setSliderWidth(sliderRef.current.clientWidth);
     }
   };
