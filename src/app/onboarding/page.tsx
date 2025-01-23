@@ -46,7 +46,7 @@ const OnboardingPage = () => {
       </Layout.Main>
       <Layout.BottomMenu>
         {isLastSlider ? (
-          <Link className="w-full" href={ROUTING_PATH.MAIN}>
+          <Link className="w-full" href={ROUTING_PATH.LOGIN}>
             <Button size="full" color="primary">
               {ONBOARDING_SLIDER.BUTTON_TEXT.TO_PLANNING}
             </Button>
