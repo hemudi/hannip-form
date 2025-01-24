@@ -16,15 +16,15 @@ export const MY_PAGE_MENUS: MyPageMenu[] = [
     ],
     isPrivate: true,
   },
-  {
-    title: '고객지원',
-    subMenus: [
-      { name: '공지사항', href: '' },
-      { name: '자주하는 질문', href: '' },
-      { name: '문의하기', href: '' },
-    ],
-    isPrivate: false,
-  },
+  // {
+  //   title: '고객지원',
+  //   subMenus: [
+  //     { name: '공지사항', href: '' },
+  //     { name: '자주하는 질문', href: '' },
+  //     { name: '문의하기', href: '' },
+  //   ],
+  //   isPrivate: false,
+  // },
   {
     title: '서비스 이용 관련',
     subMenus: [
