@@ -71,7 +71,7 @@ const MyPage = () => {
   return (
     <div className="h-full w-full pt-10">
       {isLogin ? <UserInfo /> : <NoUserInfo />}
-      <div className="h-full w-full bg-gray-50">
+      <div className="h-fit w-full bg-gray-50">
         <Link
           onClick={handleRequireLogin('채널정보는')}
           className="flex w-full p-5"
