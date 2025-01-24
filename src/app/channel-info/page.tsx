@@ -47,7 +47,7 @@ const ChannelInfo = () => {
 
   const saveChannelInfo = () => {
     editChannelInfo({ description, category }).then(({ status, statusText }) => {
-      if (status === 200 && statusText === 'OK') {
+      if (status === 200) {
         toast.success('채널 정보가 저장되었습니다!');
         router.replace(ROUTING_PATH.MY_PAGE);
       } else {
