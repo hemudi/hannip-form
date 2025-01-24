@@ -52,7 +52,7 @@ const ResultScript = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
       <h4 className="w-full text-h4 font-bold">
         {isRetry ? RETRY_TITLE_TEXT : DEFAULT_TITLE_TEXT}
       </h4>
-      <div className="flex h-fit w-full items-center justify-center whitespace-pre-line rounded-lg bg-white p-4">
+      <div className="flex h-fit w-full select-text items-center justify-center whitespace-pre-line rounded-lg bg-white p-4">
         {isRetry ? (
           <Image
             className="w-fit"
