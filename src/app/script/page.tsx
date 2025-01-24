@@ -24,7 +24,10 @@ const ScriptPage = () => {
         title="스크립트 생성"
       />
       <Layout.Main isSpacing={false}>
-        <div onClick={() => setIsShowModal(true)} className="flex w-full bg-gray-50 p-5">
+        <div
+          onClick={() => setIsShowModal(true)}
+          className="flex w-full cursor-pointer bg-gray-50 p-5"
+        >
           <div className="flex w-full flex-col justify-center">
             <span className="text-h4 font-semibold">한입폼 100% 활용하기</span>
             <span>이렇게 작성하면 정확한 답변을 받을 수 있어요</span>
