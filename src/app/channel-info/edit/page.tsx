@@ -73,7 +73,7 @@ const ChannelInfo = () => {
             </div>
             <Dropdown
               placeholder="카테고리를 선택해주세요"
-              defaultOption={{ value: description, label: description }}
+              defaultOption={{ value: category, label: category }}
               options={categoryList.map((category) => ({ value: category, label: category }))}
               handleOptionChange={handleOptionChange}
             />

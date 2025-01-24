@@ -41,12 +41,18 @@ const Dropdown = ({
   };
 
   useEffect(() => {
-    if (defaultOption) setSelectedOption(defaultOption);
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    if (defaultOption?.value !== selectedOption?.value) {
+      console.log(defaultOption);
+      setSelectedOption(defaultOption);
+    }
+  }, [defaultOption]);
 
   return (
     <div className="relative h-fit w-full select-none" ref={dropdownRef} {...props}>
