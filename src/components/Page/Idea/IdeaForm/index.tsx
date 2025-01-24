@@ -10,6 +10,7 @@ import { ROUTING_PATH } from '@constants/routingPath';
 import BooleanSelector from '@components/common/BooleanSelector';
 import { checkChannelInfo } from '@apis/user';
 import { useIdeaAction, useIdeaState } from '@store/idea';
+import Button from '@components/common/Button';
 
 interface IdeaFormProps {
   setIsDone: Dispatch<SetStateAction<boolean>>;
@@ -87,7 +88,7 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
           onClose={clickModal}
         >
           <Link className="flex h-fit w-full flex-col gap-2" href={ROUTING_PATH.CHANNEL_INFO}>
-            채널 정보 작성하러가기
+            <Button>채널 정보 작성하러가기</Button>
           </Link>
         </Modal>
       )}
