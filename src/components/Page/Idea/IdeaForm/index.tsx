@@ -25,9 +25,14 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
   const { setIdeaState } = useIdeaAction();
 
   useEffect(() => {
-    checkChannelInfo().then((isExist) => setIsExistChannelInfo(isExist));
     setIsLogin(Boolean(getCookie(COOKIE_NAME.ACCESS)));
   }, []);
+
+  useEffect(() => {
+    if (isLogin) {
+      checkChannelInfo().then((isExist) => setIsExistChannelInfo(isExist));
+    }
+  }, [isLogin]);
 
   useEffect(() => {
     setIsDone(content.length >= 10 && content.length <= 100);
