@@ -11,6 +11,7 @@ import BooleanSelector, { BooleanSelectorHandle } from '@components/common/Boole
 import { checkChannelInfo } from '@apis/user';
 import { useIdeaAction, useIdeaState } from '@store/idea';
 import Button from '@components/common/Button';
+import TipMenu from '@components/common/TipMenu';
 
 interface IdeaFormProps {
   setIsDone: Dispatch<SetStateAction<boolean>>;
@@ -76,9 +77,10 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
   const clickModal = () => setIsModalShow((prev) => !prev);
 
   return (
-    <div className="flex h-full w-full flex-col items-center gap-8">
-      <h1 className="w-full text-h3 font-semibold">아이디어 정보를 입력해주세요</h1>
-      <div className={`flex w-full flex-col gap-2`}>
+    <div className="flex h-full w-full flex-col items-center gap-5 py-2">
+      <TipMenu />
+      <h1 className="w-full px-4 text-h3 font-semibold">아이디어 정보를 입력해주세요</h1>
+      <div className="flex w-full flex-col gap-2 px-4">
         <div className="w-full text-body1 font-semibold text-gray-900">
           아이디어에 반영될 주제가 있다면 작성해주세요<span className="text-gray-400"> *</span>
         </div>
@@ -90,7 +92,7 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
           helperMsg="최소 10자, 최대 300자 이내 (공백포함)"
         />
       </div>
-      <div className={`flex w-full flex-col gap-2`}>
+      <div className="flex w-full flex-col gap-2 px-4">
         <div className="w-full text-body1 font-semibold text-gray-900">
           채널 정보를 불러와 반영하시겠습니까?<span className="text-gray-400"> *</span>
         </div>
