@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, ComponentPropsWithoutRef, useState } from 'react';
+import { ChangeEvent, FocusEvent, ComponentPropsWithoutRef, useState, useEffect } from 'react';
 
 interface TextAreaProps extends ComponentPropsWithoutRef<'textarea'> {
   variant?: keyof typeof variantStyle;
@@ -38,6 +38,12 @@ const TextArea = ({
   const handleOnFocus = () => {
     setIsError(false);
   };
+
+  useEffect(() => {
+    if (value !== defaultValue) {
+      setValue(defaultValue);
+    }
+  }, [defaultValue]);
 
   return (
     <div className="flex h-fit w-full flex-col gap-1">

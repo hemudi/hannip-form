@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, ComponentPropsWithoutRef, useState } from 'react';
+import { ChangeEvent, FocusEvent, ComponentPropsWithoutRef, useState, useEffect } from 'react';
 
 interface TextFieldProps extends ComponentPropsWithoutRef<'input'> {
   variant?: keyof typeof variantStyle;
@@ -22,17 +22,24 @@ const TextField = ({
   validateValue,
   ...props
 }: TextFieldProps) => {
-  const [isError, setIsError] = useState<boolean>(false);
   const [value, setValue] = useState<string>(defaultValue);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    if (value !== defaultValue) {
+      setValue(defaultValue);
+    }
+  }, [defaultValue]);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-    if (onChange) onChange(e);
+    const newValue = e.target.value;
+    setValue(newValue);
+    onChange?.(e);
   };
 
-  const handleOnBlur = (e: FocusEvent<HTMLInputElement>) => {
+  const handleOnBlur = () => {
     if (validateValue) {
-      setIsError(!validateValue(e.target.value));
+      setIsError(!validateValue(value));
     }
   };
 
@@ -50,11 +57,9 @@ const TextField = ({
         onFocus={handleOnFocus}
         {...props}
       />
-      {isError ? (
-        <span className="px-1 text-footnote text-error">{errorMsg || helperMsg}</span>
-      ) : (
-        <span className="px-1 text-footnote text-gray-500">{helperMsg || errorMsg}</span>
-      )}
+      <span className={`px-1 text-footnote ${isError ? 'text-error' : 'text-gray-500'}`}>
+        {isError ? errorMsg : helperMsg}
+      </span>
     </div>
   );
 };

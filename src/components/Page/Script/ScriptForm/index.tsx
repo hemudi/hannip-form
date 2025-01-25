@@ -3,7 +3,6 @@ import Button from '@components/common/Button';
 import Dropdown, { Option } from '@components/common/DropDown';
 import TextArea from '@components/common/TextArea';
 import TextField from '@components/common/TextField';
-import { useIdeaState } from '@store/idea';
 import { useScriptAction, useScriptState } from '@store/script';
 import { ChangeEvent, Dispatch, SetStateAction, useEffect } from 'react';
 
@@ -12,9 +11,8 @@ interface ScriptFormProps {
 }
 
 const ScriptForm = ({ setIsDone }: ScriptFormProps) => {
-  const { idea, tone, essential } = useScriptState();
-  const { setScriptState } = useScriptAction();
-  const { selectedIdea } = useIdeaState();
+  const { idea, tone, essential, createdIdea } = useScriptState();
+  const { setScriptState, clearScriptState } = useScriptAction();
 
   const handleOnChangeIdea = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setScriptState({ idea: target.value });
@@ -33,6 +31,16 @@ const ScriptForm = ({ setIsDone }: ScriptFormProps) => {
   };
 
   useEffect(() => {
+    clearScriptState();
+    if (createdIdea && createdIdea !== '') {
+      setScriptState({ idea: createdIdea });
+    }
+    return () => {
+      setScriptState({ createdIdea: '' });
+    };
+  }, []);
+
+  useEffect(() => {
     setIsDone(
       idea.length >= 10 && idea.length <= 30 && essential.length >= 10 && essential.length <= 500,
     );
@@ -45,7 +53,7 @@ const ScriptForm = ({ setIsDone }: ScriptFormProps) => {
           아이디어를 입력해주세요<span className="text-gray-400"> *</span>
         </div>
         <TextField
-          defaultValue={idea}
+          defaultValue={createdIdea}
           placeholder="예시) 섭지코지에서 산책하며 자연 경관 감상"
           onChange={handleOnChangeIdea}
           validateValue={(value) => value.length >= 10 && value.length <= 30}

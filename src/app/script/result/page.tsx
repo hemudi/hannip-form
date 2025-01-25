@@ -29,8 +29,13 @@ const ScriptResult = () => {
     }
 
     createScript(scriptParams).then(({ script, advice }) => {
+      clearScriptState();
       setScript(script, advice);
     });
+
+    return () => {
+      clearScriptState();
+    };
   }, []);
 
   useEffect(() => {

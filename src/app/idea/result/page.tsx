@@ -8,6 +8,7 @@ import Loading from '@components/Layout/Loading';
 import IdeaList from '@components/Page/Idea/IdeaList';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { useIdeaAction, useIdeaState } from '@store/idea';
+import { useScriptAction } from '@store/script';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useLayoutEffect, useState } from 'react';
@@ -16,6 +17,7 @@ const IdeaResultPage = () => {
   const router = useRouter();
   const { content, isReflectedChannelInfo, selectedIdea, ideaList } = useIdeaState();
   const { clearIdeaState, setIdeaState } = useIdeaAction();
+  const { setScriptState } = useScriptAction();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useLayoutEffect(() => {
@@ -29,6 +31,7 @@ const IdeaResultPage = () => {
   useEffect(() => {
     createIdea({ content, isReflectedChannelInfo })
       .then((result) => {
+        clearIdeaState();
         setIdeaState({ ideaList: result });
         setIsLoading(false);
       })
@@ -37,6 +40,11 @@ const IdeaResultPage = () => {
         router.replace(ROUTING_PATH.NOT_FOUND);
       });
   }, []);
+
+  const handleOnClick = () => {
+    setScriptState({ createdIdea: selectedIdea });
+    clearIdeaState();
+  };
 
   if (isLoading) {
     return <Loading title="아이디어가 구워지고 있습니다!" />;
@@ -59,7 +67,7 @@ const IdeaResultPage = () => {
             <Button size="full">홈으로 돌아가기</Button>
           </Link>
           <Link className={`h-full w-full`} href={ROUTING_PATH.SCRIPT}>
-            <Button size="full" disabled={selectedIdea.length === 0}>
+            <Button size="full" disabled={selectedIdea.length === 0} onClick={handleOnClick}>
               스크립트 생성하러 가기
             </Button>
           </Link>

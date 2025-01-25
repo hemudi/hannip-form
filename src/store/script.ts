@@ -2,6 +2,7 @@ import { TONE } from '@app/script/constants';
 import { create } from 'zustand';
 
 interface ScriptStoreState {
+  createdIdea?: string;
   idea: string;
   essential: string;
   length: string;

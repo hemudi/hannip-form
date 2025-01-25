@@ -5,7 +5,6 @@ import Icon from '@components/common/Icon';
 import TipMenu from '@components/common/TipMenu';
 import Layout from '@components/Layout';
 import ScriptForm from '@components/Page/Script/ScriptForm';
-import ScriptTipModal from '@components/Page/Script/ScriptTipModal';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Link from 'next/link';
 import { useState } from 'react';

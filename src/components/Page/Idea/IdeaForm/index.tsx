@@ -23,11 +23,12 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
   const [isModalShow, setIsModalShow] = useState<boolean>(false);
   const [isExistChannelInfo, setIsExistChannelInfo] = useState<boolean>(false);
   const { content } = useIdeaState();
-  const { setIdeaState } = useIdeaAction();
+  const { setIdeaState, clearIdeaState } = useIdeaAction();
   const selectorRef = useRef<BooleanSelectorHandle>(null);
 
   useEffect(() => {
     setIsLogin(Boolean(getCookie(COOKIE_NAME.ACCESS)));
+    clearIdeaState();
   }, []);
 
   useEffect(() => {
