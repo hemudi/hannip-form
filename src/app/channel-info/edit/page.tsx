@@ -5,13 +5,13 @@ import Button from '@components/common/Button';
 import Dropdown, { Option } from '@components/common/DropDown';
 import Icon from '@components/common/Icon';
 import TextArea from '@components/common/TextArea';
+import { notify } from '@components/common/Toast';
 import Layout from '@components/Layout';
 import { categoryList } from '@constants/category';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 
 const ChannelInfo = () => {
   const router = useRouter();
@@ -37,10 +37,10 @@ const ChannelInfo = () => {
   const saveChannelInfo = () => {
     editChannelInfo({ description, category }).then(({ status, statusText }) => {
       if (status === 200) {
-        toast.success('채널 정보가 수정되었습니다!');
+        notify.success('채널 정보가 수정되었습니다!');
         router.replace(ROUTING_PATH.MY_PAGE);
       } else {
-        toast.error('채널 정보 저장에 실패했습니다!');
+        notify.error('채널 정보 저장에 실패했습니다!');
       }
     });
   };

@@ -2,7 +2,6 @@
 
 import { createScript } from '@apis/clova';
 import Layout from '@components/Layout';
-import Menu from '@components/Layout/Header/Menu';
 import Loading from '@components/Layout/Loading';
 import Advice from '@components/Page/Result/Advice';
 import IdeaList from '@components/Page/Result/IdeaList';
@@ -13,12 +12,12 @@ import { useScriptAction, useScriptState } from '@store/script';
 import Link from 'next/link';
 import { bookmarkIdea } from '@apis/idea';
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { useIdeaState } from '@store/idea';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { useRouter } from 'next/navigation';
 import Icon from '@components/common/Icon';
 import ResultScript from '@components/Page/Script/ResultScript';
+import { notify } from '@components/common/Toast';
 
 const BOTTOM_MENU_TEXT = '새로운 스크립트 쓰러가기';
 
@@ -49,7 +48,7 @@ const ResultPage = () => {
 
   const handleOnClick = async (idea: string) => {
     const id = await bookmarkIdea(idea).then(({ id }) => {
-      toast.success('아이디어가 북마크 되었습니다!');
+      notify.success('아이디어가 북마크 되었습니다!');
       return id;
     });
     return id;

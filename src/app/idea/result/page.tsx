@@ -2,6 +2,7 @@
 
 import { createIdea } from '@apis/clova';
 import Button from '@components/common/Button';
+import { notify } from '@components/common/Toast';
 import Layout from '@components/Layout';
 import Loading from '@components/Layout/Loading';
 import IdeaList from '@components/Page/Idea/IdeaList';
@@ -10,7 +11,6 @@ import { useIdeaAction, useIdeaState } from '@store/idea';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 
 const IdeaResultPage = () => {
   const router = useRouter();
@@ -33,7 +33,7 @@ const IdeaResultPage = () => {
         setIsLoading(false);
       })
       .catch(() => {
-        toast.error('아이디어 생성에 실패했습니다!');
+        notify.error('아이디어 생성에 실패했습니다!');
         router.replace(ROUTING_PATH.NOT_FOUND);
       });
   }, []);

@@ -12,10 +12,10 @@ import { deleteCookie, getCookie } from 'cookies-next';
 import { COOKIE_NAME } from '@constants/cookieName';
 import { useRouter } from 'next/navigation';
 import { deleteUser } from '@apis/user';
-import { toast } from 'react-toastify';
 import Modal from '@components/common/Modal';
 import Button from '@components/common/Button';
 import NoUserInfo from '@components/Page/MyPage/UserInfo/NoUserInfo';
+import { notify } from '@components/common/Toast';
 
 const manageUserMenu = {
   title: '계정 관련',
@@ -47,14 +47,14 @@ const MyPage = () => {
 
   const handleLogout = async () => {
     deleteCookie(COOKIE_NAME.ACCESS);
-    toast.success('정상적으로 로그아웃 되었습니다.');
+    notify.success('정상적으로 로그아웃 되었습니다.');
     router.replace(ROUTING_PATH.MAIN);
   };
 
   const handleWithdraw = async () => {
     deleteUser().then(() => {
       deleteCookie(COOKIE_NAME.ACCESS);
-      toast.success('회원탈퇴가 완료되었습니다! 다음에 또 만나요!');
+      notify.success('회원탈퇴가 완료되었습니다! 다음에 또 만나요!');
       router.replace(ROUTING_PATH.MAIN);
     });
   };

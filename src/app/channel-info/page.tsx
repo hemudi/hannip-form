@@ -4,12 +4,12 @@ import { editChannelInfo, type ChannelInfo } from '@apis/user';
 import Button from '@components/common/Button';
 import Dropdown, { Option } from '@components/common/DropDown';
 import TextArea from '@components/common/TextArea';
+import { notify } from '@components/common/Toast';
 import Layout from '@components/Layout';
 import Menu from '@components/Layout/Header/Menu';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
-import { toast } from 'react-toastify';
 
 const categoryList = [
   '게임',
@@ -48,10 +48,10 @@ const ChannelInfo = () => {
   const saveChannelInfo = () => {
     editChannelInfo({ description, category }).then(({ status, statusText }) => {
       if (status === 200) {
-        toast.success('채널 정보가 저장되었습니다!');
+        notify.success('채널 정보가 저장되었습니다!');
         router.replace(ROUTING_PATH.MY_PAGE);
       } else {
-        toast.error('채널 정보 저장에 실패했습니다!');
+        notify.error('채널 정보 저장에 실패했습니다!');
       }
     });
   };

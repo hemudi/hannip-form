@@ -2,13 +2,13 @@ import { bookmarkScript, deleteScript } from '@apis/script';
 import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
+import { notify } from '@components/common/Toast';
 import LoginModal from '@components/Page/Login/LoginModal';
 import ImageDownloader from '@components/Page/Script/ImageDownloader';
 import { COOKIE_NAME } from '@constants/cookieName';
 import { getCookie } from 'cookies-next';
 import Image from 'next/image';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 
 interface ScriptProps {
   scriptText: string;
@@ -35,14 +35,14 @@ const ResultScript = ({ scriptText, onRetry, isRetry }: ScriptProps) => {
 
     if (bookmarkId) {
       deleteScript(bookmarkId).then(() => {
-        toast.success('스크립트의 북마크가 해제되었습니다!');
+        notify.success('스크립트의 북마크가 해제되었습니다!');
         setBookmarkId(null);
       });
       return;
     }
 
     bookmarkScript(scriptText).then(({ id }) => {
-      toast.success('스크립트가 북마크 되었습니다!');
+      notify.success('스크립트가 북마크 되었습니다!');
       setBookmarkId(id);
     });
   };
