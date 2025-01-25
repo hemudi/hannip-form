@@ -62,7 +62,7 @@ const ScriptResult = () => {
     <>
       <Layout.Header
         leftMenu={
-          <Link href={ROUTING_PATH.ONBOARDING} replace>
+          <Link href={ROUTING_PATH.MAIN} replace>
             <Icon type="home" />
           </Link>
         }
