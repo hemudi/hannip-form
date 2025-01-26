@@ -5,6 +5,7 @@ import Button from '@components/common/Button';
 import Dropdown, { Option } from '@components/common/DropDown';
 import Icon from '@components/common/Icon';
 import TextArea from '@components/common/TextArea';
+import TipBanner from '@components/common/TipBanner';
 import { notify } from '@components/common/Toast';
 import Layout from '@components/Layout';
 import { categoryList } from '@constants/category';
@@ -55,9 +56,10 @@ const ChannelInfo = () => {
           </Link>
         }
       />
-      <Layout.Main>
+      <Layout.Main isSpacing={false}>
         <div className="flex h-full w-full flex-col items-center gap-8">
-          <div className={`flex w-full flex-col gap-2`}>
+          <TipBanner type="channel" />
+          <div className={`flex w-full flex-col gap-2 px-4`}>
             <div className="w-full text-body1 font-semibold text-gray-900">
               채널을 소개해주세요<span className="text-gray-400"> *</span>
             </div>
@@ -67,7 +69,7 @@ const ChannelInfo = () => {
               onChange={handleOnChange}
             />
           </div>
-          <div className={`flex w-full flex-col gap-2`}>
+          <div className={`flex w-full flex-col gap-2 px-4`}>
             <div className="w-full text-body1 font-semibold text-gray-900">
               만들고 싶은 영상의 카테고리를 알려주세요<span className="text-gray-400"> *</span>
             </div>

@@ -11,7 +11,7 @@ import BooleanSelector, { BooleanSelectorHandle } from '@components/common/Boole
 import { checkChannelInfo } from '@apis/user';
 import { useIdeaAction, useIdeaState } from '@store/idea';
 import Button from '@components/common/Button';
-import TipMenu from '@components/common/TipMenu';
+import TipBanner from '@components/common/TipBanner';
 
 interface IdeaFormProps {
   setIsDone: Dispatch<SetStateAction<boolean>>;
@@ -79,7 +79,7 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
 
   return (
     <div className="flex h-full w-full flex-col items-center gap-5 py-2">
-      <TipMenu />
+      <TipBanner type="script" />
       <h1 className="w-full px-4 text-h3 font-semibold">아이디어 정보를 입력해주세요</h1>
       <div className="flex w-full flex-col gap-2 px-4">
         <div className="w-full text-body1 font-semibold text-gray-900">

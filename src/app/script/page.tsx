@@ -2,7 +2,7 @@
 
 import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
-import TipMenu from '@components/common/TipMenu';
+import TipBanner from '@components/common/TipBanner';
 import Layout from '@components/Layout';
 import ScriptForm from '@components/Page/Script/ScriptForm';
 import { ROUTING_PATH } from '@constants/routingPath';
@@ -23,7 +23,7 @@ const ScriptPage = () => {
         title="스크립트 생성"
       />
       <Layout.Main isSpacing={false}>
-        <TipMenu />
+        <TipBanner type="script" />
         <ScriptForm setIsDone={setIsDone} />
       </Layout.Main>
       <Layout.BottomMenu>
