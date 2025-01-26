@@ -19,7 +19,7 @@ const BookmarkLayout = ({
           </Link>
         }
       />
-      <Layout.Main>{children}</Layout.Main>
+      <Layout.Main isSpacing={false}>{children}</Layout.Main>
       <Layout.BottomMenu>
         <Link className="w-full" href={ROUTING_PATH.SCRIPT}>
           <Button size="full">새로운 스크립트 쓰러가기</Button>
