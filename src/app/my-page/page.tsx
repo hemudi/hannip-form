@@ -74,14 +74,14 @@ const MyPage = () => {
       <div className="h-fit w-full bg-gray-50">
         <Link
           onClick={handleRequireLogin('채널정보는')}
-          className="flex w-full p-5"
+          className="flex w-full flex-col justify-center gap-1 p-5"
           href={ROUTING_PATH.CHANNEL_INFO_EDIT}
         >
-          <div className="flex w-full flex-col justify-center">
+          <div className="flex w-full items-center gap-1">
             <span className="text-h4 font-semibold">내 채널 정보</span>
-            <span>채널 정보 수정 및 관리할 수 있어요</span>
+            <Icon type="rightDirection" />
           </div>
-          <Icon type="rightDirection" />
+          <span className="text-body2 text-gray-700">채널 정보 수정 및 관리할 수 있어요</span>
         </Link>
         <div className="flex w-full flex-col gap-2">
           {MY_PAGE_MENUS.map(({ title, subMenus, isPrivate }) => (
