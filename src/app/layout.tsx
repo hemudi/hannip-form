@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import '@styles/globals.css';
 import Layout from '@components/Layout';
-import { ToastProvider } from '@components/common/Toast';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { Pretendard } from '@styles/fonts';
-import WebAnalytics from '@components/WebAnalytics';
-import KakaoScript from '@components/common/KaKaoScript';
+import Provider from '@components/Provider';
 
 export const metadata: Metadata = {
   title: '한입폼',
@@ -23,9 +21,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${Pretendard.variable} font-pretendard`}>
       <body className="mx-auto h-svh w-svw bg-primary-50">
-        <WebAnalytics />
-        <ToastProvider />
-        <KakaoScript />
+        <Provider />
         <Layout>{children}</Layout>
       </body>
     </html>
