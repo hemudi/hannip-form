@@ -1,7 +1,13 @@
 'use client';
 
+import RecentCreationList from '@components/Page/Recent/RecentCreationList';
+
 const RecentPage = () => {
-  return <div></div>;
+  return (
+    <>
+      <RecentCreationList />
+    </>
+  );
 };
 
 export default RecentPage;

@@ -8,7 +8,7 @@ const RecentPage = ({
   return (
     <>
       <Layout.Header title="최근 생성 내역" />
-      <Layout.Main>{children}</Layout.Main>
+      <Layout.Main isSpacing={false}>{children}</Layout.Main>
       <Layout.GNB currentPath="recent" />
     </>
   );

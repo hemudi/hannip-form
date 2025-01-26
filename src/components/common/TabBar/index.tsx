@@ -20,7 +20,7 @@ const TabBar = ({ tabs, defaultTab = 0, onChange }: TabBarProps) => {
   };
 
   return (
-    <div className="w-full max-w-97">
+    <div className="flex h-full w-full max-w-97 flex-col">
       <div className="sticky top-0 z-10 flex w-full gap-4 border-b border-gray-100 bg-white px-4">
         {tabs.map(({ label }, index) => (
           <Tab
@@ -31,7 +31,9 @@ const TabBar = ({ tabs, defaultTab = 0, onChange }: TabBarProps) => {
           />
         ))}
       </div>
-      <div className="flex w-full items-center justify-center">{tabs[activeTabIndex].content}</div>
+      <div className="flex w-full flex-grow items-center justify-center">
+        {tabs[activeTabIndex].content}
+      </div>
     </div>
   );
 };
