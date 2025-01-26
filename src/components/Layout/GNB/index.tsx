@@ -20,9 +20,14 @@ interface NavigationMenu {
 }
 
 const menus: NavigationMenu[] = [
-  { pathName: 'home', absolutePath: '/', iconType: 'home', name: '홈' },
-  { pathName: 'recent', absolutePath: '/recent', iconType: 'recent', name: '최근생성내역' },
-  { pathName: 'my-page', absolutePath: '/my-page', iconType: 'user', name: '마이페이지' },
+  { pathName: 'home', absolutePath: ROUTING_PATH.MAIN, iconType: 'home', name: '홈' },
+  {
+    pathName: 'recent',
+    absolutePath: `${ROUTING_PATH.RECENT}/?type=0`,
+    iconType: 'recent',
+    name: '최근생성내역',
+  },
+  { pathName: 'my-page', absolutePath: ROUTING_PATH.MY_PAGE, iconType: 'user', name: '마이페이지' },
 ];
 
 const GNB = ({ currentPath }: GNBProps) => {

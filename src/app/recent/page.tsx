@@ -1,3 +1,5 @@
+'use client';
+
 const RecentPage = () => {
   return <div></div>;
 };
