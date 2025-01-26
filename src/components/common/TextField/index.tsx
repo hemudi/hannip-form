@@ -10,7 +10,7 @@ interface TextFieldProps extends ComponentPropsWithoutRef<'input'> {
 
 const variantStyle = {
   error: 'border-error bg-white enabled:focus:border-error',
-  default: 'border-gray-50 bg-gray-50 enabled:focus:border-gray-600',
+  default: 'border-gray-100 bg-white enabled:focus:border-gray-600',
 };
 
 const TextField = ({
