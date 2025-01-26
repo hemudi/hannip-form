@@ -23,15 +23,17 @@ const UserInfo = () => {
   }, []);
 
   return (
-    userInfo && (
-      <div className="flex w-full select-none items-center justify-between p-4">
-        <div className="flex flex-col gap-2">
-          <span className="text-h4 font-semibold text-black">{`${userInfo.nickname}님`}</span>
-          {userInfo.email && <span className="text-body1 text-gray-700">{userInfo.email}</span>}
-        </div>
-        <ProfileImage src={userInfo.profileImageUrl} alt="thumbnail image" />
-      </div>
-    )
+    <div className="flex min-h-28 w-full select-none items-center justify-between p-4">
+      {userInfo && (
+        <>
+          <div className="flex flex-col gap-2">
+            <span className="text-h4 font-semibold text-black">{`${userInfo.nickname}님`}</span>
+            {userInfo.email && <span className="text-body1 text-gray-700">{userInfo.email}</span>}
+          </div>
+          <ProfileImage src={userInfo.profileImageUrl} alt="thumbnail image" />
+        </>
+      )}
+    </div>
   );
 };
 
