@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 
 const ScriptResult = () => {
   const router = useRouter();
-  const { script, advice, ...scriptParams } = useScriptState();
+  const { script, advice, createdIdea, ...scriptParams } = useScriptState();
   const { setScript, clearScriptState } = useScriptAction();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isRetry, setIsRetry] = useState<boolean>(false);

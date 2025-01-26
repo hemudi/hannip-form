@@ -9,6 +9,7 @@ interface ScriptStoreState {
   tone: string;
   script: string;
   advice: string;
+  isReflectedChannelInfo: boolean;
 }
 
 interface ScriptAction {
@@ -28,6 +29,7 @@ export const SCRIPT_INIT_STATE: ScriptStoreState = {
   tone: TONE.FORMAL,
   advice: '',
   script: '',
+  isReflectedChannelInfo: false,
 };
 
 const useScriptStore = create<ScriptStore>((set) => ({

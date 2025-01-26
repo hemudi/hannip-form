@@ -36,6 +36,16 @@ interface ScriptParams {
   idea: string;
   essential: string;
   length: string;
+  tone: string;
+  isReflectedChannelInfo: boolean;
+}
+
+interface ScriptPostParams {
+  idea: string;
+  essential: string;
+  length: string;
+  category?: string;
+  info?: string;
 }
 
 interface ScriptResponse {
@@ -43,7 +53,19 @@ interface ScriptResponse {
   advice: string;
 }
 
-export const createScript = async (params: ScriptParams): Promise<ScriptResponse> => {
+export const createScript = async ({
+  isReflectedChannelInfo,
+  ...restParams
+}: ScriptParams): Promise<ScriptResponse> => {
+  const params: ScriptPostParams = restParams;
+
+  if (isReflectedChannelInfo) {
+    const { category, description } = await getChannelInfo();
+    params.category = category;
+    params.info = description;
+  }
+
+  console.log(params);
   const res = (await axios.post(CLOVA_URL_PATH.SCRIPT, params)).data;
   return res;
 };
