@@ -11,9 +11,9 @@ export default function IdeaLayout({
   return (
     <>
       <Layout.Header
-        rightMenu={
+        leftMenu={
           <Link href={ROUTING_PATH.MAIN}>
-            <Icon type="closeCross" />
+            <Icon type="leftDirection" />
           </Link>
         }
         title="아이디어 생성"

@@ -15,9 +15,9 @@ const ScriptPage = () => {
   return (
     <>
       <Layout.Header
-        rightMenu={
+        leftMenu={
           <Link href={ROUTING_PATH.MAIN}>
-            <Icon type="closeCross" />
+            <Icon type="leftDirection" />
           </Link>
         }
         title="스크립트 생성"
