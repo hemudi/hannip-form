@@ -41,18 +41,24 @@ const Dropdown = ({
   };
 
   useEffect(() => {
-    if (defaultOption) setSelectedOption(defaultOption);
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
+  useEffect(() => {
+    if (defaultOption?.value !== selectedOption?.value) {
+      console.log(defaultOption);
+      setSelectedOption(defaultOption);
+    }
+  }, [defaultOption]);
+
   return (
     <div className="relative h-fit w-full select-none" ref={dropdownRef} {...props}>
       <div
         tabIndex={0}
-        className={`flex h-12 cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-body1 ${isOpen ? 'border border-gray-300 bg-white text-black' : 'bg-gray-50'} ${selectedOption ? 'text-black' : 'text-gray-500'}`}
+        className={`flex h-12 cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white px-4 py-2 text-body1 ${isOpen && 'border border-gray-300 text-black'} ${selectedOption ? 'text-black' : 'text-gray-500'}`}
         onClick={toggleDropdown}
       >
         {selectedOption?.label ? selectedOption.label : placeholder}

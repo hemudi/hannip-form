@@ -12,7 +12,7 @@ const IdeaPage = () => {
 
   return (
     <>
-      <Layout.Main>
+      <Layout.Main isSpacing={false}>
         <IdeaForm setIsDone={setIsDone} />
       </Layout.Main>
       <Layout.BottomMenu>

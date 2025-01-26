@@ -2,10 +2,8 @@
 
 import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
-import copyText from '@utils/copyText';
 import html2canvas from 'html2canvas';
 import { useRef } from 'react';
-import { toast } from 'react-toastify';
 
 interface ImageDownloaderProps {
   text: string;
@@ -27,11 +25,6 @@ const ImageDownloader = ({ text, disabled = false }: ImageDownloaderProps) => {
     });
   };
 
-  // const handleOnClick = () => {
-  //   copyText(text).then((isSuccess) => {
-  //     isSuccess && toast.success('이미지가 저장되었습니다!');
-  //   });
-  // };
   return (
     <>
       <Button onClick={handleOnCapture} disabled={disabled}>

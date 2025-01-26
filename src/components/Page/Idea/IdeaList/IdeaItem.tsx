@@ -1,8 +1,8 @@
 import { bookmarkIdea, deleteIdea } from '@apis/idea';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
+import { notify } from '@components/common/Toast';
 import { useIdeaAction, useIdeaState } from '@store/idea';
 import { MouseEvent, useState } from 'react';
-import { toast } from 'react-toastify';
 
 interface IdeaItemProps {
   idea: string;
@@ -30,23 +30,23 @@ const IdeaItem = ({ idea, isLogin, popModal }: IdeaItemProps) => {
     if (bookmarkId) {
       deleteIdea(bookmarkId)
         .then(() => {
-          toast.success('북마크가 해제되었습니다!');
+          notify.success('북마크 해제');
           setBookmarkId(null);
         })
         .catch(() => {
-          toast.success('북마크 해제에 실패했습니다!');
+          notify.error('북마크 해제 실패');
         });
       return;
     }
 
     bookmarkIdea(idea)
       .then(({ id }) => {
-        toast.success('북마크 되었습니다!');
+        notify.success('북마크 되었습니다!');
         setBookmarkId(id);
         return id;
       })
       .catch(() => {
-        toast.success('북마크에 실패했습니다!');
+        notify.success('북마크에 실패했습니다!');
       });
   };
 

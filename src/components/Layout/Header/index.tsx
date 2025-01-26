@@ -10,7 +10,7 @@ const Header = ({ leftMenu, rightMenu, title }: HeaderProps) => {
   return (
     <header className="flex h-16 w-full items-center justify-between bg-white p-4">
       <div className="flex-1">{leftMenu}</div>
-      {title && <h1 className="w-full text-center text-footnote">{title}</h1>}
+      {title && <h1 className="w-full text-center text-body1">{title}</h1>}
       <div>{rightMenu}</div>
     </header>
   );

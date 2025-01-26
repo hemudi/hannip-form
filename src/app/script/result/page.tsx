@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 
 const ScriptResult = () => {
   const router = useRouter();
-  const { script, advice, ...scriptParams } = useScriptState();
+  const { script, advice, createdIdea, ...scriptParams } = useScriptState();
   const { setScript, clearScriptState } = useScriptAction();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isRetry, setIsRetry] = useState<boolean>(false);
@@ -29,8 +29,13 @@ const ScriptResult = () => {
     }
 
     createScript(scriptParams).then(({ script, advice }) => {
+      clearScriptState();
       setScript(script, advice);
     });
+
+    return () => {
+      clearScriptState();
+    };
   }, []);
 
   useEffect(() => {
@@ -57,7 +62,7 @@ const ScriptResult = () => {
     <>
       <Layout.Header
         leftMenu={
-          <Link href={ROUTING_PATH.ONBOARDING} replace>
+          <Link href={ROUTING_PATH.MAIN} replace>
             <Icon type="home" />
           </Link>
         }

@@ -2,12 +2,14 @@ import { TONE } from '@app/script/constants';
 import { create } from 'zustand';
 
 interface ScriptStoreState {
+  createdIdea?: string;
   idea: string;
   essential: string;
   length: string;
   tone: string;
   script: string;
   advice: string;
+  isReflectedChannelInfo: boolean;
 }
 
 interface ScriptAction {
@@ -27,6 +29,7 @@ export const SCRIPT_INIT_STATE: ScriptStoreState = {
   tone: TONE.FORMAL,
   advice: '',
   script: '',
+  isReflectedChannelInfo: false,
 };
 
 const useScriptStore = create<ScriptStore>((set) => ({

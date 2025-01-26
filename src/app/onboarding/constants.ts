@@ -22,7 +22,7 @@ export const onboardingData = [
   },
 ];
 
-export const SLIDER = {
+export const ONBOARDING_SLIDER = {
   INDEX: {
     FIRST: 0,
     LAST: onboardingData.length - 1,

@@ -62,7 +62,7 @@ const BookmarkContents = ({ type, bookmarkList, deleteContent }: BookmarkContent
               {type === 'idea' ? content : parseScriptTitle(content)}
             </span>
             <div className={`cursor-pointer`} onClick={handleOnDelete(id)}>
-              <Icon type={'closeCircle'} />
+              <Icon type={'closeCircle'} color="#C9C9CA" />
             </div>
           </div>
         ))}

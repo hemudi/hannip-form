@@ -5,12 +5,12 @@ import Button from '@components/common/Button';
 import ScriptCopyButton from '@components/common/Button/ScriptCopyButton';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import Modal from '@components/common/Modal';
+import { notify } from '@components/common/Toast';
 import ImageDownloader from '@components/Page/Script/ImageDownloader';
 
 import { splitScriptAndIdeas } from '@utils/script';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 
 const ScriptDetailPage = ({ params: { id } }: { params: { id: string } }) => {
   const [content, setContent] = useState<{ script: string; idea: string }>();
@@ -28,7 +28,7 @@ const ScriptDetailPage = ({ params: { id } }: { params: { id: string } }) => {
 
   const handleOnClick = () => {
     deleteScript(id).then(() => {
-      toast.success('스크립트의 북마크가 해제되었습니다!');
+      notify.success('스크립트의 북마크가 해제되었습니다!');
       setIsShow(false);
       router.back();
     });

@@ -1,9 +1,9 @@
 'use client';
 
-import { ToastContainer } from 'react-toastify';
+import { Flip, toast, ToastContainer } from 'react-toastify';
 
 const options = {
-  autoClose: 800,
+  autoClose: 1,
   hideProgressBar: true,
   closeOnClick: true,
   closeButton: false,
@@ -20,9 +20,21 @@ const contextClass = {
   dark: 'bg-black',
 };
 
+export const notify = {
+  success: (msg: string) => {
+    toast.clearWaitingQueue();
+    toast.success(msg);
+  },
+  error: (msg: string) => {
+    toast.clearWaitingQueue();
+    toast.error(msg);
+  },
+};
+
 export const ToastProvider = () => {
   return (
     <ToastContainer
+      transition={Flip}
       className={'flex w-full items-center justify-center'}
       toastClassName={(context) =>
         contextClass[context?.type || 'default'] +

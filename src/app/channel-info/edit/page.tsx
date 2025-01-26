@@ -5,13 +5,14 @@ import Button from '@components/common/Button';
 import Dropdown, { Option } from '@components/common/DropDown';
 import Icon from '@components/common/Icon';
 import TextArea from '@components/common/TextArea';
+import TipBanner from '@components/common/TipBanner';
+import { notify } from '@components/common/Toast';
 import Layout from '@components/Layout';
 import { categoryList } from '@constants/category';
 import { ROUTING_PATH } from '@constants/routingPath';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 
 const ChannelInfo = () => {
   const router = useRouter();
@@ -36,11 +37,11 @@ const ChannelInfo = () => {
 
   const saveChannelInfo = () => {
     editChannelInfo({ description, category }).then(({ status, statusText }) => {
-      if (status === 200 && statusText === 'OK') {
-        toast.success('채널 정보가 수정되었습니다!');
+      if (status === 200) {
+        notify.success('채널 정보가 수정되었습니다!');
         router.replace(ROUTING_PATH.MY_PAGE);
       } else {
-        toast.error('채널 정보 저장에 실패했습니다!');
+        notify.error('채널 정보 저장에 실패했습니다!');
       }
     });
   };
@@ -55,9 +56,10 @@ const ChannelInfo = () => {
           </Link>
         }
       />
-      <Layout.Main>
+      <Layout.Main isSpacing={false}>
         <div className="flex h-full w-full flex-col items-center gap-8">
-          <div className={`flex w-full flex-col gap-2`}>
+          <TipBanner type="channel" />
+          <div className={`flex w-full flex-col gap-2 px-4`}>
             <div className="w-full text-body1 font-semibold text-gray-900">
               채널을 소개해주세요<span className="text-gray-400"> *</span>
             </div>
@@ -67,13 +69,13 @@ const ChannelInfo = () => {
               onChange={handleOnChange}
             />
           </div>
-          <div className={`flex w-full flex-col gap-2`}>
+          <div className={`flex w-full flex-col gap-2 px-4`}>
             <div className="w-full text-body1 font-semibold text-gray-900">
               만들고 싶은 영상의 카테고리를 알려주세요<span className="text-gray-400"> *</span>
             </div>
             <Dropdown
               placeholder="카테고리를 선택해주세요"
-              defaultOption={{ value: description, label: description }}
+              defaultOption={{ value: category, label: category }}
               options={categoryList.map((category) => ({ value: category, label: category }))}
               handleOptionChange={handleOptionChange}
             />

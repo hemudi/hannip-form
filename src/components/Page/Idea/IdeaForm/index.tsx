@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 import TextArea from '@components/common/TextArea';
 import { COOKIE_NAME } from '@constants/cookieName';
@@ -7,9 +7,11 @@ import LoginModal from '@components/Page/Login/LoginModal';
 import Modal from '@components/common/Modal';
 import Link from 'next/link';
 import { ROUTING_PATH } from '@constants/routingPath';
-import BooleanSelector from '@components/common/BooleanSelector';
+import BooleanSelector, { BooleanSelectorHandle } from '@components/common/BooleanSelector';
 import { checkChannelInfo } from '@apis/user';
 import { useIdeaAction, useIdeaState } from '@store/idea';
+import Button from '@components/common/Button';
+import TipBanner from '@components/common/TipBanner';
 
 interface IdeaFormProps {
   setIsDone: Dispatch<SetStateAction<boolean>>;
@@ -21,12 +23,19 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
   const [isModalShow, setIsModalShow] = useState<boolean>(false);
   const [isExistChannelInfo, setIsExistChannelInfo] = useState<boolean>(false);
   const { content } = useIdeaState();
-  const { setIdeaState } = useIdeaAction();
+  const { setIdeaState, clearIdeaState } = useIdeaAction();
+  const selectorRef = useRef<BooleanSelectorHandle>(null);
 
   useEffect(() => {
-    checkChannelInfo().then((isExist) => setIsExistChannelInfo(isExist));
     setIsLogin(Boolean(getCookie(COOKIE_NAME.ACCESS)));
+    clearIdeaState();
   }, []);
+
+  useEffect(() => {
+    if (isLogin) {
+      checkChannelInfo().then((isExist) => setIsExistChannelInfo(isExist));
+    }
+  }, [isLogin]);
 
   useEffect(() => {
     setIsDone(content.length >= 10 && content.length <= 100);
@@ -34,6 +43,22 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
 
   const handleOnChange = ({ target }: ChangeEvent<HTMLTextAreaElement>) => {
     setIdeaState({ content: target.value });
+  };
+
+  const handleOnCloseModal = (type: 'login' | 'channel') => {
+    if (selectorRef.current) {
+      selectorRef.current.setValue(false);
+    }
+
+    if (type === 'login') {
+      setIsLoginShow((prev) => !prev);
+      return;
+    }
+
+    if (type === 'channel') {
+      setIsModalShow((prev) => !prev);
+      return;
+    }
   };
 
   const handleOnClick = (isReflectedChannelInfo: boolean) => {
@@ -53,9 +78,10 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
   const clickModal = () => setIsModalShow((prev) => !prev);
 
   return (
-    <div className="flex h-full w-full flex-col items-center gap-8">
-      <h1 className="w-full text-h3 font-semibold">아이디어 정보를 입력해주세요</h1>
-      <div className={`flex w-full flex-col gap-2`}>
+    <div className="flex h-full w-full flex-col items-center gap-5 py-2">
+      <TipBanner type="script" />
+      <h1 className="w-full px-4 text-h3 font-semibold">아이디어 정보를 입력해주세요</h1>
+      <div className="flex w-full flex-col gap-2 px-4">
         <div className="w-full text-body1 font-semibold text-gray-900">
           아이디어에 반영될 주제가 있다면 작성해주세요<span className="text-gray-400"> *</span>
         </div>
@@ -67,11 +93,11 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
           helperMsg="최소 10자, 최대 300자 이내 (공백포함)"
         />
       </div>
-      <div className={`flex w-full flex-col gap-2`}>
+      <div className="flex w-full flex-col gap-2 px-4">
         <div className="w-full text-body1 font-semibold text-gray-900">
           채널 정보를 불러와 반영하시겠습니까?<span className="text-gray-400"> *</span>
         </div>
-        <BooleanSelector onChange={handleOnClick} />
+        <BooleanSelector onChange={handleOnClick} ref={selectorRef} />
         <span className="px-1 text-footnote text-gray-500">
           채널 정보가 있으면 나에게 맞춤 아이디어를 제공받을 수 있어요.
         </span>
@@ -79,15 +105,15 @@ const IdeaForm = ({ setIsDone }: IdeaFormProps) => {
       <LoginModal
         isShow={isLoginShow}
         warningText={`채널 정보 불러오기는`}
-        clickModal={() => setIsLoginShow((prev) => !prev)}
+        clickModal={() => handleOnCloseModal('login')}
       />
       {isModalShow && (
         <Modal
           title={`채널 정보가 없어요!\n맞춤 아이디어를 위해 작성해주세요.`}
-          onClose={clickModal}
+          onClose={() => handleOnCloseModal('channel')}
         >
           <Link className="flex h-fit w-full flex-col gap-2" href={ROUTING_PATH.CHANNEL_INFO}>
-            채널 정보 작성하러가기
+            <Button>채널 정보 작성하러가기</Button>
           </Link>
         </Modal>
       )}

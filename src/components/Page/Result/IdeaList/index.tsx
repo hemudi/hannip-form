@@ -2,11 +2,11 @@ import { deleteIdea } from '@apis/idea';
 import Accordion from '@components/common/Accordion';
 import BookmarkIcon from '@components/common/Icon/BookmarkIcon';
 import ItemList from '@components/common/ItemList';
+import { notify } from '@components/common/Toast';
 import LoginModal from '@components/Page/Login/LoginModal';
 import { COOKIE_NAME } from '@constants/cookieName';
 import { getCookie } from 'cookies-next';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 
 interface IdeaListProps {
   contentList: string[];
@@ -46,7 +46,7 @@ const Item = ({ text, onClick }: ItemProps) => {
 
     if (bookmarkId) {
       deleteIdea(bookmarkId).then(() => {
-        toast.success('아이디어의 북마크가 해제되었습니다!');
+        notify.success('아이디어의 북마크가 해제되었습니다!');
         setBookmarkId(null);
       });
       return;

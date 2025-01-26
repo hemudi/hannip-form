@@ -2,8 +2,8 @@
 
 import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
+import { notify } from '@components/common/Toast';
 import copyText from '@utils/copyText';
-import { toast } from 'react-toastify';
 
 interface TextCopyButtonProps {
   text: string;
@@ -13,7 +13,7 @@ interface TextCopyButtonProps {
 const ScriptCopyButton = ({ text, disabled = false }: TextCopyButtonProps) => {
   const handleOnClick = () => {
     copyText(text).then((isSuccess) => {
-      isSuccess && toast.success('스크립트가 복사되었습니다!');
+      isSuccess && notify.success('스크립트가 복사되었습니다!');
     });
   };
   return (

@@ -18,7 +18,7 @@ const Home = () => {
             {HOME_TITLE_TEXT}
           </span>
           <Image
-            className="h-full max-h-89 w-auto max-w-89"
+            className="h-full max-h-89 w-full max-w-89"
             width={358}
             height={358}
             alt="hannip_main"
