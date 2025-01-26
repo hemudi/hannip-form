@@ -106,7 +106,7 @@ const ScriptForm = ({ setIsDone }: ScriptFormProps) => {
         </div>
         <TextField
           defaultValue={createdIdea}
-          placeholder="예시) 섭지코지에서 산책하며 자연 경관 감상"
+          placeholder="예시) 제주도 한달살기 후 추천하는 명소들  "
           onChange={handleOnChangeIdea}
           validateValue={(value) => value.length >= 10 && value.length <= 30}
           helperMsg="최소 10자, 최대 30자 이내 (공백포함)"
@@ -129,7 +129,7 @@ const ScriptForm = ({ setIsDone }: ScriptFormProps) => {
         </div>
         <TextArea
           defaultValue={essential}
-          placeholder="예시) 섭지코지는 유채꽃이 만발해서 인생샷을 찍을 수 있는 ‘사진 맛집’으로 유명하다는 내용이 들어가면 좋겠어요. 바닷가를 따라 산책로를 걸으며 일몰을 보여주면서 30분 정도 소요된다는 것과 일출과 일몰 시간대에 와서 구경하는 것을 추천하는내용의 꿀팁을 제공하면 좋겠어요."
+          placeholder="예시) 제주도 명소 중에서도 포토존 위주로 추천을 해주세요. 잘 알려진 곳이 아닌 제주도 현지인만 아는 명소였으면 좋겠어요. 차 없이도 편하게 갈 수 있는 곳 위주로 알려주세요."
           onChange={handleOnChangeEssential}
           validateValue={(value) => value.length >= 10 && value.length <= 500}
           helperMsg="최소 10자, 최대 500자 이내 (공백포함)"
