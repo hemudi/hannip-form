@@ -1,8 +1,10 @@
-import { COOKIE_NAME } from '@constants/cookieName';
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
+import { COOKIE_NAME } from '@constants/cookieName';
+import { getAccessToken as checkLoginSuccess } from '@utils/cookie';
 
 const USER_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/users`;
+const OAUTH_LOGIN_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/auth`;
 
 export interface BookmarkContent {
   id: string;
@@ -31,6 +33,12 @@ interface UserInfoResponse {
   scripts: BookmarkContent[];
   ideas: BookmarkContent[];
 }
+
+export const loginOAuth = async ({ code, state }: { code: string; state: string }) => {
+  const apiUrl = `${OAUTH_LOGIN_API_URL}/${state}/callback?code=${code}`;
+  await axios.get(apiUrl, { withCredentials: true });
+  return checkLoginSuccess();
+};
 
 export interface UserInfoType extends Omit<UserInfoResponse, 'profile_image_url'> {
   profileImageUrl: string;

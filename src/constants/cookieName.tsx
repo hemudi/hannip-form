@@ -1,4 +1,4 @@
 export const COOKIE_NAME = {
-  ACCESS: 'access',
+  ACCESS: 'access_token',
   VISITED: 'visited',
 };

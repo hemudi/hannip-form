@@ -11,7 +11,8 @@ const buttonSettings = {
     icon: <Icon className="mt-1.5" type="kakao" />,
     text: '카카오 로그인',
     styles: 'bg-kakao text-black',
-    href: `${process.env.NEXT_PUBLIC_API_FE_URL}/auth/kakao/callback`,
+    href: `https://kauth.kakao.com/oauth/authorize?&response_type=code&client_id=c216663da6b37790543ac862f4ae05b7&redirect_uri=https://hannip-form.vercel.app/auth&state=kakao`,
+    // href: `https://kauth.kakao.com/oauth/authorize?&response_type=code&client_id=c216663da6b37790543ac862f4ae05b7&redirect_uri=http://localhost:3001/auth&state=kakao`,
   },
 };
 

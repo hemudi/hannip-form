@@ -1,11 +1,9 @@
 'use client';
 
-import { checkChannelInfo } from '@apis/user';
-import { COOKIE_NAME } from '@constants/cookieName';
+import { checkChannelInfo, loginOAuth } from '@apis/user';
 import { ROUTING_PATH } from '@constants/routingPath';
 import { HISTORY_PATH } from '@hooks/usePathHistory';
-import { setCookie } from 'cookies-next';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const AuthCallbackPage = () => {
@@ -13,19 +11,28 @@ const AuthCallbackPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const code = searchParams.get('code');
+  const state = searchParams.get('state');
 
   useEffect(() => {
-    setCookie(COOKIE_NAME.ACCESS, code);
-    const storage = globalThis?.sessionStorage;
-    if (storage) {
-      const storedPrevPath = storage.getItem(HISTORY_PATH.PREV);
-      setPrevPath(storedPrevPath || ROUTING_PATH.MAIN);
+    if (!code || !state) {
+      notFound();
     }
+
+    loginOAuth({ code, state })
+      .then(() => {
+        const storage = globalThis?.sessionStorage;
+        if (storage) {
+          const storedPrevPath = storage.getItem(HISTORY_PATH.PREV);
+          setPrevPath(storedPrevPath || ROUTING_PATH.MAIN);
+        }
+      })
+      .catch(() => {
+        notFound();
+      });
   }, []);
 
   useEffect(() => {
     if (!prevPath) return;
-
     if (prevPath === ROUTING_PATH.LOGIN) {
       checkChannelInfo().then((isExist) => {
         if (isExist) {
@@ -36,7 +43,6 @@ const AuthCallbackPage = () => {
       });
       return;
     }
-
     router.replace(prevPath);
   }, [prevPath]);
 
