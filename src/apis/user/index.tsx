@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { getCookie } from 'cookies-next';
-import { COOKIE_NAME } from '@constants/cookieName';
-import { getAccessToken as checkLoginSuccess } from '@utils/cookie';
+import { getAccessToken as checkLoginSuccess, getAccessToken } from '@utils/cookie';
 
 const USER_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/users`;
 const OAUTH_LOGIN_API_URL = `${process.env.NEXT_PUBLIC_API_FE_URL}/auth`;
@@ -45,20 +43,25 @@ export interface UserInfoType extends Omit<UserInfoResponse, 'profile_image_url'
 }
 
 export const getUser = async (): Promise<UserInfoType> => {
-  const token = getCookie(COOKIE_NAME.ACCESS);
+  const token = await getAccessToken();
+
+  console.log(token);
 
   const res = await axios.get<UserInfoResponse>(USER_API_URL, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+    withCredentials: true,
   });
+
+  console.log(res);
 
   const { profile_image_url, ...rest } = res.data;
   return { profileImageUrl: profile_image_url, ...rest };
 };
 
 export const deleteUser = async () => {
-  const token = getCookie(COOKIE_NAME.ACCESS);
+  const token = await getAccessToken();
   const res = await axios.delete(USER_API_URL, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -68,7 +71,7 @@ export const deleteUser = async () => {
 };
 
 export const getChannelInfo = async (): Promise<ChannelInfo> => {
-  const token = getCookie(COOKIE_NAME.ACCESS);
+  const token = await getAccessToken();
 
   const res = await axios.get<UserInfoResponse>(USER_API_URL, {
     headers: {
@@ -81,7 +84,7 @@ export const getChannelInfo = async (): Promise<ChannelInfo> => {
 };
 
 export const checkChannelInfo = async (): Promise<boolean> => {
-  const token = getCookie(COOKIE_NAME.ACCESS);
+  const token = await getAccessToken();
 
   const res = await axios.get<boolean>(`${USER_API_URL}/channel`, {
     headers: {
@@ -94,7 +97,7 @@ export const checkChannelInfo = async (): Promise<boolean> => {
 };
 
 export const editChannelInfo = async (channelInfo: ChannelInfo) => {
-  const token = getCookie(COOKIE_NAME.ACCESS);
+  const token = await getAccessToken();
 
   try {
     const response = await axios.put(
