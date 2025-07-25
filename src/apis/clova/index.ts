@@ -65,7 +65,6 @@ export const createScript = async ({
     params.info = description;
   }
 
-  console.log(params);
   const res = (await axios.post(CLOVA_URL_PATH.SCRIPT, params)).data;
   return res;
 };

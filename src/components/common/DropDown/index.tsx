@@ -49,7 +49,6 @@ const Dropdown = ({
 
   useEffect(() => {
     if (defaultOption?.value !== selectedOption?.value) {
-      console.log(defaultOption);
       setSelectedOption(defaultOption);
     }
   }, [defaultOption]);

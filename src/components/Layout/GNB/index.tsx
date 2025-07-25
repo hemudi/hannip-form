@@ -41,7 +41,6 @@ const GNB = ({ currentPath }: GNBProps) => {
     }
 
     if (`/${path}` === ROUTING_PATH.RECENT && !accessToken) {
-      console.log(accessToken);
       e.preventDefault();
       setIsShow(true);
     }
